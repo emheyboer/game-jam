@@ -39,18 +39,13 @@ def main():
 
     ui_sections = [
         ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
-        # ((100, 0, 0), (width * .2, 0, width * .6, height * .375), "boss dice box"),
         ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
 
         ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
-        # ((0, 100, 0), (width * .2, height * .375, width * .6, height * .375), "player dice box"),
         ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
 
         ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
         ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
-        # ((0, 0, 200), (width * .35, height * .8, width * .1, height * .1), "1"),
-        # ((0, 0, 200), (width * .5, height * .8, width * .1, height * .1), "2"),
-        # ((0, 0, 200), (width * .65, height * .8, width * .1, height * .1), "3"),
         ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
     ]
 

@@ -93,7 +93,7 @@ def main():
             label = font.render(text, False, (255, 255, 255))
 
             w, h, _, _ = rect
-            screen.blit(label, (w + width * .05, h + height * .05))
+            screen.blit(label, (w, h))
 
 
         boss_dice_bag.draw(screen, width * .8, height * .475, scale = (width * .225, height * .225))

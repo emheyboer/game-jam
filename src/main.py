@@ -64,6 +64,7 @@ def main():
     boss_art = Sprite(SpriteSheet('assets/inventory/sprites.png'), (16 * 5, 16 * 7), (16, 16))
 
     attack_btn = Sprite(SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'), (0, 0), (45, 49))
+    num_attacks = 5
 
 
     running = True
@@ -98,20 +99,19 @@ def main():
 
         boss_art.draw(screen, 0, height * .1, scale = (width * .225, height * .225))
 
-        attack_btn.draw(screen, width * .2, height * .8, scale = (width * .1, height * .1))
-        attack_btn.draw(screen, width * .325, height * .8, scale = (width * .1, height * .1))
-        attack_btn.draw(screen, width * .45, height * .8, scale = (width * .1, height * .1))
-        attack_btn.draw(screen, width * .575, height * .8, scale = (width * .1, height * .1))
-        attack_btn.draw(screen, width * .7, height * .8, scale = (width * .1, height * .1))
+        x_mult = .2
+        for i in range(num_attacks):
+            attack_btn.draw(screen, width * x_mult, height * .8, scale = (width * .1, height * .1))
+            x_mult += .125
 
-        x, y = width * .25, height * .2
+        x = width * .25 
         for die in boss_dice:
-            die.draw(screen, x, y)
+            die.draw(screen, x, height * .2)
             x += 128
 
-        x, y = width * .25, height * .575
+        x = width * .25
         for die in player_dice:
-            die.draw(screen, x, y)
+            die.draw(screen, x, height * .575)
             x += 128
 
         pygame.display.update()

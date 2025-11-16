@@ -22,6 +22,8 @@ def main():
         Die([i for  i in range(1, 7)], Sprite(sheet, (620, 0), (120, 128)), (60, 55)),
         Die([i for  i in range(1, 7)], Sprite(sheet, (728, 0), (100, 128)), (40, 55))
     ]
+    for die in player_dice:
+        die.roll()
 
     sheet = SpriteSheet('assets/dice/Small/small_dice.png')
     boss_dice = [
@@ -32,14 +34,16 @@ def main():
         Die([i for  i in range(1, 7)], Sprite(sheet, (620, 0), (120, 128)), (60, 55)),
         Die([i for  i in range(1, 7)], Sprite(sheet, (728, 0), (100, 128)), (40, 55))
     ]
+    for die in boss_dice:
+        die.roll()
 
     ui_sections = [
         ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
-        ((100, 0, 0), (width * .2, 0, width * .6, height * .375), "boss dice box"),
+        # ((100, 0, 0), (width * .2, 0, width * .6, height * .375), "boss dice box"),
         ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
 
         ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
-        ((0, 100, 0), (width * .2, height * .375, width * .6, height * .375), "player dice box"),
+        # ((0, 100, 0), (width * .2, height * .375, width * .6, height * .375), "player dice box"),
         ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
 
         ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
@@ -50,11 +54,9 @@ def main():
         ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
     ]
 
-    for die in player_dice:
-        die.roll()
+    player_dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
+    boss_dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
 
-    for die in boss_dice:
-        die.roll()
 
     running = True
     while running:
@@ -68,6 +70,9 @@ def main():
             running = False
 
         screen.fill((0, 0, 0))
+
+        boss_dice_box.draw(screen, int(width * .2), 0, scale = (width * .6, height * .375))
+        player_dice_box.draw(screen, int(width * .2), int(height * .375), scale = (width * .6, height * .375))
 
         for section in ui_sections:
             color, rect, text = section

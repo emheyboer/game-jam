@@ -44,6 +44,9 @@ def main():
 
         ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
         ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
+        ((0, 0, 200), (width * .35, height * .8, width * .1, height * .1), "1"),
+        ((0, 0, 200), (width * .5, height * .8, width * .1, height * .1), "2"),
+        ((0, 0, 200), (width * .65, height * .8, width * .1, height * .1), "3"),
         ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
     ]
 
@@ -74,7 +77,7 @@ def main():
             label = font.render(text, False, (255, 255, 255))
 
             w, h, _, _ = rect
-            screen.blit(label, (w + width * .05, h + height * .1))
+            screen.blit(label, (w + width * .05, h + height * .05))
 
 
         x, y = int(width * .25), int(height * .2)

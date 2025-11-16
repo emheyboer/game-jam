@@ -48,9 +48,9 @@ def main():
 
         ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
         ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
-        ((0, 0, 200), (width * .35, height * .8, width * .1, height * .1), "1"),
-        ((0, 0, 200), (width * .5, height * .8, width * .1, height * .1), "2"),
-        ((0, 0, 200), (width * .65, height * .8, width * .1, height * .1), "3"),
+        # ((0, 0, 200), (width * .35, height * .8, width * .1, height * .1), "1"),
+        # ((0, 0, 200), (width * .5, height * .8, width * .1, height * .1), "2"),
+        # ((0, 0, 200), (width * .65, height * .8, width * .1, height * .1), "3"),
         ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
     ]
 
@@ -67,6 +67,8 @@ def main():
     )
 
     boss_art = Sprite(SpriteSheet('assets/inventory/sprites.png'), (16 * 5, 16 * 7), (16, 16))
+
+    attack_btn = Sprite(SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'), (0, 0), (45, 49))
 
 
     running = True
@@ -100,6 +102,12 @@ def main():
         player_dice_bag.draw(screen, width * .8, height * .1, scale = (width * .225, height * .225))
 
         boss_art.draw(screen, 0, height * .1, scale = (width * .225, height * .225))
+
+        attack_btn.draw(screen, width * .2, height * .8, scale = (width * .1, height * .1))
+        attack_btn.draw(screen, width * .325, height * .8, scale = (width * .1, height * .1))
+        attack_btn.draw(screen, width * .45, height * .8, scale = (width * .1, height * .1))
+        attack_btn.draw(screen, width * .575, height * .8, scale = (width * .1, height * .1))
+        attack_btn.draw(screen, width * .7, height * .8, scale = (width * .1, height * .1))
 
         x, y = width * .25, height * .2
         for die in boss_dice:

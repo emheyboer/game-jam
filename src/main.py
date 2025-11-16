@@ -5,6 +5,39 @@ from dice import Die
 from diceBag import DiceBag
 from sprites import SpriteSheet, Sprite
 
+
+def load_sprites():
+    sprites = {}
+
+    trans_dice = SpriteSheet('assets/dice/Small/small_dice_pride_trans.png')
+    sprites['d20_trans'] = Sprite(trans_dice, (0, 0), (128, 128))
+    sprites['d12_trans'] = Sprite(trans_dice, (128, 0), (128, 128))
+    sprites['d10_trans'] = Sprite(trans_dice, (256, 0), (128, 128))
+    sprites['d8_trans'] = Sprite(trans_dice, (500, 0), (100, 128))
+    sprites['d6_trans'] = Sprite(trans_dice, (620, 0), (120, 128))
+    sprites['d4_trans'] = Sprite(trans_dice, (728, 0), (100, 128))
+
+    white_dice = SpriteSheet('assets/dice/Small/small_dice.png')
+    sprites['d20_white'] = Sprite(white_dice, (0, 0), (128, 128))
+    sprites['d12_white'] = Sprite(white_dice, (128, 0), (128, 128))
+    sprites['d10_white'] = Sprite(white_dice, (256, 0), (128, 128))
+    sprites['d8_white'] = Sprite(white_dice, (500, 0), (100, 128))
+    sprites['d6_white'] = Sprite(white_dice, (620, 0), (120, 128))
+    sprites['d4_white'] = Sprite(white_dice, (728, 0), (100, 128))
+
+    dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
+    sprites['dice_box_player'] = dice_box
+    sprites['dice_box_boss'] = dice_box
+
+    inventory = SpriteSheet('assets/inventory/sprites.png')
+    sprites['art_boss'] = Sprite(inventory, (16 * 5, 16 * 7), (16, 16))
+    sprites['dice_bag'] = Sprite(inventory, (64, 16), (16, 16))
+
+    sprites['button_attack'] = Sprite(SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'), (0, 0), (45, 49))
+
+    return sprites
+
+
 def main():
     pygame.init()
 
@@ -13,27 +46,27 @@ def main():
 
     font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 
-    sheet = SpriteSheet('assets/dice/Small/small_dice_pride_trans.png')
+    sprites = load_sprites()
+
     player_dice = [
-        Die([i for  i in range(1, 21)], Sprite(sheet, (0, 0), (128, 128)), (64, 45)),
-        Die([i for  i in range(1, 13)], Sprite(sheet, (128, 0), (128, 128)), (50, 50)),
-        Die([i for  i in range(1, 11)], Sprite(sheet, (256, 0), (128, 128)), (50, 50)),
-        Die([i for  i in range(1, 9)], Sprite(sheet, (500, 0), (100, 128)), (50, 50)),
-        Die([i for  i in range(1, 7)], Sprite(sheet, (620, 0), (120, 128)), (60, 55)),
-        Die([i for  i in range(1, 7)], Sprite(sheet, (728, 0), (100, 128)), (40, 55))
+        Die([i for  i in range(1, 21)], sprites['d20_trans'], (64, 45)),
+        Die([i for  i in range(1, 13)], sprites['d12_trans'], (50, 50)),
+        Die([i for  i in range(1, 11)], sprites['d10_trans'], (50, 50)),
+        Die([i for  i in range(1, 9)], sprites['d8_trans'], (50, 50)),
+        Die([i for  i in range(1, 7)], sprites['d6_trans'], (60, 55)),
+        Die([i for  i in range(1, 7)], sprites['d4_trans'], (40, 55))
     ]
     player_total = 0
     for die in player_dice:
         player_total += die.roll()
 
-    sheet = SpriteSheet('assets/dice/Small/small_dice.png')
     boss_dice = [
-        Die([i for  i in range(1, 21)], Sprite(sheet, (0, 0), (128, 128)), (64, 45)),
-        Die([i for  i in range(1, 13)], Sprite(sheet, (128, 0), (128, 128)), (50, 50)),
-        Die([i for  i in range(1, 11)], Sprite(sheet, (256, 0), (128, 128)), (50, 50)),
-        Die([i for  i in range(1, 9)], Sprite(sheet, (500, 0), (100, 128)), (50, 50)),
-        Die([i for  i in range(1, 7)], Sprite(sheet, (620, 0), (120, 128)), (60, 55)),
-        Die([i for  i in range(1, 7)], Sprite(sheet, (728, 0), (100, 128)), (40, 55))
+        Die([i for  i in range(1, 21)], sprites['d20_white'], (64, 45)),
+        Die([i for  i in range(1, 13)], sprites['d12_white'], (50, 50)),
+        Die([i for  i in range(1, 11)], sprites['d10_white'], (50, 50)),
+        Die([i for  i in range(1, 9)], sprites['d8_white'], (50, 50)),
+        Die([i for  i in range(1, 7)], sprites['d6_white'], (60, 55)),
+        Die([i for  i in range(1, 7)], sprites['d4_white'], (40, 55))
     ]
     boss_total = 0
     for die in boss_dice:
@@ -51,21 +84,10 @@ def main():
         ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
     ]
 
-    player_dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
-    boss_dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
+    player_dice_bag = DiceBag(player_dice, sprites['dice_bag'])
+    boss_dice_bag = DiceBag(boss_dice, sprites['dice_bag'])
 
-    player_dice_bag = DiceBag(
-        player_dice,
-        Sprite(SpriteSheet('assets/inventory/sprites.png'), (64, 16), (16, 16))
-    )
-    boss_dice_bag = DiceBag(
-        boss_dice,
-        Sprite(SpriteSheet('assets/inventory/sprites.png'), (64, 16), (16, 16))
-    )
-
-    boss_art = Sprite(SpriteSheet('assets/inventory/sprites.png'), (16 * 5, 16 * 7), (16, 16))
-
-    attack_btn = Sprite(SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'), (0, 0), (45, 49))
+    attack_btn = sprites['button_attack']
     num_attacks = 5
 
 
@@ -82,12 +104,12 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        boss_dice_box.draw(screen, width * .2, 0, scale = (width * .6, height * .375))
+        sprites['dice_box_boss'].draw(screen, width * .2, 0, scale = (width * .6, height * .375))
         label = font.render(str(boss_total), False, (0, 0, 0))
         label = pygame.transform.scale(label, (width * .1, height * .1))
         screen.blit(label, (width * .45, height * .05))
 
-        player_dice_box.draw(screen, width * .2, height * .375, scale = (width * .6, height * .375))
+        sprites['dice_box_player'].draw(screen, width * .2, height * .375, scale = (width * .6, height * .375))
         label = font.render(str(player_total), False, (0, 0, 0))
         label = pygame.transform.scale(label, (width * .1, height * .1))
         screen.blit(label, (width * .45, height * .425))
@@ -106,7 +128,7 @@ def main():
         boss_dice_bag.draw(screen, width * .8, height * .475, scale = (width * .225, height * .225))
         player_dice_bag.draw(screen, width * .8, height * .1, scale = (width * .225, height * .225))
 
-        boss_art.draw(screen, 0, height * .1, scale = (width * .225, height * .225))
+        sprites['art_boss'].draw(screen, 0, height * .1, scale = (width * .225, height * .225))
 
         x_mult = .2
         for i in range(num_attacks):

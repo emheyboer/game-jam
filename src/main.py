@@ -22,8 +22,9 @@ def main():
         Die([i for  i in range(1, 7)], Sprite(sheet, (620, 0), (120, 128)), (60, 55)),
         Die([i for  i in range(1, 7)], Sprite(sheet, (728, 0), (100, 128)), (40, 55))
     ]
+    player_total = 0
     for die in player_dice:
-        die.roll()
+        player_total += die.roll()
 
     sheet = SpriteSheet('assets/dice/Small/small_dice.png')
     boss_dice = [
@@ -34,8 +35,9 @@ def main():
         Die([i for  i in range(1, 7)], Sprite(sheet, (620, 0), (120, 128)), (60, 55)),
         Die([i for  i in range(1, 7)], Sprite(sheet, (728, 0), (100, 128)), (40, 55))
     ]
+    boss_total = 0
     for die in boss_dice:
-        die.roll()
+        boss_total += die.roll()
 
     ui_sections = [
         ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
@@ -81,7 +83,14 @@ def main():
         screen.fill((0, 0, 0))
 
         boss_dice_box.draw(screen, width * .2, 0, scale = (width * .6, height * .375))
+        label = font.render(str(boss_total), False, (0, 0, 0))
+        label = pygame.transform.scale(label, (width * .1, height * .1))
+        screen.blit(label, (width * .45, height * .05))
+
         player_dice_box.draw(screen, width * .2, height * .375, scale = (width * .6, height * .375))
+        label = font.render(str(player_total), False, (0, 0, 0))
+        label = pygame.transform.scale(label, (width * .1, height * .1))
+        screen.blit(label, (width * .45, height * .425))
 
         for section in ui_sections:
             color, rect, text = section

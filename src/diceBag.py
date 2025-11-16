@@ -1,23 +1,5 @@
-#!/usr/bin/env python3
 import random
-
-class Die:
-    def __init__(self, sides: list[int], sprite: str):
-        self.sides = sides
-        self.sprite = sprite
-
-    def roll(self) -> int:
-        return random.choice(self.sides)
-    
-    def __str__(self) -> str:
-        return f"{len(self.sides)}-sided die"
-    
-    def __repr__(self) -> str:
-        return str(self)
-    
-    def draw(self):
-        pass
-
+from dice import Die
 
 class DiceBag:
     def __init__(self, dice: list[Die], sprite: str):
@@ -61,7 +43,3 @@ class DiceBag:
         
     def draw(self):
         pass
-
-
-if __name__ == '__main__':
-    pass

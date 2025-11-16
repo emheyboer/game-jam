@@ -22,9 +22,9 @@ class Die:
     def __repr__(self) -> str:
         return str(self)
     
-    def draw(self, screen, x: int, y: int):
-        self.sprite.draw(screen, x, y)
-        
+    def draw(self, screen, x: float, y: float, scale = None):
+        self.sprite.draw(screen, x, y, scale=scale)
+
         text = self.font.render(str(self.last_roll), False, (0, 0, 0))
 
         x = x + self.offsetX

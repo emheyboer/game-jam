@@ -1,8 +1,9 @@
 import random
+from sprites import Sprite
 from dice import Die
 
 class DiceBag:
-    def __init__(self, dice: list[Die], sprite: str):
+    def __init__(self, dice: list[Die], sprite: Sprite):
         self.contents = {n: [] for n in [4, 6, 8, 10, 12, 20]}
         self.add_dice(dice)
 
@@ -41,5 +42,5 @@ class DiceBag:
     def __repr__(self) -> str:
         return str(self)
         
-    def draw(self):
-        pass
+    def draw(self, screen, x: float, y: float, scale = None):
+        self.sprite.draw(screen, x, y, scale=scale)

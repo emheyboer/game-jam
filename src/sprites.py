@@ -16,7 +16,7 @@ class Sprite:
         self.sprite.set_colorkey((0,0,0))
         self.sprite.blit(self.spriteSheet.surface, (0, 0), (self.x, self.y, self.width, self.height))
 
-    def draw(self, screen, x: int, y: int, scale = None):
+    def draw(self, screen, x: float, y: float, scale = None):
         sprite = self.sprite
         if scale:
             sprite = pygame.transform.scale(sprite, scale)

@@ -57,6 +57,15 @@ def main():
     player_dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
     boss_dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
 
+    player_dice_bag = DiceBag(
+        player_dice,
+        Sprite(SpriteSheet('assets/inventory/sprites.png'), (64, 16), (16, 16))
+    )
+    boss_dice_bag = DiceBag(
+        boss_dice,
+        Sprite(SpriteSheet('assets/inventory/sprites.png'), (64, 16), (16, 16))
+    )
+
 
     running = True
     while running:
@@ -71,8 +80,8 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        boss_dice_box.draw(screen, int(width * .2), 0, scale = (width * .6, height * .375))
-        player_dice_box.draw(screen, int(width * .2), int(height * .375), scale = (width * .6, height * .375))
+        boss_dice_box.draw(screen, width * .2, 0, scale = (width * .6, height * .375))
+        player_dice_box.draw(screen, width * .2, height * .375, scale = (width * .6, height * .375))
 
         for section in ui_sections:
             color, rect, text = section
@@ -85,12 +94,15 @@ def main():
             screen.blit(label, (w + width * .05, h + height * .05))
 
 
-        x, y = int(width * .25), int(height * .2)
+        boss_dice_bag.draw(screen, width * .8, height * .475, scale = (width * .225, height * .225))
+        player_dice_bag.draw(screen, width * .8, height * .1, scale = (width * .225, height * .225))
+
+        x, y = width * .25, height * .2
         for die in boss_dice:
             die.draw(screen, x, y)
             x += 128
 
-        x, y = int(width * .25), int(height * .575)
+        x, y = width * .25, height * .575
         for die in player_dice:
             die.draw(screen, x, y)
             x += 128

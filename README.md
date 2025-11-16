@@ -4,3 +4,4 @@
 # Credits
 - Code by Gwen Killinger and Emily Heyboer
 - Dice art by [edilith](https://edilith.itch.io)
+- Dice bag art by [pbarry](https://pbarry.itch.io)

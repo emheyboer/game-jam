@@ -2,4 +2,5 @@
 - [Brainstorming](https://docs.google.com/document/d/1oW0YhaXJ-WkRBpgMGRPeObHk699_sk1GdFn_szmnPl8/edit?usp=sharing)
 
 # Credits
+- Code by Gwen Killinger and Emily Heyboer
 - Dice art by [edilith](https://edilith.itch.io)

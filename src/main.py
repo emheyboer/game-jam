@@ -5,40 +5,52 @@ from dice import Die
 from diceBag import DiceBag
 from sprites import SpriteSheet, Sprite
 
-WIDTH = 1024
-HEIGHT = 768
-
 def main():
     pygame.init()
 
-    screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    clock = pygame.time.Clock()
+    screen = pygame.display.set_mode()
+    width, height = pygame.display.get_surface().get_size()
 
     font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 
     sheet = SpriteSheet('assets/dice/Small/small_dice_pride_trans.png')
+    player_dice = [
+        Die([i for  i in range(1, 21)], Sprite(sheet, (0, 0), (128, 128)), (64, 45)),
+        Die([i for  i in range(1, 13)], Sprite(sheet, (128, 0), (128, 128)), (50, 50)),
+        Die([i for  i in range(1, 11)], Sprite(sheet, (256, 0), (128, 128)), (50, 50)),
+        Die([i for  i in range(1, 9)], Sprite(sheet, (500, 0), (100, 128)), (50, 50)),
+        Die([i for  i in range(1, 7)], Sprite(sheet, (620, 0), (120, 128)), (60, 55)),
+        Die([i for  i in range(1, 7)], Sprite(sheet, (728, 0), (100, 128)), (40, 55))
+    ]
 
-    d20_sprite = Sprite(sheet, (0, 0), (128, 128))
-    d20 = Die([i for  i in range(1, 21)], d20_sprite, (64, 45))
+    sheet = SpriteSheet('assets/dice/Small/small_dice.png')
+    boss_dice = [
+        Die([i for  i in range(1, 21)], Sprite(sheet, (0, 0), (128, 128)), (64, 45)),
+        Die([i for  i in range(1, 13)], Sprite(sheet, (128, 0), (128, 128)), (50, 50)),
+        Die([i for  i in range(1, 11)], Sprite(sheet, (256, 0), (128, 128)), (50, 50)),
+        Die([i for  i in range(1, 9)], Sprite(sheet, (500, 0), (100, 128)), (50, 50)),
+        Die([i for  i in range(1, 7)], Sprite(sheet, (620, 0), (120, 128)), (60, 55)),
+        Die([i for  i in range(1, 7)], Sprite(sheet, (728, 0), (100, 128)), (40, 55))
+    ]
 
-    d12_sprite = Sprite(sheet, (128, 0), (128, 128))
-    d12 = Die([i for  i in range(1, 13)], d12_sprite, (50, 50))
+    ui_sections = [
+        ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
+        ((100, 0, 0), (width * .2, 0, width * .6, height * .375), "boss dice box"),
+        ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
 
-    d10_sprite = Sprite(sheet, (256, 0), (128, 128))
-    d10 = Die([i for  i in range(1, 11)], d10_sprite, (50, 50))
+        ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
+        ((0, 100, 0), (width * .2, height * .375, width * .6, height * .375), "player dice box"),
+        ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
 
-    d8_sprite = Sprite(sheet, (500, 0), (100, 128))
-    d8 = Die([i for  i in range(1, 9)], d8_sprite, (50, 50))
+        ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
+        ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
+        ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
+    ]
 
-    d6_sprite = Sprite(sheet, (620, 0), (120, 128))
-    d6 = Die([i for  i in range(1, 7)], d6_sprite, (60, 55))
+    for die in player_dice:
+        die.roll()
 
-    d4_sprite = Sprite(sheet, (728, 0), (100, 128))
-    d4 = Die([i for  i in range(1, 7)], d4_sprite, (40, 55))
-
-    dice = [d20, d12, d10, d8, d6, d4]
-
-    for die in dice:
+    for die in boss_dice:
         die.roll()
 
     running = True
@@ -54,11 +66,24 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        pygame.draw.rect(screen, (255, 0, 0), (0, 0, WIDTH, HEIGHT))
-        # screen.blit(dice.sheet, (100, 0))
+        for section in ui_sections:
+            color, rect, text = section
 
-        x, y = 0, 0
-        for die in dice:
+            pygame.draw.rect(screen, color, rect)
+
+            label = font.render(text, False, (255, 255, 255))
+
+            w, h, _, _ = rect
+            screen.blit(label, (w + width * .05, h + height * .1))
+
+
+        x, y = int(width * .25), int(height * .2)
+        for die in boss_dice:
+            die.draw(screen, x, y)
+            x += 128
+
+        x, y = int(width * .25), int(height * .575)
+        for die in player_dice:
             die.draw(screen, x, y)
             x += 128
 

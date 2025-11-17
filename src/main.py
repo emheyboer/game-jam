@@ -51,24 +51,24 @@ def main():
     sprites = load_sprites()
 
     player_dice = [
-        Die([i for  i in range(1, 21)], sprites['d20_trans'], (64, 45)),
-        Die([i for  i in range(1, 13)], sprites['d12_trans'], (50, 50)),
-        Die([i for  i in range(1, 11)], sprites['d10_trans'], (50, 50)),
-        Die([i for  i in range(1, 9)], sprites['d8_trans'], (50, 50)),
-        Die([i for  i in range(1, 7)], sprites['d6_trans'], (60, 55)),
-        Die([i for  i in range(1, 7)], sprites['d4_trans'], (40, 55))
+        Die(range(1,21), sprites['d20_trans'], (64, 45)),
+        Die(range(1, 13), sprites['d12_trans'], (50, 50)),
+        Die(range(1, 11), sprites['d10_trans'], (50, 50)),
+        Die(range(1, 9), sprites['d8_trans'], (50, 50)),
+        Die(range(1, 7), sprites['d6_trans'], (60, 55)),
+        Die(range(1, 5), sprites['d4_trans'], (40, 55))
     ]
     player_total = 0
     for die in player_dice:
         player_total += die.roll()
 
     boss_dice = [
-        Die([i for  i in range(1, 21)], sprites['d20_white'], (64, 45)),
-        Die([i for  i in range(1, 13)], sprites['d12_white'], (50, 50)),
-        Die([i for  i in range(1, 11)], sprites['d10_white'], (50, 50)),
-        Die([i for  i in range(1, 9)], sprites['d8_white'], (50, 50)),
-        Die([i for  i in range(1, 7)], sprites['d6_white'], (60, 55)),
-        Die([i for  i in range(1, 7)], sprites['d4_white'], (40, 55))
+        Die(range(1, 21), sprites['d20_white'], (64, 45)),
+        Die(range(1, 13), sprites['d12_white'], (50, 50)),
+        Die(range(1, 11), sprites['d10_white'], (50, 50)),
+        Die(range(1, 9), sprites['d8_white'], (50, 50)),
+        Die(range(1, 7), sprites['d6_white'], (60, 55)),
+        Die(range(1, 5), sprites['d4_white'], (40, 55))
     ]
     boss_total = 0
     for die in boss_dice:

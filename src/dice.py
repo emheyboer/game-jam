@@ -3,7 +3,7 @@ import pygame
 from sprites import Sprite
 
 class Die:
-    def __init__(self, sides: list[int], sprite: Sprite, textOffset: tuple[int, int]):
+    def __init__(self, sides: list[int] | range, sprite: Sprite, textOffset: tuple[int, int]):
         self.sides = sides
         self.sprite = sprite
         self.offsetX, self.offsetY = textOffset

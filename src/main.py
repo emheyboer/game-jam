@@ -4,6 +4,7 @@ import pygame
 from dice import Die
 from diceBag import DiceBag
 from sprites import load_sprites
+from actors import Actor
 
 
 def main():
@@ -54,8 +55,19 @@ def main():
         ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
     ]
 
-    player_dice_bag = DiceBag(player_dice, sprites['dice_bag'])
-    boss_dice_bag = DiceBag(boss_dice, sprites['dice_bag'])
+    player = Actor(
+        'player',
+        sprites['art_boss'],
+        sprites['dice_box_player'],
+        DiceBag(player_dice, sprites['dice_bag']),
+    )
+
+    boss = Actor(
+        'boss',
+        sprites['art_boss'],
+        sprites['dice_box_boss'],
+        DiceBag(boss_dice, sprites['dice_bag'])
+    )
 
     attack_btn = sprites['button_attack']
     num_attacks = 5
@@ -74,12 +86,12 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        sprites['dice_box_boss'].draw(screen, width * .2, 0, scale = (width * .6, height * .375))
+        boss.dice_box_art.draw(screen, width * .2, 0, scale = (width * .6, height * .375))
         label = font.render(str(boss_total), False, (0, 0, 0))
         label = pygame.transform.scale(label, (width * .1, height * .1))
         screen.blit(label, (width * .45, height * .05))
 
-        sprites['dice_box_player'].draw(screen, width * .2, height * .375, scale = (width * .6, height * .375))
+        player.dice_box_art.draw(screen, width * .2, height * .375, scale = (width * .6, height * .375))
         label = font.render(str(player_total), False, (0, 0, 0))
         label = pygame.transform.scale(label, (width * .1, height * .1))
         screen.blit(label, (width * .45, height * .425))
@@ -95,10 +107,10 @@ def main():
             screen.blit(label, (w, h))
 
 
-        boss_dice_bag.draw(screen, width * .8, height * .475, scale = (width * .225, height * .225))
-        player_dice_bag.draw(screen, width * .8, height * .1, scale = (width * .225, height * .225))
+        boss.dice_bag.draw(screen, width * .8, height * .475, scale = (width * .225, height * .225))
+        player.dice_bag.draw(screen, width * .8, height * .1, scale = (width * .225, height * .225))
 
-        sprites['art_boss'].draw(screen, 0, height * .1, scale = (width * .225, height * .225))
+        boss.profile_art.draw(screen, 0, height * .1, scale = (width * .225, height * .225))
 
         x_mult = .2
         for i in range(num_attacks):

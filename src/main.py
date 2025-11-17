@@ -6,6 +6,7 @@ from diceBag import DiceBag
 from sprites import load_sprites
 from actors import Actor
 from button import Button
+from attack import Attack
 
 
 def draw_dice(screen, width: int, height: int, box: str, dice: list[Die]) -> None:
@@ -49,28 +50,55 @@ def main():
 
     sprites = load_sprites()
 
-    player_dice = [
+    player_dice_bag = DiceBag([
         Die(range(1,21), sprites['d20_trans']),
         Die(range(1, 13), sprites['d12_trans']),
         Die(range(1, 11), sprites['d10_trans']),
         Die(range(1, 9), sprites['d8_trans']),
         Die(range(1, 7), sprites['d6_trans']),
         Die(range(1, 5), sprites['d4_trans']),
-    ]
-    player_total = 0
-    for die in player_dice:
-        player_total += die.roll()
+        Die(range(1,21), sprites['d20_trans']),
+        Die(range(1, 13), sprites['d12_trans']),
+        Die(range(1, 11), sprites['d10_trans']),
+        Die(range(1, 9), sprites['d8_trans']),
+        Die(range(1, 7), sprites['d6_trans']),
+        Die(range(1, 5), sprites['d4_trans']),
+    ], sprites['dice_bag'])
+    player = Actor(
+        'player',
+        sprites['art_boss'],
+        sprites['dice_box_player'],
+        player_dice_bag,
+        Attack([(1,20), (1,12), (1, 10), (1,8), (1,6), (1,4)]),
+    )
 
-    boss_dice = [
+    boss_dice_bag = DiceBag([
+        Die(range(1,21), sprites['d20_white']),
+        Die(range(1, 13), sprites['d12_white']),
+        Die(range(1, 11), sprites['d10_white']),
         Die(range(1, 9), sprites['d8_white']),
+        Die(range(1, 7), sprites['d6_white']),
+        Die(range(1, 5), sprites['d4_white']),
+        Die(range(1,21), sprites['d20_white']),
+        Die(range(1, 13), sprites['d12_white']),
+        Die(range(1, 11), sprites['d10_white']),
         Die(range(1, 9), sprites['d8_white']),
         Die(range(1, 7), sprites['d6_white']),
+        Die(range(1, 5), sprites['d4_white']),
+        Die(range(1,21), sprites['d20_white']),
+        Die(range(1, 13), sprites['d12_white']),
+        Die(range(1, 11), sprites['d10_white']),
+        Die(range(1, 9), sprites['d8_white']),
         Die(range(1, 7), sprites['d6_white']),
-        Die(range(1, 7), sprites['d6_white']),
-    ]
-    boss_total = 0
-    for die in boss_dice:
-        boss_total += die.roll()
+        Die(range(1, 5), sprites['d4_white']),
+    ], sprites['dice_bag'])
+    boss = Actor(
+        'boss',
+        sprites['art_boss'],
+        sprites['dice_box_boss'],
+        boss_dice_bag,
+        Attack([(2, 8), (3, 6)]),
+    )
 
     ui_sections = [
         ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
@@ -84,19 +112,8 @@ def main():
         ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
     ]
 
-    player = Actor(
-        'player',
-        sprites['art_boss'],
-        sprites['dice_box_player'],
-        DiceBag(player_dice, sprites['dice_bag']),
-    )
-
-    boss = Actor(
-        'boss',
-        sprites['art_boss'],
-        sprites['dice_box_boss'],
-        DiceBag(boss_dice, sprites['dice_bag'])
-    )
+    player_total, player_dice = player.roll_attack()
+    boss_total, boss_dice = boss.roll_attack()
 
     buttons = []
 

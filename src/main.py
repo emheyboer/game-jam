@@ -20,7 +20,7 @@ def main():
 
     sprites = load_sprites()
 
-    combat_screen = combatScreen(screen, width, height, sprites)
+    current_screen = combatScreen(screen, width, height, sprites)
 
     running = True
     while running:
@@ -28,7 +28,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
             else:
-                combat_screen.on_event(event)
+                current_screen = current_screen.on_event(event)
                 
 
         keys = pygame.key.get_pressed()
@@ -38,7 +38,7 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        combat_screen.draw()
+        current_screen.draw()
 
         pygame.display.update()
         pygame.display.flip()

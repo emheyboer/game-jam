@@ -1,13 +1,13 @@
 import pygame
 
-from sprites import Sprite
 from dice import Die
 from diceBag import DiceBag
 from attack import Attack
 from actors import Actor
 from button import Button
+from screen import Screen
 
-class combatScreen:
+class combatScreen(Screen):
     def __init__(self, screen, width: int, height: int, sprites) -> None:
         self.screen = screen
         self.width = width
@@ -194,7 +194,7 @@ class combatScreen:
             if btn.kind == 'attack' and not self.player.attacks[btn.value].is_possible(self.player.dice_bag):
                 self.buttons.remove(btn)
     
-    def on_event(self, event) -> None:
+    def on_event(self, event) -> Screen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = pygame.mouse.get_pos()
             for btn in self.buttons:
@@ -202,3 +202,5 @@ class combatScreen:
                     self.take_turn(atkPlayer=btn.value)
                     print(f"player = {self.player.dice_bag.size()}, boss = {self.boss.dice_bag.size()}")
                     break
+
+        return self

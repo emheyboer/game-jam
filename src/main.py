@@ -44,6 +44,8 @@ def main():
     screen = pygame.display.set_mode()
     width, height = pygame.display.get_surface().get_size()
 
+    clock = pygame.time.Clock()
+
     font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 
     sprites = load_sprites()
@@ -147,6 +149,7 @@ def main():
 
         pygame.display.update()
         pygame.display.flip()
+        clock.tick(60)
 
 
 if __name__ == '__main__':

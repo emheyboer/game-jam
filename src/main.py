@@ -1,12 +1,7 @@
 #!/usr/bin/env python3
 import pygame
 
-from dice import Die
-from diceBag import DiceBag
 from sprites import load_sprites
-from actors import Actor
-from button import Button
-from attack import Attack
 from combatScreen import combatScreen
 
 

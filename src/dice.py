@@ -1,5 +1,4 @@
 import random
-import pygame
 from sprites import Sprite
 
 class Die:

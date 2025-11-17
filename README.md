@@ -7,4 +7,5 @@ Start the game by running `python3 src/main.py`
 # Credits
 - Code by Gwen Killinger and Emily Heyboer
 - Dice art by [edilith](https://edilith.itch.io)
+- Dice box art by [kenny](https://kenney.nl/)
 - Dice bag art by [pbarry](https://pbarry.itch.io)

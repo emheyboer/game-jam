@@ -56,7 +56,12 @@ def load_sprites():
         for die, pos, size, offset in dice_sprites_positions:
             sprites[f"{die}_{variant}"] = Sprite(sheet, pos, size, textOffset=offset)
         
-    dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
+    dice_box = Sprite(
+        SpriteSheet('assets/ui/PNG/panel_brown.png'),
+        (0, 0),
+        (100, 100),
+        textOffset=(40, 10)
+    )
     sprites['dice_box_player'] = dice_box
     sprites['dice_box_boss'] = dice_box
 

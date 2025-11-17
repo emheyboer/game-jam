@@ -69,14 +69,10 @@ def render_combat(screen, width: int, height: int, buttons: list[Button], player
 
     font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 
-    label = font.render(str(boss_total), False, (0, 0, 0))
-    label = pygame.transform.scale(label, (width * .1, height * .1))
-    screen.blit(label, (width * .45, height * .05))
-    label = font.render(str(player_total), False, (0, 0, 0))
-    label = pygame.transform.scale(label, (width * .1, height * .1))
-    screen.blit(label, (width * .45, height * .425))
-    boss.dice_box_art.draw(screen, (width * .2, 0), size = (width * .6, height * .375))
-    player.dice_box_art.draw(screen, (width * .2, height * .375), size = (width * .6, height * .375))
+    boss.dice_box_art.draw(screen, (width * .2, 0), size = (width * .6, height * .375),
+                           text=str(boss_total))
+    player.dice_box_art.draw(screen, (width * .2, height * .375), size = (width * .6, height * .375),
+                             text=str(player_total))
 
     for section in ui_sections:
         color, rect, text = section
@@ -89,11 +85,10 @@ def render_combat(screen, width: int, height: int, buttons: list[Button], player
         screen.blit(label, (w, h))
 
 
-    boss.dice_bag.draw(screen, (width * .8, height * .475), scale = (width * .225, height * .225))
-    player.dice_bag.draw(screen, (width * .8, height * .1), scale = (width * .225, height * .225))
     boss.dice_bag.draw(screen, (width * .8, height * .475), size = (width * .225, height * .225))
     player.dice_bag.draw(screen, (width * .8, height * .1), size = (width * .225, height * .225))
 
+    boss.profile_art.draw(screen, (0, height * .1), size = (width * .225, height * .225))
 
     for btn in buttons:
         btn.draw(screen)
@@ -138,7 +133,7 @@ def main():
         sprites['dice_box_player'],
         player_dice_bag,
         [
-            Attack([(1, 20)]),
+            Attack([(3, 20)]),
             Attack([(1, 12)]),
             Attack([(2, 10)]),
             Attack([(2, 8)]),

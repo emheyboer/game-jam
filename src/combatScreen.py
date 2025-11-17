@@ -189,6 +189,10 @@ class combatScreen:
             self.player.dice_bag.add_dice(self.player_dice)
         if self.boss_total >= self.player_total:
             self.boss.dice_bag.add_dice(self.boss_dice)
+
+        for btn in self.buttons:
+            if btn.kind == 'attack' and not self.player.attacks[btn.value].is_possible(self.player.dice_bag):
+                self.buttons.remove(btn)
     
     def on_event(self, event) -> None:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:

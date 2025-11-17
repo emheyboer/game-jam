@@ -22,6 +22,12 @@ class Attack:
         
         return (total, dice)
     
+    def is_possible(self, dice_bag: DiceBag) -> bool:
+        dice = self.pull_from_bag(dice_bag)
+        count = len(dice)
+        dice_bag.add_dice(dice)
+        return count > 0
+    
     def __str__(self) -> str:
         set_strs = []
         for n_dice, n_sides in self.sets:

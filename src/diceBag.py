@@ -45,5 +45,5 @@ class DiceBag:
     def __repr__(self) -> str:
         return str(self)
         
-    def draw(self, screen, pos: tuple[float, float], scale = None):
-        self.sprite.draw(screen, pos, scale=scale)
+    def draw(self, screen, pos: tuple[float, float], size = None):
+        self.sprite.draw(screen, pos, size=size)

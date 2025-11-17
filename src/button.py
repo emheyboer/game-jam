@@ -23,4 +23,4 @@ class Button:
         return minX <= x <= maxX and minY <= y <= maxY
     
     def draw(self, screen) -> None:
-        self.sprite.draw(screen, self.pos, scale=self.size, text=self.label)
+        self.sprite.draw(screen, self.pos, size=self.size, text=self.label)

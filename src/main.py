@@ -33,7 +33,7 @@ def draw_dice(screen, width: int, height: int, box: str, dice: list[Die]) -> Non
     x = width * .25
     for die in dice:
         y += deltaY
-        die.draw(screen, (x, y), scale=size)
+        die.draw(screen, (x, y), size=size)
         x += deltaX
         deltaY *= -1
 
@@ -69,15 +69,14 @@ def render_combat(screen, width: int, height: int, buttons: list[Button], player
 
     font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 
-    boss.dice_box_art.draw(screen, (width * .2, 0), scale = (width * .6, height * .375))
     label = font.render(str(boss_total), False, (0, 0, 0))
     label = pygame.transform.scale(label, (width * .1, height * .1))
     screen.blit(label, (width * .45, height * .05))
-
-    player.dice_box_art.draw(screen, (width * .2, height * .375), scale = (width * .6, height * .375))
     label = font.render(str(player_total), False, (0, 0, 0))
     label = pygame.transform.scale(label, (width * .1, height * .1))
     screen.blit(label, (width * .45, height * .425))
+    boss.dice_box_art.draw(screen, (width * .2, 0), size = (width * .6, height * .375))
+    player.dice_box_art.draw(screen, (width * .2, height * .375), size = (width * .6, height * .375))
 
     for section in ui_sections:
         color, rect, text = section
@@ -92,8 +91,9 @@ def render_combat(screen, width: int, height: int, buttons: list[Button], player
 
     boss.dice_bag.draw(screen, (width * .8, height * .475), scale = (width * .225, height * .225))
     player.dice_bag.draw(screen, (width * .8, height * .1), scale = (width * .225, height * .225))
+    boss.dice_bag.draw(screen, (width * .8, height * .475), size = (width * .225, height * .225))
+    player.dice_bag.draw(screen, (width * .8, height * .1), size = (width * .225, height * .225))
 
-    boss.profile_art.draw(screen, (0, height * .1), scale = (width * .225, height * .225))
 
     for btn in buttons:
         btn.draw(screen)

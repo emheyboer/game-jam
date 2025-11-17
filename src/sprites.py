@@ -19,7 +19,7 @@ class Sprite:
         self.sprite.set_colorkey((0,0,0))
         self.sprite.blit(self.spriteSheet.surface, (0, 0), (self.x, self.y, self.width, self.height))
 
-    def draw(self, screen, pos: tuple[float, float], scale = None, text = None):
+    def draw(self, screen, pos: tuple[float, float], size = None, text = None):
         x, y = pos
         sprite = self.sprite.copy()
 
@@ -27,8 +27,8 @@ class Sprite:
             text_surface = self.font.render(text, False, (1, 1, 1))
             sprite.blit(text_surface, (self.offsetX, self.offsetY))
 
-        if scale is not None:
-            sprite = pygame.transform.scale(sprite, scale)
+        if size is not None:
+            sprite = pygame.transform.scale(sprite, size)
 
         screen.blit(sprite, (x, y))
 

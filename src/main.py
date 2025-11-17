@@ -8,6 +8,32 @@ from actors import Actor
 from button import Button
 
 
+def draw_dice(screen, width: int, height: int, box: str, dice: list[Die]) -> None:
+    if box == 'boss':
+        y = height * .2
+    elif box == 'player':
+        y = height * .575
+
+    count = len(dice)
+    if count <= 5:
+        deltaX = width * .1
+        size = (width * .1, width * .1)
+        deltaY = -height * (.05)
+    else:
+        divisor = count / 5
+
+        deltaX = width * .1 / divisor
+        size = (deltaX, deltaX)
+        deltaY = -height * .05 / divisor
+
+    x = width * .25
+    for die in dice:
+        y += deltaY
+        die.draw(screen, (x, y), scale=size)
+        x += deltaX
+        deltaY *= -1
+
+
 def main():
     pygame.init()
 
@@ -131,15 +157,8 @@ def main():
         for btn in buttons:
             btn.draw(screen)
 
-        x = width * .25 
-        for die in boss_dice:
-            die.draw(screen, (x, height * .2))
-            x += 128
-
-        x = width * .25
-        for die in player_dice:
-            die.draw(screen, (x, height * .575))
-            x += 128
+        draw_dice(screen, width, height, 'boss', boss_dice)
+        draw_dice(screen, width, height, 'player', player_dice)
 
         pygame.display.update()
         pygame.display.flip()

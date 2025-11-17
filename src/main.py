@@ -9,22 +9,25 @@ from sprites import SpriteSheet, Sprite
 def load_sprites():
     sprites = {}
 
-    trans_dice = SpriteSheet('assets/dice/Small/small_dice_pride_trans.png')
-    sprites['d20_trans'] = Sprite(trans_dice, (0, 0), (128, 128))
-    sprites['d12_trans'] = Sprite(trans_dice, (128, 0), (128, 128))
-    sprites['d10_trans'] = Sprite(trans_dice, (256, 0), (128, 128))
-    sprites['d8_trans'] = Sprite(trans_dice, (500, 0), (100, 128))
-    sprites['d6_trans'] = Sprite(trans_dice, (620, 0), (120, 128))
-    sprites['d4_trans'] = Sprite(trans_dice, (728, 0), (100, 128))
+    dice_sprite_sheets = [
+        ('trans', 'assets/dice/Small/small_dice_pride_trans.png'),
+        ('white', 'assets/dice/Small/small_dice.png')
+    ]
+    dice_sprites_positions = [
+        ('d20', (0, 0), (128, 128)),
+        ('d12', (128, 0), (128, 128)),
+        ('d10', (256, 0), (128, 128)),
+        # some of these are definitely off
+        ('d8', (500, 0), (100, 128)),
+        ('d6', (620, 0), (120, 128)),
+        ('d4', (728, 0), (100, 128))
+    ]
 
-    white_dice = SpriteSheet('assets/dice/Small/small_dice.png')
-    sprites['d20_white'] = Sprite(white_dice, (0, 0), (128, 128))
-    sprites['d12_white'] = Sprite(white_dice, (128, 0), (128, 128))
-    sprites['d10_white'] = Sprite(white_dice, (256, 0), (128, 128))
-    sprites['d8_white'] = Sprite(white_dice, (500, 0), (100, 128))
-    sprites['d6_white'] = Sprite(white_dice, (620, 0), (120, 128))
-    sprites['d4_white'] = Sprite(white_dice, (728, 0), (100, 128))
-
+    for variant, path in dice_sprite_sheets:
+        sheet = SpriteSheet(path)
+        for die, pos, size in dice_sprites_positions:
+            sprites[f"{die}_{variant}"] = Sprite(sheet, pos, size)
+        
     dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
     sprites['dice_box_player'] = dice_box
     sprites['dice_box_boss'] = dice_box

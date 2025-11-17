@@ -53,6 +53,55 @@ def take_turn(actorA: Actor, actorB: Actor,
     return (totalA, totalB, diceA, diceB)
 
 
+def render_combat(screen, width: int, height: int, buttons: list[Button], player: Actor, boss: Actor,
+                  player_total: int, boss_total: int, player_dice: list[Die], boss_dice: list[Die]):
+    ui_sections = [
+        ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
+        ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
+
+        ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
+        ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
+
+        ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
+        ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
+        ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
+    ]
+
+    font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
+
+    boss.dice_box_art.draw(screen, (width * .2, 0), scale = (width * .6, height * .375))
+    label = font.render(str(boss_total), False, (0, 0, 0))
+    label = pygame.transform.scale(label, (width * .1, height * .1))
+    screen.blit(label, (width * .45, height * .05))
+
+    player.dice_box_art.draw(screen, (width * .2, height * .375), scale = (width * .6, height * .375))
+    label = font.render(str(player_total), False, (0, 0, 0))
+    label = pygame.transform.scale(label, (width * .1, height * .1))
+    screen.blit(label, (width * .45, height * .425))
+
+    for section in ui_sections:
+        color, rect, text = section
+
+        pygame.draw.rect(screen, color, rect)
+
+        label = font.render(text, False, (255, 255, 255))
+
+        w, h, _, _ = rect
+        screen.blit(label, (w, h))
+
+
+    boss.dice_bag.draw(screen, (width * .8, height * .475), scale = (width * .225, height * .225))
+    player.dice_bag.draw(screen, (width * .8, height * .1), scale = (width * .225, height * .225))
+
+    boss.profile_art.draw(screen, (0, height * .1), scale = (width * .225, height * .225))
+
+    for btn in buttons:
+        btn.draw(screen)
+
+    draw_dice(screen, width, height, 'boss', boss_dice)
+    draw_dice(screen, width, height, 'player', player_dice)
+
+
 def main():
     pygame.init()
 
@@ -60,8 +109,6 @@ def main():
     width, height = pygame.display.get_surface().get_size()
 
     clock = pygame.time.Clock()
-
-    font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 
     sprites = load_sprites()
 
@@ -130,25 +177,12 @@ def main():
         ],
     )
 
-    ui_sections = [
-        ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
-        ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
-
-        ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
-        ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
-
-        ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
-        ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
-        ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
-    ]
-
     player_total, boss_total, player_dice, boss_dice = take_turn(player, boss)
 
     buttons = []
 
-    num_attacks = 5
     x_mult = .2
-    for i in range(num_attacks):
+    for i in range(len(player.attacks)):
         button = Button(
             f"{player.attacks[i]}",
             (width * x_mult, height * .8),
@@ -170,6 +204,8 @@ def main():
                 for btn in buttons:
                     if btn.inside(pos) and btn.kind == 'attack':
                         player_total, boss_total, player_dice, boss_dice = take_turn(player, boss, atkA=btn.value)
+                        print(f"player = {player.dice_bag.size()}, boss = {boss.dice_bag.size()}")
+                        break
 
         keys = pygame.key.get_pressed()
 
@@ -178,37 +214,8 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        boss.dice_box_art.draw(screen, (width * .2, 0), scale = (width * .6, height * .375))
-        label = font.render(str(boss_total), False, (0, 0, 0))
-        label = pygame.transform.scale(label, (width * .1, height * .1))
-        screen.blit(label, (width * .45, height * .05))
-
-        player.dice_box_art.draw(screen, (width * .2, height * .375), scale = (width * .6, height * .375))
-        label = font.render(str(player_total), False, (0, 0, 0))
-        label = pygame.transform.scale(label, (width * .1, height * .1))
-        screen.blit(label, (width * .45, height * .425))
-
-        for section in ui_sections:
-            color, rect, text = section
-
-            pygame.draw.rect(screen, color, rect)
-
-            label = font.render(text, False, (255, 255, 255))
-
-            w, h, _, _ = rect
-            screen.blit(label, (w, h))
-
-
-        boss.dice_bag.draw(screen, (width * .8, height * .475), scale = (width * .225, height * .225))
-        player.dice_bag.draw(screen, (width * .8, height * .1), scale = (width * .225, height * .225))
-
-        boss.profile_art.draw(screen, (0, height * .1), scale = (width * .225, height * .225))
-
-        for btn in buttons:
-            btn.draw(screen)
-
-        draw_dice(screen, width, height, 'boss', boss_dice)
-        draw_dice(screen, width, height, 'player', player_dice)
+        render_combat(screen, width, height, buttons, player, boss,
+                      player_total, boss_total, player_dice, boss_dice)
 
         pygame.display.update()
         pygame.display.flip()

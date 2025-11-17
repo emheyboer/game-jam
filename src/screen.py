@@ -1,6 +1,9 @@
 class Screen:
     def __init__(self, screen, width: int, height: int, sprites) -> None:
-        pass
+        self.screen = screen
+        self.width = width
+        self.height = height
+        self.sprites = sprites
 
     def draw(self) -> None:
         """

@@ -7,19 +7,28 @@ class SpriteSheet:
 
 
 class Sprite:
-    def __init__(self, spriteSheet: SpriteSheet, pos: tuple[int, int], size: tuple[int, int]) -> None:
+    def __init__(self, spriteSheet: SpriteSheet, pos: tuple[int, int], size: tuple[int, int],
+                 textOffset: tuple[int, int] = (0, 0)) -> None:
         self.spriteSheet = spriteSheet
         self.x, self.y = pos
         self.width, self.height = size
+        self.offsetX, self.offsetY = textOffset
+        self.font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 
         self.sprite = pygame.Surface(size)
         self.sprite.set_colorkey((0,0,0))
         self.sprite.blit(self.spriteSheet.surface, (0, 0), (self.x, self.y, self.width, self.height))
 
-    def draw(self, screen, x: float, y: float, scale = None):
+    def draw(self, screen, x: float, y: float, scale = None, text = None):
         sprite = self.sprite
-        if scale:
+
+        if text is not None:
+            text_surface = self.font.render(text, False, (1, 1, 1))
+            sprite.blit(text_surface, (self.offsetX, self.offsetY))
+
+        if scale is not None:
             sprite = pygame.transform.scale(sprite, scale)
+
         screen.blit(sprite, (x, y))
 
 
@@ -31,19 +40,20 @@ def load_sprites():
         ('white', 'assets/dice/Small/small_dice.png')
     ]
     dice_sprites_positions = [
-        ('d20', (0, 0), (128, 128)),
-        ('d12', (128, 0), (128, 128)),
-        ('d10', (256, 0), (128, 128)),
+        # (name, position, size, text offset)
         # some of these are definitely off
-        ('d8', (500, 0), (100, 128)),
-        ('d6', (620, 0), (120, 128)),
-        ('d4', (728, 0), (100, 128))
+        ('d20', (0, 0), (128, 128), (64, 45)),
+        ('d12', (128, 0), (128, 128), (50, 50)),
+        ('d10', (256, 0), (128, 128), (50, 50)),
+        ('d8', (500, 0), (100, 128), (50, 50)),
+        ('d6', (620, 0), (120, 128), (60, 55)),
+        ('d4', (728, 0), (100, 128), (40, 55))
     ]
 
     for variant, path in dice_sprite_sheets:
         sheet = SpriteSheet(path)
-        for die, pos, size in dice_sprites_positions:
-            sprites[f"{die}_{variant}"] = Sprite(sheet, pos, size)
+        for die, pos, size, offset in dice_sprites_positions:
+            sprites[f"{die}_{variant}"] = Sprite(sheet, pos, size, textOffset=offset)
         
     dice_box = Sprite(SpriteSheet('assets/ui/PNG/panel_brown.png'), (0, 0), (100, 100))
     sprites['dice_box_player'] = dice_box

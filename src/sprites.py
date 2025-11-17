@@ -21,7 +21,7 @@ class Sprite:
 
     def draw(self, screen, pos: tuple[float, float], scale = None, text = None):
         x, y = pos
-        sprite = self.sprite
+        sprite = self.sprite.copy()
 
         if text is not None:
             text_surface = self.font.render(text, False, (1, 1, 1))

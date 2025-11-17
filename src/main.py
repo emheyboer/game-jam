@@ -43,8 +43,12 @@ def take_turn(actorA: Actor, actorB: Actor,
     (totalA, diceA) = actorA.roll_attack(atk_index=atkA)
     (totalB, diceB) = actorB.roll_attack(atk_index=atkB)
 
-    actorA.dice_bag.add_dice(diceA)
-    actorB.dice_bag.add_dice(diceB)
+    # only the winner's dice are re-added to their bag (or both in the case of a tie)
+    if totalA >= totalB:
+        actorA.dice_bag.add_dice(diceA)
+    if totalB >= totalA:
+        actorB.dice_bag.add_dice(diceB)
+    
 
     return (totalA, totalB, diceA, diceB)
 

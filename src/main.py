@@ -5,6 +5,7 @@ from dice import Die
 from diceBag import DiceBag
 from sprites import load_sprites
 from actors import Actor
+from button import Button
 
 
 def main():
@@ -69,15 +70,30 @@ def main():
         DiceBag(boss_dice, sprites['dice_bag'])
     )
 
-    attack_btn = sprites['button_attack']
-    num_attacks = 5
+    buttons = []
 
+    num_attacks = 5
+    x_mult = .2
+    for i in range(num_attacks):
+        button = Button(
+            f"atk {i}",
+            (width * x_mult, height * .8),
+            (width * .1, height * .1),
+            sprites['button_attack']
+        )
+        buttons.append(button)
+        x_mult += .125
 
     running = True
     while running:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
+            elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
+                pos = pygame.mouse.get_pos()
+                for btn in buttons:
+                    if btn.inside(pos):
+                        print("click!")
 
         keys = pygame.key.get_pressed()
 
@@ -112,10 +128,8 @@ def main():
 
         boss.profile_art.draw(screen, (0, height * .1), scale = (width * .225, height * .225))
 
-        x_mult = .2
-        for i in range(num_attacks):
-            attack_btn.draw(screen, (width * x_mult, height * .8), scale = (width * .1, height * .1))
-            x_mult += .125
+        for btn in buttons:
+            btn.draw(screen)
 
         x = width * .25 
         for die in boss_dice:

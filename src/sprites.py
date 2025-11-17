@@ -64,6 +64,10 @@ def load_sprites():
     sprites['art_boss'] = Sprite(inventory, (16 * 5, 16 * 7), (16, 16))
     sprites['dice_bag'] = Sprite(inventory, (64, 16), (16, 16))
 
-    sprites['button_attack'] = Sprite(SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'), (0, 0), (45, 49))
+    sprites['button_attack'] = Sprite(
+        SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'),
+        (0, 0), (45, 49), textOffset=(5, 15),
+        fontSize=20
+    )
 
     return sprites

@@ -86,12 +86,12 @@ def main():
 
         screen.fill((0, 0, 0))
 
-        boss.dice_box_art.draw(screen, width * .2, 0, scale = (width * .6, height * .375))
+        boss.dice_box_art.draw(screen, (width * .2, 0), scale = (width * .6, height * .375))
         label = font.render(str(boss_total), False, (0, 0, 0))
         label = pygame.transform.scale(label, (width * .1, height * .1))
         screen.blit(label, (width * .45, height * .05))
 
-        player.dice_box_art.draw(screen, width * .2, height * .375, scale = (width * .6, height * .375))
+        player.dice_box_art.draw(screen, (width * .2, height * .375), scale = (width * .6, height * .375))
         label = font.render(str(player_total), False, (0, 0, 0))
         label = pygame.transform.scale(label, (width * .1, height * .1))
         screen.blit(label, (width * .45, height * .425))
@@ -107,24 +107,24 @@ def main():
             screen.blit(label, (w, h))
 
 
-        boss.dice_bag.draw(screen, width * .8, height * .475, scale = (width * .225, height * .225))
-        player.dice_bag.draw(screen, width * .8, height * .1, scale = (width * .225, height * .225))
+        boss.dice_bag.draw(screen, (width * .8, height * .475), scale = (width * .225, height * .225))
+        player.dice_bag.draw(screen, (width * .8, height * .1), scale = (width * .225, height * .225))
 
-        boss.profile_art.draw(screen, 0, height * .1, scale = (width * .225, height * .225))
+        boss.profile_art.draw(screen, (0, height * .1), scale = (width * .225, height * .225))
 
         x_mult = .2
         for i in range(num_attacks):
-            attack_btn.draw(screen, width * x_mult, height * .8, scale = (width * .1, height * .1))
+            attack_btn.draw(screen, (width * x_mult, height * .8), scale = (width * .1, height * .1))
             x_mult += .125
 
         x = width * .25 
         for die in boss_dice:
-            die.draw(screen, x, height * .2)
+            die.draw(screen, (x, height * .2))
             x += 128
 
         x = width * .25
         for die in player_dice:
-            die.draw(screen, x, height * .575)
+            die.draw(screen, (x, height * .575))
             x += 128
 
         pygame.display.update()

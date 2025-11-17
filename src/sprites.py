@@ -19,7 +19,8 @@ class Sprite:
         self.sprite.set_colorkey((0,0,0))
         self.sprite.blit(self.spriteSheet.surface, (0, 0), (self.x, self.y, self.width, self.height))
 
-    def draw(self, screen, x: float, y: float, scale = None, text = None):
+    def draw(self, screen, pos: tuple[float, float], scale = None, text = None):
+        x, y = pos
         sprite = self.sprite
 
         if text is not None:

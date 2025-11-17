@@ -9,6 +9,9 @@ from button import Button
 
 
 def draw_dice(screen, width: int, height: int, box: str, dice: list[Die]) -> None:
+    """
+    Draw dice in either of the two dice boxes
+    """
     if box == 'boss':
         y = height * .2
     elif box == 'player':
@@ -19,7 +22,7 @@ def draw_dice(screen, width: int, height: int, box: str, dice: list[Die]) -> Non
         deltaX = width * .1
         size = (width * .1, width * .1)
         deltaY = -height * (.05)
-    else:
+    else: # adapt sizes & positions to fit in the same space
         divisor = count / 5
 
         deltaX = width * .1 / divisor
@@ -59,12 +62,11 @@ def main():
         player_total += die.roll()
 
     boss_dice = [
-        Die(range(1, 21), sprites['d20_white']),
-        Die(range(1, 13), sprites['d12_white']),
-        Die(range(1, 11), sprites['d10_white']),
+        Die(range(1, 9), sprites['d8_white']),
         Die(range(1, 9), sprites['d8_white']),
         Die(range(1, 7), sprites['d6_white']),
-        Die(range(1, 5), sprites['d4_white']),
+        Die(range(1, 7), sprites['d6_white']),
+        Die(range(1, 7), sprites['d6_white']),
     ]
     boss_total = 0
     for die in boss_dice:
@@ -119,7 +121,7 @@ def main():
                 pos = pygame.mouse.get_pos()
                 for btn in buttons:
                     if btn.inside(pos):
-                        print("click!")
+                        print(f"clicked {btn.label}")
 
         keys = pygame.key.get_pressed()
 

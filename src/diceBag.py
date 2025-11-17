@@ -15,6 +15,9 @@ class DiceBag:
             self.contents[num_sides].append(die)
 
     def pull_dice(self, n_dice: int, n_sides: int) -> list[Die]:
+        """
+        Pull x n-sided dice from the bag. Dice must be re-added later as needed
+        """
         dice = []
         options = self.contents[n_sides]
         for i in range(n_dice):

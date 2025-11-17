@@ -10,6 +10,9 @@ class Button:
         self.label = label
 
     def inside(self, pos: tuple[float, float]) -> bool:
+        """
+        Whether `pos` is inside the button
+        """
         x, y = pos
         minX, minY = self.pos
         deltaX, deltaY = self.size

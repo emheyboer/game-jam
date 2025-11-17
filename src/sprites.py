@@ -8,12 +8,12 @@ class SpriteSheet:
 
 class Sprite:
     def __init__(self, spriteSheet: SpriteSheet, pos: tuple[int, int], size: tuple[int, int],
-                 textOffset: tuple[int, int] = (0, 0)) -> None:
+                 textOffset: tuple[int, int] = (0, 0), fontSize: int = 30) -> None:
         self.spriteSheet = spriteSheet
         self.x, self.y = pos
         self.width, self.height = size
         self.offsetX, self.offsetY = textOffset
-        self.font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
+        self.font = pygame.font.SysFont(pygame.font.get_default_font(), fontSize)
 
         self.sprite = pygame.Surface(size)
         self.sprite.set_colorkey((0,0,0))

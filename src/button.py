@@ -2,12 +2,15 @@ from sprites import Sprite
 
 
 class Button:
-    def __init__(self, label: str, pos: tuple[float, float], size: tuple[float, float], sprite: Sprite) -> None:
+    def __init__(self, label: str, pos: tuple[float, float], size: tuple[float, float], sprite: Sprite,
+                 kind: str, value: int = 0) -> None:
         self.pos = pos
         self.size = size
         
         self.sprite = sprite
         self.label = label
+        self.kind = kind
+        self.value = value
 
     def inside(self, pos: tuple[float, float]) -> bool:
         """

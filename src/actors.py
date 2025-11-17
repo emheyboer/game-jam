@@ -13,10 +13,11 @@ class Actor:
         self.atk_index = 0
         self.attacks = attacks
 
-    def roll_attack(self) -> tuple[int, list[Die]]:
+    def roll_attack(self, atk_index: int | None = None) -> tuple[int, list[Die]]:
         """
         Roll the next attack from `attacks`
         """
+        self.atk_index = atk_index if atk_index is not None else self.atk_index
         attack = self.attacks[self.atk_index]
 
         self.atk_index += 1

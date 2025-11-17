@@ -38,6 +38,17 @@ def draw_dice(screen, width: int, height: int, box: str, dice: list[Die]) -> Non
         deltaY *= -1
 
 
+def take_turn(actorA: Actor, actorB: Actor,
+              atkA: int|None = None, atkB: int|None = None) -> tuple[int, int, list[Die], list[Die]]:
+    (totalA, diceA) = actorA.roll_attack(atk_index=atkA)
+    (totalB, diceB) = actorB.roll_attack(atk_index=atkB)
+
+    actorA.dice_bag.add_dice(diceA)
+    actorB.dice_bag.add_dice(diceB)
+
+    return (totalA, totalB, diceA, diceB)
+
+
 def main():
     pygame.init()
 
@@ -63,13 +74,25 @@ def main():
         Die(range(1, 9), sprites['d8_trans']),
         Die(range(1, 7), sprites['d6_trans']),
         Die(range(1, 5), sprites['d4_trans']),
+        Die(range(1,21), sprites['d20_trans']),
+        Die(range(1, 13), sprites['d12_trans']),
+        Die(range(1, 11), sprites['d10_trans']),
+        Die(range(1, 9), sprites['d8_trans']),
+        Die(range(1, 7), sprites['d6_trans']),
+        Die(range(1, 5), sprites['d4_trans']),
     ], sprites['dice_bag'])
     player = Actor(
         'player',
         sprites['art_boss'],
         sprites['dice_box_player'],
         player_dice_bag,
-        [Attack([(1,20), (1,12), (1, 10), (1,8), (1,6), (1,4)])],
+        [
+            Attack([(1, 20)]),
+            Attack([(1, 12)]),
+            Attack([(2, 10)]),
+            Attack([(2, 8)]),
+            Attack([(3, 6)]),
+        ],
     )
 
     boss_dice_bag = DiceBag([
@@ -115,8 +138,7 @@ def main():
         ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
     ]
 
-    player_total, player_dice = player.roll_attack()
-    boss_total, boss_dice = boss.roll_attack()
+    player_total, boss_total, player_dice, boss_dice = take_turn(player, boss)
 
     buttons = []
 
@@ -124,10 +146,12 @@ def main():
     x_mult = .2
     for i in range(num_attacks):
         button = Button(
-            f"atk {i}",
+            f"{player.attacks[i]}",
             (width * x_mult, height * .8),
             (width * .1, height * .1),
-            sprites['button_attack']
+            sprites['button_attack'],
+            'attack',
+            value=i
         )
         buttons.append(button)
         x_mult += .125
@@ -140,8 +164,8 @@ def main():
             elif event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
                 pos = pygame.mouse.get_pos()
                 for btn in buttons:
-                    if btn.inside(pos):
-                        print(f"clicked {btn.label}")
+                    if btn.inside(pos) and btn.kind == 'attack':
+                        player_total, boss_total, player_dice, boss_dice = take_turn(player, boss, atkA=btn.value)
 
         keys = pygame.key.get_pressed()
 

@@ -21,3 +21,12 @@ class Attack:
             total += die.roll()
         
         return (total, dice)
+    
+    def __str__(self) -> str:
+        set_strs = []
+        for n_dice, n_sides in self.sets:
+            set_strs.append(f"{n_dice}d{n_sides}")
+        return '+'.join(set_strs)
+
+    def __repr__(self) -> str:
+        return str(self)

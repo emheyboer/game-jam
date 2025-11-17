@@ -69,7 +69,7 @@ def main():
         sprites['art_boss'],
         sprites['dice_box_player'],
         player_dice_bag,
-        Attack([(1,20), (1,12), (1, 10), (1,8), (1,6), (1,4)]),
+        [Attack([(1,20), (1,12), (1, 10), (1,8), (1,6), (1,4)])],
     )
 
     boss_dice_bag = DiceBag([
@@ -97,7 +97,10 @@ def main():
         sprites['art_boss'],
         sprites['dice_box_boss'],
         boss_dice_bag,
-        Attack([(2, 8), (3, 6)]),
+        [
+            Attack([(2, 8), (3, 6)]),
+            Attack([(3, 20)]),
+        ],
     )
 
     ui_sections = [

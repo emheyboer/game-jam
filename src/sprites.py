@@ -3,7 +3,7 @@ import pygame
 class SpriteSheet:
     def __init__(self, path: str) -> None:
         self.path = path
-        self.surface = pygame.image.load(path)
+        self.surface = pygame.image.load(path).convert()
 
 
 class Sprite:

@@ -193,6 +193,11 @@ class combatScreen(Screen):
         for btn in self.buttons:
             if btn.kind == 'attack' and not self.player.attacks[btn.value].is_possible(self.player.dice_bag):
                 self.buttons.remove(btn)
+
+        if self.player.next_attack() is None:
+            print("you lose :(")
+        elif self.boss.next_attack() is None:
+            print("you win :)")
     
     def on_event(self, event) -> Screen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -200,7 +205,7 @@ class combatScreen(Screen):
             for btn in self.buttons:
                 if btn.inside(pos) and btn.kind == 'attack':
                     self.take_turn(atkPlayer=btn.value)
-                    print(f"player = {self.player.dice_bag.size()}, boss = {self.boss.dice_bag.size()}")
+                    print(f"player has {self.player.dice_bag.size()} dice, boss has {self.boss.dice_bag.size()} dice")
                     break
 
         return self

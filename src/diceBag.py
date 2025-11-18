@@ -1,6 +1,6 @@
 import random
 from sprites import Sprite
-from dice import Die
+from dice import Die, BlueGreenDie
 
 class DiceBag:
     def __init__(self, dice: list[Die], sprite: Sprite):
@@ -11,6 +11,8 @@ class DiceBag:
 
     def add_dice(self, dice):
         for die in dice:
+            if type(die) == BlueGreenDie and die.broken:
+                continue
             self.contents[die.sides].append(die)
 
     def pull_dice(self, n_dice: int, n_sides: int) -> list[Die]:

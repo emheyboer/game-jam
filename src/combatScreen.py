@@ -62,6 +62,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_rainbow'),
             Die.predefined(self.sprites, 'd6_rainbow'),
             Die.predefined(self.sprites, 'd4_rainbow'),
+            Die.predefined(self.sprites, 'd20_blue_green'),
+            Die.predefined(self.sprites, 'd12_blue_green'),
+            Die.predefined(self.sprites, 'd10_blue_green'),
+            Die.predefined(self.sprites, 'd8_blue_green'),
+            Die.predefined(self.sprites, 'd6_blue_green'),
+            Die.predefined(self.sprites, 'd4_blue_green'),
         ], self.sprites['dice_bag'])
 
         player_attacks = [

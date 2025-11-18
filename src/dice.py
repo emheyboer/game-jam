@@ -27,12 +27,12 @@ class Die:
             'd6_white': WhiteDie(6, sprites['d6_white']),
             'd4_white': WhiteDie(4, sprites['d4_white']),
 
-            # 'd20_blue_green': WhiteDie(20, sprites['d20_blue_green']),
-            # 'd12_blue_green': WhiteDie(12, sprites['d12_blue_green']),
-            # 'd10_blue_green': WhiteDie(10, sprites['d10_blue_green']),
-            # 'd8_blue_green': WhiteDie(8, sprites['d8_blue_green']),
-            # 'd6_blue_green': WhiteDie(6, sprites['d6_blue_green']),
-            # 'd4_blue_green': WhiteDie(4, sprites['d4_blue_green']),
+            'd20_blue_green': BlueGreenDie(20, sprites['d20_blue_green']),
+            'd12_blue_green': BlueGreenDie(12, sprites['d12_blue_green']),
+            'd10_blue_green': BlueGreenDie(10, sprites['d10_blue_green']),
+            'd8_blue_green': BlueGreenDie(8, sprites['d8_blue_green']),
+            'd6_blue_green': BlueGreenDie(6, sprites['d6_blue_green']),
+            'd4_blue_green': BlueGreenDie(4, sprites['d4_blue_green']),
 
             # 'd20_brown_yellow': WhiteDie(20, sprites['d20_brown_yellow']),
             # 'd12_brown_yellow': WhiteDie(12, sprites['d12_brown_yellow']),
@@ -156,3 +156,19 @@ class RainbowDie(Die):
             if value != self.sides:
                 self.last_roll = total
                 return total
+
+
+class BlueGreenDie(Die):
+    def __init__(self, sides: int, sprite: Sprite) -> None:
+        self.broken = False # DiceBag checks this before re-adding adding
+        super().__init__(sides, sprite)
+
+    def roll(self) -> int:
+        breaks = random.randint(1,2)
+        if breaks == 1:
+            self.broken = True
+
+        # only roll the upper half
+        value = random.randint(self.sides // 2, self.sides)
+        self.last_roll = value
+        return value

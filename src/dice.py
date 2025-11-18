@@ -17,6 +17,11 @@ class Die:
     def draw(self, screen, pos: tuple[float, float], size = None):
         self.sprite.draw(screen, pos, size=size, text=str(self.last_roll))
 
+    def roll(self) -> int:
+        value = random.randint(1, self.sides)
+        self.last_roll = value
+        return value
+
     @staticmethod
     def predefined(sprites, name: str):
         dice = {
@@ -41,12 +46,12 @@ class Die:
             # 'd6_brown_yellow': WhiteDie(6, sprites['d6_brown_yellow']),
             # 'd4_brown_yellow': WhiteDie(4, sprites['d4_brown_yellow']),
 
-            # 'd20_inverted': WhiteDie(20, sprites['d20_inverted']),
-            # 'd12_inverted': WhiteDie(12, sprites['d12_inverted']),
-            # 'd10_inverted': WhiteDie(10, sprites['d10_inverted']),
-            # 'd8_inverted': WhiteDie(8, sprites['d8_inverted']),
-            # 'd6_inverted': WhiteDie(6, sprites['d6_inverted']),
-            # 'd4_inverted': WhiteDie(4, sprites['d4_inverted']),
+            'd20_inverted': InvertedDie(20, sprites['d20_inverted']),
+            'd12_inverted': InvertedDie(12, sprites['d12_inverted']),
+            'd10_inverted': InvertedDie(10, sprites['d10_inverted']),
+            'd8_inverted': InvertedDie(8, sprites['d8_inverted']),
+            'd6_inverted': InvertedDie(6, sprites['d6_inverted']),
+            'd4_inverted': InvertedDie(4, sprites['d4_inverted']),
 
             # 'd20_pink_blue': WhiteDie(20, sprites['d20_pink_blue']),
             # 'd12_pink_blue': WhiteDie(12, sprites['d12_pink_blue']),
@@ -115,10 +120,7 @@ class Die:
 
 
 class WhiteDie(Die):
-    def roll(self) -> int:
-        value = random.randint(1, self.sides)
-        self.last_roll = value
-        return value
+    pass
 
 
 class GenderfliudDie(Die):
@@ -172,3 +174,7 @@ class BlueGreenDie(Die):
         value = random.randint(self.sides // 2, self.sides)
         self.last_roll = value
         return value
+    
+
+class InvertedDie(Die):
+    pass

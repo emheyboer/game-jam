@@ -1,5 +1,6 @@
 from diceBag import DiceBag
-from dice import Die
+from dice import Die, InvertedDie
+from sprites import Sprite
 
 class Attack:
     def __init__(self, sets: list[tuple[int, int]]) -> None:
@@ -17,10 +18,17 @@ class Attack:
         dice = self.pull_from_bag(dice_bag)
 
         total = 0
+        inverted = []
         for die in dice:
+            if type(die) == InvertedDie:
+                inverted.append(die)
             total += die.roll()
         
-        return (total, dice)
+        for die in inverted:
+            print(f"{die.last_roll} -> {die.last_roll + len(inverted)}")
+            die.last_roll += len(inverted)
+
+        return (total + len(inverted), dice)
     
     def is_possible(self, dice_bag: DiceBag) -> bool:
         dice = self.pull_from_bag(dice_bag)

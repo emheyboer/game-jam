@@ -83,12 +83,12 @@ class Die:
             'd6_nonbinary': NonBinaryDie(6, sprites['d6_nonbinary']),
             'd4_nonbinary': NonBinaryDie(4, sprites['d4_nonbinary']),
 
-            # 'd20_rainbow': WhiteDie(20, sprites['d20_rainbow']),
-            # 'd12_rainbow': WhiteDie(12, sprites['d12_rainbow']),
-            # 'd10_rainbow': WhiteDie(10, sprites['d10_rainbow']),
-            # 'd8_rainbow': WhiteDie(8, sprites['d8_rainbow']),
-            # 'd6_rainbow': WhiteDie(6, sprites['d6_rainbow']),
-            # 'd4_rainbow': WhiteDie(4, sprites['d4_rainbow']),
+            'd20_rainbow': RainbowDie(20, sprites['d20_rainbow']),
+            'd12_rainbow': RainbowDie(12, sprites['d12_rainbow']),
+            'd10_rainbow': RainbowDie(10, sprites['d10_rainbow']),
+            'd8_rainbow': RainbowDie(8, sprites['d8_rainbow']),
+            'd6_rainbow': RainbowDie(6, sprites['d6_rainbow']),
+            'd4_rainbow': RainbowDie(4, sprites['d4_rainbow']),
 
             # 'd20_trans': WhiteDie(20, sprites['d20_trans']),
             # 'd12_trans': WhiteDie(12, sprites['d12_trans']),
@@ -143,3 +143,16 @@ class NonBinaryDie(Die):
         value = random.randint(3, self.sides)
         self.last_roll = value
         return value
+    
+
+class RainbowDie(Die):
+    def roll(self) -> int:
+        total = 0
+        # exploding dice
+        while True:
+            value = random.randint(1, self.sides)
+            total += value
+
+            if value != self.sides:
+                self.last_roll = total
+                return total

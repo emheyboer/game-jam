@@ -56,6 +56,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_white'),
             Die.predefined(self.sprites, 'd6_white'),
             Die.predefined(self.sprites, 'd4_white'),
+            Die.predefined(self.sprites, 'd20_rainbow'),
+            Die.predefined(self.sprites, 'd12_rainbow'),
+            Die.predefined(self.sprites, 'd10_rainbow'),
+            Die.predefined(self.sprites, 'd8_rainbow'),
+            Die.predefined(self.sprites, 'd6_rainbow'),
+            Die.predefined(self.sprites, 'd4_rainbow'),
         ], self.sprites['dice_bag'])
 
         player_attacks = [
@@ -94,6 +100,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_white'),
             Die.predefined(self.sprites, 'd6_white'),
             Die.predefined(self.sprites, 'd4_white'),
+            Die.predefined(self.sprites, 'd20_rainbow'),
+            Die.predefined(self.sprites, 'd12_rainbow'),
+            Die.predefined(self.sprites, 'd10_rainbow'),
+            Die.predefined(self.sprites, 'd8_rainbow'),
+            Die.predefined(self.sprites, 'd6_rainbow'),
+            Die.predefined(self.sprites, 'd4_rainbow'),
         ], self.sprites['dice_bag'])
         self.boss = Actor(
             'boss',

@@ -81,12 +81,12 @@ class Die:
             'd6_genderqueer': Die(range(1,7), sprites['d6_genderqueer']),
             'd4_genderqueer': Die(range(1,5), sprites['d4_genderqueer']),
 
-            'd20_nonbinary': Die(range(1,21), sprites['d20_nonbinary']),
-            'd12_nonbinary': Die(range(1,13), sprites['d12_nonbinary']),
-            'd10_nonbinary': Die(range(1,11), sprites['d10_nonbinary']),
-            'd8_nonbinary': Die(range(1,9), sprites['d8_nonbinary']),
-            'd6_nonbinary': Die(range(1,7), sprites['d6_nonbinary']),
-            'd4_nonbinary': Die(range(1,5), sprites['d4_nonbinary']),
+            'd20_nonbinary': NonBinaryDie(20, sprites['d20_nonbinary']),
+            'd12_nonbinary': NonBinaryDie(12, sprites['d12_nonbinary']),
+            'd10_nonbinary': NonBinaryDie(10, sprites['d10_nonbinary']),
+            'd8_nonbinary': NonBinaryDie(8, sprites['d8_nonbinary']),
+            'd6_nonbinary': NonBinaryDie(6, sprites['d6_nonbinary']),
+            'd4_nonbinary': NonBinaryDie(4, sprites['d4_nonbinary']),
 
             'd20_rainbow': Die(range(1,21), sprites['d20_rainbow']),
             'd12_rainbow': Die(range(1,13), sprites['d12_rainbow']),
@@ -135,3 +135,15 @@ class GenderfliudDie(Die):
 
     def get_sprite(self, n_sides: int) -> Sprite:
         return self.sprites[f"d{n_sides}_genderfluid"]
+    
+
+class NonBinaryDie(Die):
+    def __init__(self, n_sides: int, sprite: Sprite):
+        super().__init__(range(1, n_sides + 1), sprite)
+
+    def roll(self) -> int:
+        while True:
+            value = random.choice(self.sides)
+            if value > 2:
+                self.last_roll = value
+                return value

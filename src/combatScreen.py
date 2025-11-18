@@ -56,6 +56,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_genderfluid'),
             Die.predefined(self.sprites, 'd6_genderfluid'),
             Die.predefined(self.sprites, 'd4_genderfluid'),
+            Die.predefined(self.sprites, 'd20_nonbinary'),
+            Die.predefined(self.sprites, 'd12_nonbinary'),
+            Die.predefined(self.sprites, 'd10_nonbinary'),
+            Die.predefined(self.sprites, 'd8_nonbinary'),
+            Die.predefined(self.sprites, 'd6_nonbinary'),
+            Die.predefined(self.sprites, 'd4_nonbinary'),
         ], self.sprites['dice_bag'])
 
         player_attacks = [

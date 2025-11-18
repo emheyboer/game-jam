@@ -11,8 +11,7 @@ class DiceBag:
 
     def add_dice(self, dice):
         for die in dice:
-            num_sides = len(die.sides)
-            self.contents[num_sides].append(die)
+            self.contents[die.sides].append(die)
 
     def pull_dice(self, n_dice: int, n_sides: int) -> list[Die]:
         """

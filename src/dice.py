@@ -115,14 +115,8 @@ class Die:
 
 
 class WhiteDie(Die):
-    def __init__(self, sides: int, sprite: Sprite):
-        self.sides = sides
-        self.sprite = sprite
-
-        super().__init__(sides, sprite)
-
     def roll(self) -> int:
-        value = random.choice(range(1, self.sides + 1))
+        value = random.randint(1, self.sides)
         self.last_roll = value
         return value
 
@@ -133,10 +127,10 @@ class GenderfliudDie(Die):
         super().__init__(sides, self.get_sprite(sides))
 
     def roll(self) -> int:
-        options = [4, 6, 8, 10, 12, 20]
-        sides = random.choice(options)
+        sides = random.choice([4, 6, 8, 10, 12, 20])
         self.sprite = self.get_sprite(sides)
-        value = random.choice(range(1, sides + 1))
+
+        value = random.randint(1, sides)
         self.last_roll = value
         return value
 
@@ -146,6 +140,6 @@ class GenderfliudDie(Die):
 
 class NonBinaryDie(Die):
     def roll(self) -> int:
-        value = random.choice(range(3, self.sides + 1))
+        value = random.randint(3, self.sides)
         self.last_roll = value
         return value

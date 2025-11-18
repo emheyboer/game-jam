@@ -33,7 +33,6 @@ class Actor:
         else:
             next = self.next_attack()
             if next is None:
-                print("rolling nothing")
                 return (0, [])
             self.atk_index = next
         

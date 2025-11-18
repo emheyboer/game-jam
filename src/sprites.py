@@ -37,8 +37,19 @@ def load_sprites():
     sprites = {}
 
     dice_sprite_sheets = [
+        ('white', 'assets/dice/Small/small_dice.png'),
+        ('blue_green', 'assets/dice/Small/small_dice_bluegreen.png'),
+        ('brown_yellow', 'assets/dice/Small/small_dice_brownyellow.png'),
+        ('inverted', 'assets/dice/Small/small_dice_inverted.png'),
+        ('pink_blue', 'assets/dice/Small/small_dice_pinkblue.png'),
+        ('agender', 'assets/dice/Small/small_dice_pride_agender.png'),
+        ('genderfluid', 'assets/dice/Small/small_dice_pride_genderfluid.png'),
+        ('genderqueer', 'assets/dice/Small/small_dice_pride_genderqueer.png'),
+        ('nonbinary', 'assets/dice/Small/small_dice_pride_nonbinary.png'),
+        ('rainbow', 'assets/dice/Small/small_dice_pride_rainbow.png'),
         ('trans', 'assets/dice/Small/small_dice_pride_trans.png'),
-        ('white', 'assets/dice/Small/small_dice.png')
+        ('purple_pink', 'assets/dice/Small/small_dice_purplepink.png'),
+        ('red_yellow', 'assets/dice/Small/small_dice_redyellow.png'),
     ]
     dice_sprites_positions = [
         # (name, position, size, text offset)

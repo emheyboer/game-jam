@@ -6,9 +6,10 @@ from attack import Attack
 from actors import Actor
 from button import Button
 from screen import Screen
+from sprites import Sprite
 
 class combatScreen(Screen):
-    def __init__(self, screen, width: int, height: int, sprites) -> None:
+    def __init__(self, screen, width: int, height: int, sprites: dict[str, Sprite]) -> None:
         self.screen = screen
         self.width = width
         self.height = height
@@ -37,24 +38,24 @@ class combatScreen(Screen):
 
     def init_player(self) -> None:
         player_dice_bag = DiceBag([
-            Die(range(1,21), self.sprites['d20_trans']),
-            Die(range(1, 13), self.sprites['d12_trans']),
-            Die(range(1, 11), self.sprites['d10_trans']),
-            Die(range(1, 9), self.sprites['d8_trans']),
-            Die(range(1, 7), self.sprites['d6_trans']),
-            Die(range(1, 5), self.sprites['d4_trans']),
-            Die(range(1,21), self.sprites['d20_trans']),
-            Die(range(1, 13), self.sprites['d12_trans']),
-            Die(range(1, 11), self.sprites['d10_trans']),
-            Die(range(1, 9), self.sprites['d8_trans']),
-            Die(range(1, 7), self.sprites['d6_trans']),
-            Die(range(1, 5), self.sprites['d4_trans']),
-            Die(range(1,21), self.sprites['d20_trans']),
-            Die(range(1, 13), self.sprites['d12_trans']),
-            Die(range(1, 11), self.sprites['d10_trans']),
-            Die(range(1, 9), self.sprites['d8_trans']),
-            Die(range(1, 7), self.sprites['d6_trans']),
-            Die(range(1, 5), self.sprites['d4_trans']),
+            Die.predefined(self.sprites, 'd20_trans'),
+            Die.predefined(self.sprites, 'd12_trans'),
+            Die.predefined(self.sprites, 'd10_trans'),
+            Die.predefined(self.sprites, 'd8_trans'),
+            Die.predefined(self.sprites, 'd6_trans'),
+            Die.predefined(self.sprites, 'd4_trans'),
+            Die.predefined(self.sprites, 'd20_inverted'),
+            Die.predefined(self.sprites, 'd12_inverted'),
+            Die.predefined(self.sprites, 'd10_inverted'),
+            Die.predefined(self.sprites, 'd8_inverted'),
+            Die.predefined(self.sprites, 'd6_inverted'),
+            Die.predefined(self.sprites, 'd4_inverted'),
+            Die.predefined(self.sprites, 'd20_genderfluid'),
+            Die.predefined(self.sprites, 'd12_genderfluid'),
+            Die.predefined(self.sprites, 'd10_genderfluid'),
+            Die.predefined(self.sprites, 'd8_genderfluid'),
+            Die.predefined(self.sprites, 'd6_genderfluid'),
+            Die.predefined(self.sprites, 'd4_genderfluid'),
         ], self.sprites['dice_bag'])
 
         player_attacks = [
@@ -75,24 +76,24 @@ class combatScreen(Screen):
 
     def init_boss(self) -> None:
         boss_dice_bag = DiceBag([
-            Die(range(1,21), self.sprites['d20_white']),
-            Die(range(1, 13), self.sprites['d12_white']),
-            Die(range(1, 11), self.sprites['d10_white']),
-            Die(range(1, 9), self.sprites['d8_white']),
-            Die(range(1, 7), self.sprites['d6_white']),
-            Die(range(1, 5), self.sprites['d4_white']),
-            Die(range(1,21), self.sprites['d20_white']),
-            Die(range(1, 13), self.sprites['d12_white']),
-            Die(range(1, 11), self.sprites['d10_white']),
-            Die(range(1, 9), self.sprites['d8_white']),
-            Die(range(1, 7), self.sprites['d6_white']),
-            Die(range(1, 5), self.sprites['d4_white']),
-            Die(range(1,21), self.sprites['d20_white']),
-            Die(range(1, 13), self.sprites['d12_white']),
-            Die(range(1, 11), self.sprites['d10_white']),
-            Die(range(1, 9), self.sprites['d8_white']),
-            Die(range(1, 7), self.sprites['d6_white']),
-            Die(range(1, 5), self.sprites['d4_white']),
+            Die.predefined(self.sprites, 'd20_trans'),
+            Die.predefined(self.sprites, 'd12_trans'),
+            Die.predefined(self.sprites, 'd10_trans'),
+            Die.predefined(self.sprites, 'd8_trans'),
+            Die.predefined(self.sprites, 'd6_trans'),
+            Die.predefined(self.sprites, 'd4_trans'),
+            Die.predefined(self.sprites, 'd20_inverted'),
+            Die.predefined(self.sprites, 'd12_inverted'),
+            Die.predefined(self.sprites, 'd10_inverted'),
+            Die.predefined(self.sprites, 'd8_inverted'),
+            Die.predefined(self.sprites, 'd6_inverted'),
+            Die.predefined(self.sprites, 'd4_inverted'),
+            Die.predefined(self.sprites, 'd20_genderfluid'),
+            Die.predefined(self.sprites, 'd12_genderfluid'),
+            Die.predefined(self.sprites, 'd10_genderfluid'),
+            Die.predefined(self.sprites, 'd8_genderfluid'),
+            Die.predefined(self.sprites, 'd6_genderfluid'),
+            Die.predefined(self.sprites, 'd4_genderfluid'),
         ], self.sprites['dice_bag'])
         self.boss = Actor(
             'boss',

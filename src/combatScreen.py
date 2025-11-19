@@ -7,6 +7,7 @@ from actors import Actor
 from button import Button
 from screen import Screen
 from sprites import Sprite
+from shopScreen import shopScreen
 
 class combatScreen(Screen):
     def __init__(self, screen, width: int, height: int, sprites: dict[str, Sprite]) -> None:
@@ -32,6 +33,18 @@ class combatScreen(Screen):
             )
             self.buttons.append(button)
             x_mult += .125
+
+        
+        toShop_Button = Button(
+            label = "To Shop!",
+            pos = (width * .8, height * .75),
+            size = (width * .20, height * .20),
+            sprite = sprites['button_toShop'],
+            kind = 'navigation'
+        )
+        self.buttons.append(toShop_Button)
+        self.roundWon = False
+
 
 
     def init_player(self) -> None:
@@ -308,8 +321,10 @@ class combatScreen(Screen):
 
         if self.player.next_attack() is None:
             print("you lose :(")
+            self.roundWon = False
         elif self.boss.next_attack() is None:
             print("you win :)")
+            self.roundWon = True
     
     def on_event(self, event) -> Screen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -319,5 +334,9 @@ class combatScreen(Screen):
                     self.take_turn(atkPlayer=btn.value)
                     print(f"player has {self.player.dice_bag.size()} dice, boss has {self.boss.dice_bag.size()} dice")
                     break
+
+                # Change self.roundWon == True: when ready to play set to false for testing
+                if btn.inside(pos) and btn.kind == 'navigation' and self.roundWon == False:
+                    return shopScreen(self.screen, self.width, self.height, self.sprites)                
 
         return self

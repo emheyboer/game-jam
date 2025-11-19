@@ -10,14 +10,17 @@ from sprites import Sprite
 from shopScreen import shopScreen
 
 class combatScreen(Screen):
-    def __init__(self, screen, width: int, height: int, sprites: dict[str, Sprite], level: int) -> None:
+    def __init__(self, screen, width: int, height: int, sprites: dict[str, Sprite], player: Actor, level: int) -> None:
         self.screen = screen
         self.width = width
         self.height = height
         self.sprites = sprites
         self.level = level
 
-        self.init_player()
+        self.player = player
+        self.player_dice = []
+        self.player_total = None
+        
         self.init_boss()
 
         self.buttons = []
@@ -45,109 +48,6 @@ class combatScreen(Screen):
         )
         self.buttons.append(toShop_Button)
         self.roundWon = False
-
-
-
-    def init_player(self) -> None:
-        player_dice_bag = DiceBag([
-            Die.predefined(self.sprites, 'd20_fluid'),
-            Die.predefined(self.sprites, 'd12_fluid'),
-            Die.predefined(self.sprites, 'd10_fluid'),
-            Die.predefined(self.sprites, 'd8_fluid'),
-            Die.predefined(self.sprites, 'd6_fluid'),
-            Die.predefined(self.sprites, 'd4_fluid'),
-            Die.predefined(self.sprites, 'd20_lucky'),
-            Die.predefined(self.sprites, 'd12_lucky'),
-            Die.predefined(self.sprites, 'd10_lucky'),
-            Die.predefined(self.sprites, 'd8_lucky'),
-            Die.predefined(self.sprites, 'd6_lucky'),
-            Die.predefined(self.sprites, 'd4_lucky'),
-            Die.predefined(self.sprites, 'd20_basic'),
-            Die.predefined(self.sprites, 'd12_basic'),
-            Die.predefined(self.sprites, 'd10_basic'),
-            Die.predefined(self.sprites, 'd8_basic'),
-            Die.predefined(self.sprites, 'd6_basic'),
-            Die.predefined(self.sprites, 'd4_basic'),
-            Die.predefined(self.sprites, 'd20_exploding'),
-            Die.predefined(self.sprites, 'd12_exploding'),
-            Die.predefined(self.sprites, 'd10_exploding'),
-            Die.predefined(self.sprites, 'd8_exploding'),
-            Die.predefined(self.sprites, 'd6_exploding'),
-            Die.predefined(self.sprites, 'd4_exploding'),
-            Die.predefined(self.sprites, 'd20_glass'),
-            Die.predefined(self.sprites, 'd12_glass'),
-            Die.predefined(self.sprites, 'd10_glass'),
-            Die.predefined(self.sprites, 'd8_glass'),
-            Die.predefined(self.sprites, 'd6_glass'),
-            Die.predefined(self.sprites, 'd4_glass'),
-            Die.predefined(self.sprites, 'd20_union'),
-            Die.predefined(self.sprites, 'd12_union'),
-            Die.predefined(self.sprites, 'd10_union'),
-            Die.predefined(self.sprites, 'd8_union'),
-            Die.predefined(self.sprites, 'd6_union'),
-            Die.predefined(self.sprites, 'd4_union'),
-            Die.predefined(self.sprites, 'd20_advantage'),
-            Die.predefined(self.sprites, 'd12_advantage'),
-            Die.predefined(self.sprites, 'd10_advantage'),
-            Die.predefined(self.sprites, 'd8_advantage'),
-            Die.predefined(self.sprites, 'd6_advantage'),
-            Die.predefined(self.sprites, 'd4_advantage'),
-            Die.predefined(self.sprites, 'd20_stone'),
-            Die.predefined(self.sprites, 'd12_stone'),
-            Die.predefined(self.sprites, 'd10_stone'),
-            Die.predefined(self.sprites, 'd8_stone'),
-            Die.predefined(self.sprites, 'd6_stone'),
-            Die.predefined(self.sprites, 'd4_stone'),
-            Die.predefined(self.sprites, 'd20_fire'),
-            Die.predefined(self.sprites, 'd12_fire'),
-            Die.predefined(self.sprites, 'd10_fire'),
-            Die.predefined(self.sprites, 'd8_fire'),
-            Die.predefined(self.sprites, 'd6_fire'),
-            Die.predefined(self.sprites, 'd4_fire'),
-            Die.predefined(self.sprites, 'd20_poison'),
-            Die.predefined(self.sprites, 'd12_poison'),
-            Die.predefined(self.sprites, 'd10_poison'),
-            Die.predefined(self.sprites, 'd8_poison'),
-            Die.predefined(self.sprites, 'd6_poison'),
-            Die.predefined(self.sprites, 'd4_poison'),
-            Die.predefined(self.sprites, 'd20_outlier'),
-            Die.predefined(self.sprites, 'd12_outlier'),
-            Die.predefined(self.sprites, 'd10_outlier'),
-            Die.predefined(self.sprites, 'd8_outlier'),
-            Die.predefined(self.sprites, 'd6_outlier'),
-            Die.predefined(self.sprites, 'd4_outlier'),
-            Die.predefined(self.sprites, 'd20_money'),
-            Die.predefined(self.sprites, 'd12_money'),
-            Die.predefined(self.sprites, 'd10_money'),
-            Die.predefined(self.sprites, 'd8_money'),
-            Die.predefined(self.sprites, 'd6_money'),
-            Die.predefined(self.sprites, 'd4_money'),
-            Die.predefined(self.sprites, 'd20_trans'),
-            Die.predefined(self.sprites, 'd12_trans'),
-            Die.predefined(self.sprites, 'd10_trans'),
-            Die.predefined(self.sprites, 'd8_trans'),
-            Die.predefined(self.sprites, 'd6_trans'),
-            Die.predefined(self.sprites, 'd4_trans'),
-        ], self.sprites['dice_bag'])
-
-        player_attacks = [
-            Attack([(3, 20)]),
-            Attack([(1, 12)]),
-            Attack([(2, 10)]),
-            Attack([(2, 8)]),
-            Attack([(6, 6)]),
-        ]
-
-        self.player = Actor(
-            'player',
-            self.sprites['dice_goblin'],
-            self.sprites['dice_box_player'],
-            player_dice_bag,
-            player_attacks,
-        )
-
-        self.player_dice = []
-        self.player_total = None
 
     def init_boss(self) -> None:
         self.boss = load_boss(self.sprites, self.level)

@@ -250,7 +250,7 @@ class combatScreen(Screen):
             ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
             ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
 
-            ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
+            # ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
             ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
 
             ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
@@ -286,11 +286,13 @@ class combatScreen(Screen):
         for btn in self.buttons:
             btn.draw(self.screen)
 
-        self.draw_dice('boss', self.boss_dice)
-        self.draw_dice('player', self.player_dice)
+        self.draw_dice_in_box('boss', self.boss_dice)
+        self.draw_dice_in_box('player', self.player_dice)
+
+        self.draw_dice_in_bag()
 
 
-    def draw_dice(self, box: str, dice: list[Die]) -> None:
+    def draw_dice_in_box(self, box: str, dice: list[Die]) -> None:
         """
         Draw dice in either of the two dice boxes
         """
@@ -319,6 +321,35 @@ class combatScreen(Screen):
             die.draw(self.screen, (x, y), size=size)
             x += deltaX
             deltaY *= -1
+
+    def draw_dice_in_bag(self) -> None:
+        width, height = self.width, self.height
+        dice = self.player.dice_bag.all_dice()
+        y = height * .45
+
+        count = len(dice)
+        if count <= 12:
+            deltaX = width * .04
+            size = (deltaX, deltaX)
+            deltaY = -height * .02
+            lineOffset = height * .104
+        else: # adapt sizes & positions to fit in the same space
+            divisor = count / 12
+            deltaX = width * .04 / divisor
+            size = (deltaX, deltaX)
+            deltaY = -height * .02 / divisor
+            lineOffset = height * .104 / divisor
+
+        x = width * 0
+        for die in dice:
+            y += deltaY
+            if x + deltaX > width * .2:
+                y += lineOffset
+                x = 0
+            die.draw(self.screen, (x, y), size=size)
+            x += deltaX
+            deltaY *= -1
+
 
     def take_turn(self, atkPlayer: int|None = None, atkBoss: int|None = None) -> None:
         self.player_total, boss_poisoned, self.player_dice = self.player.roll_attack(atk_index=atkPlayer)

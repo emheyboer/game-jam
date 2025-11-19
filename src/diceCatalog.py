@@ -1,46 +1,47 @@
 ALL_DICE_IDS = [
-    # White
-    'd20_white', 'd12_white', 'd10_white', 
-    'd8_white', 'd6_white',
+    # Basic
+    'd20_basic', 'd12_basic', 'd10_basic', 
+    'd8_basic', 'd6_basic',
 
-    # Blue / Green
-    'd20_blue_green', 'd12_blue_green', 'd10_blue_green',
-    'd8_blue_green', 'd6_blue_green',
+    # Glass
+    'd20_glass', 'd12_glass', 'd10_glass',
+    'd8_glass', 'd6_glass',
 
-    # Brown / Yellow
-    'd20_brown_yellow', 'd12_brown_yellow', 'd10_brown_yellow',
-    'd8_brown_yellow', 'd6_brown_yellow',
+    # Stone
+    'd20_stone', 'd12_stone', 'd10_stone',
+    'd8_stone', 'd6_stone',
 
-    # Inverted
-    'd20_inverted', 'd12_inverted', 'd10_inverted',
-    'd8_inverted', 'd6_inverted',
+    # Union
+    'd20_union', 'd12_union', 'd10_union',
+    'd8_union', 'd6_union',
 
-    # Pink / Blue
-    'd20_pink_blue', 'd12_pink_blue', 'd10_pink_blue',
-    'd8_pink_blue', 'd6_pink_blue',
+    # Advantage
+    'd20_advantage', 'd12_advantage', 'd10_advantage',
+    'd8_advantage', 'd6_advantage',
 
-    # Agender
-    'd20_agender', 'd12_agender', 'd10_agender',
-    'd8_agender', 'd6_agender',
+    # Poison
+    'd20_poison', 'd12_poison', 'd10_poison',
+    'd8_poison', 'd6_poison',
 
-    # Genderfluid
-    'd20_genderfluid', 'd12_genderfluid', 'd10_genderfluid',
-    'd8_genderfluid', 'd6_genderfluid',
+    # Fluid
+    'd20_fluid', 'd12_fluid', 'd10_fluid',
+    'd8_fluid', 'd6_fluid',
 
     # Genderqueer
     'd20_genderqueer', 'd12_genderqueer', 'd10_genderqueer',
     'd8_genderqueer', 'd6_genderqueer',
 
-    # Nonbinary
-    'd20_nonbinary', 'd12_nonbinary', 'd10_nonbinary',
-    'd8_nonbinary', 'd6_nonbinary',
-    # Rainbow
-    'd20_rainbow', 'd12_rainbow', 'd10_rainbow',
-    'd8_rainbow', 'd6_rainbow',
+    # Lucky
+    'd20_lucky', 'd12_lucky', 'd10_lucky',
+    'd8_lucky', 'd6_lucky',
 
-    # Red / Yellow
-    'd20_red_yellow', 'd12_red_yellow', 'd10_red_yellow',
-    'd8_red_yellow', 'd6_red_yellow',
+    # Exploding
+    'd20_exploding', 'd12_exploding', 'd10_exploding',
+    'd8_exploding', 'd6_exploding',
+
+    # Fire
+    'd20_fire', 'd12_fire', 'd10_fire',
+    'd8_fire', 'd6_fire',
 
     # Trans (disabled in code)
     #'d20_trans', 'd12_trans', 'd10_trans',
@@ -52,67 +53,67 @@ ALL_DICE_IDS = [
 ]
 
 COMMON_DICE = [
-    # White
-    'd12_white', 'd10_white', 
-    'd8_white', 'd6_white',
+    # Basic
+    'd12_basic', 'd10_basic', 
+    'd8_basic', 'd6_basic',
 
-    # Blue / Green
-    'd12_blue_green', 'd10_blue_green',
-    'd8_blue_green', 'd6_blue_green',
+    # Glass
+    'd12_glass', 'd10_glass',
+    'd8_glass', 'd6_glass',
 
-    # Red / Yellow
-    'd12_red_yellow', 'd10_red_yellow',
-    'd8_red_yellow', 'd6_red_yellow',
+    # Fire
+    'd12_fire', 'd10_fire',
+    'd8_fire', 'd6_fire',
 
-    # Brown / Yellow
-    'd12_brown_yellow', 'd10_brown_yellow',
-    'd8_brown_yellow', 'd6_brown_yellow',
+    # Stone
+    'd12_stone', 'd10_stone',
+    'd8_stone', 'd6_stone',
 
-    # Inverted
-    'd12_inverted', 'd10_inverted',
-    'd8_inverted', 'd6_inverted',
+    # Union
+    'd12_union', 'd10_union',
+    'd8_union', 'd6_union',
 
 ]
 
 UNCOMMON_DICE = [
-    'd20_inverted', 'd20_brown_yellow', 'd20_red_yellow', 
-    'd20_blue_green', 'd20_white',
+    'd20_union', 'd20_stone', 'd20_fire', 
+    'd20_glass', 'd20_basic',
 
-    # Rainbow
-    'd10_rainbow',
-    'd8_rainbow', 'd6_rainbow',
+    # Exploding
+    'd10_exploding',
+    'd8_exploding', 'd6_exploding',
 
-    # Pink / Blue
-    'd12_pink_blue', 'd10_pink_blue',
-    'd8_pink_blue', 'd6_pink_blue',
+    # Advantage
+    'd12_advantage', 'd10_advantage',
+    'd8_advantage', 'd6_advantage',
 
-    # Agender
-    'd10_agender',
-    'd8_agender', 'd6_agender',
+    # Poison
+    'd10_poison',
+    'd8_poison', 'd6_poison',
 
-    # Genderfluid
-    'd12_genderfluid', 'd10_genderfluid',
-    'd8_genderfluid', 'd6_genderfluid',
+    # Fluid
+    'd12_fluid', 'd10_fluid',
+    'd8_fluid', 'd6_fluid',
 
     # Genderqueer
     'd10_genderqueer',
     'd8_genderqueer', 'd6_genderqueer',
 
-    # Nonbinary
-    'd10_nonbinary',
-    'd8_nonbinary', 'd6_nonbinary',
+    # Lucky
+    'd10_lucky',
+    'd8_lucky', 'd6_lucky',
 
 
 ]
 
 RARE_DICE = [
-    'd20_nonbinary', 'd20_genderqueer', 'd20_genderfluid',
-    'd20_agender', 'd20_pink_blue', 'd20_rainbow', 
-    'd12_nonbinary', 'd12_genderqueer', 'd12_rainbow', 
+    'd20_lucky', 'd20_genderqueer', 'd20_fluid',
+    'd20_poison', 'd20_advantage', 'd20_exploding', 
+    'd12_lucky', 'd12_genderqueer', 'd12_exploding', 
 
 ]
 
 LENDARY_DICE = [
     'd20_trans', 'd12_trans', 'd10_trans',
-    'd8_trans', 'd6_trans', 'd12_agender', 
+    'd8_trans', 'd6_trans', 'd12_poison', 
 ]

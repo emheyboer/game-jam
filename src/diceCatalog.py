@@ -44,8 +44,8 @@ ALL_DICE_IDS = [
     'd8_fire', 'd6_fire',
 
     # Trans (disabled in code)
-    #'d20_trans', 'd12_trans', 'd10_trans',
-    #'d8_trans', 'd6_trans', 'd4_trans',
+    'd20_trans', 'd12_trans', 'd10_trans',
+    'd8_trans', 'd6_trans', 'd4_trans',
 
     # Outlier
     'd20_outlier', 'd12_outlier', 'd10_outlier',

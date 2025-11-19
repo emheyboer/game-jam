@@ -11,3 +11,4 @@ Start the game by running `python3 src/main.py`
 - Dice art by [edilith](https://edilith.itch.io)
 - Dice box art by [kenny](https://kenney.nl/)
 - Dice bag art by [pbarry](https://pbarry.itch.io)
+- Wooden table art by [owletrius](https://owletrius.itch.io)

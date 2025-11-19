@@ -139,7 +139,7 @@ class combatScreen(Screen):
 
         self.player = Actor(
             'player',
-            self.sprites['art_boss'],
+            self.sprites['dice_goblin'],
             self.sprites['dice_box_player'],
             player_dice_bag,
             player_attacks,
@@ -231,7 +231,7 @@ class combatScreen(Screen):
         ], self.sprites['dice_bag'])
         self.boss = Actor(
             'boss',
-            self.sprites['art_boss'],
+            self.sprites['dice_goblin'],
             self.sprites['dice_box_boss'],
             boss_dice_bag,
             [
@@ -283,7 +283,7 @@ class combatScreen(Screen):
         self.boss.dice_bag.draw(self.screen, (width * .8, height * .475), size = (width * .225, height * .225))
         self.player.dice_bag.draw(self.screen, (width * .8, height * .1), size = (width * .225, height * .225))
 
-        self.boss.profile_art.draw(self.screen, (0, height * .1), size = (width * .225, height * .225))
+        self.boss.profile_art.draw(self.screen, (0, height * 0), size = (width * .225, width * .225))
 
         for btn in self.buttons:
             btn.draw(self.screen)

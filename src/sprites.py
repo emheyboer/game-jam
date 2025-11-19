@@ -76,8 +76,13 @@ def load_sprites():
     sprites['dice_box_boss'] = dice_box
 
     inventory = SpriteSheet('assets/inventory/sprites.png')
-    sprites['art_boss'] = Sprite(inventory, (16 * 5, 16 * 7), (16, 16))
     sprites['dice_bag'] = Sprite(inventory, (64, 16), (16, 16))
+
+    sprites['dice_goblin'] = Sprite(
+        SpriteSheet('assets/boss/dice_goblin.png'),
+        (0, 0),
+        (2600, 3000)
+    )
 
     sprites['button_attack'] = Sprite(
         SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'),

@@ -1,5 +1,8 @@
 import pygame
 from screen import Screen
+from button import Button
+import random
+from dice import Die
 
 
 # TO-DO
@@ -13,6 +16,16 @@ class shopScreen(Screen):
         self.width = width
         self.height = height
         self.sprites = sprites
+
+        self.items = []
+        self.buttons = []
+
+    def init_shop_inventory(self):
+        self.items = []
+        
+        
+
+
 
     def draw(self) -> None:
         width, height = self.width, self.height

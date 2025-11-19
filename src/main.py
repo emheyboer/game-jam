@@ -16,7 +16,7 @@ def main():
 
     sprites = load_sprites()
 
-    current_screen = combatScreen(screen, width, height, sprites)
+    current_screen = combatScreen(screen, width, height, sprites, 0)
     #current_screen = shopScreen(screen, width, height, sprites)
 
     running = True

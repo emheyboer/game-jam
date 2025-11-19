@@ -84,13 +84,25 @@ def load_sprites():
         (2600, 3000)
     )
 
+    sprites['tootle'] = Sprite(
+        SpriteSheet('assets/boss/tootle.png'),
+        (0, 0),
+        (2300, 2800)
+    )
+
+    sprites['vesphira'] = Sprite(
+        SpriteSheet('assets/boss/vesphira.png'),
+        (0, 0),
+        (3000, 3545)
+    )
+
     sprites['button_attack'] = Sprite(
         SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'),
         (0, 0), (45, 49), textOffset=(5, 15),
         fontSize=20
     )
 
-    sprites['background_combat'] = Sprite(
+    sprites['background'] = Sprite(
         SpriteSheet('assets/wood/Wood Texture 2.png'),
         (0, 0), (2048, 2048), textOffset=(5, 15),
         fontSize=20

@@ -10,11 +10,12 @@ from sprites import Sprite
 from shopScreen import shopScreen
 
 class combatScreen(Screen):
-    def __init__(self, screen, width: int, height: int, sprites: dict[str, Sprite]) -> None:
+    def __init__(self, screen, width: int, height: int, sprites: dict[str, Sprite], level: int) -> None:
         self.screen = screen
         self.width = width
         self.height = height
         self.sprites = sprites
+        self.level = level
 
         self.init_player()
         self.init_boss()
@@ -149,118 +150,14 @@ class combatScreen(Screen):
         self.player_total = None
 
     def init_boss(self) -> None:
-        boss_dice_bag = DiceBag([
-            Die.predefined(self.sprites, 'd20_fluid'),
-            Die.predefined(self.sprites, 'd12_fluid'),
-            Die.predefined(self.sprites, 'd10_fluid'),
-            Die.predefined(self.sprites, 'd8_fluid'),
-            Die.predefined(self.sprites, 'd6_fluid'),
-            Die.predefined(self.sprites, 'd4_fluid'),
-            Die.predefined(self.sprites, 'd20_lucky'),
-            Die.predefined(self.sprites, 'd12_lucky'),
-            Die.predefined(self.sprites, 'd10_lucky'),
-            Die.predefined(self.sprites, 'd8_lucky'),
-            Die.predefined(self.sprites, 'd6_lucky'),
-            Die.predefined(self.sprites, 'd4_lucky'),
-            Die.predefined(self.sprites, 'd20_basic'),
-            Die.predefined(self.sprites, 'd12_basic'),
-            Die.predefined(self.sprites, 'd10_basic'),
-            Die.predefined(self.sprites, 'd8_basic'),
-            Die.predefined(self.sprites, 'd6_basic'),
-            Die.predefined(self.sprites, 'd4_basic'),
-            Die.predefined(self.sprites, 'd20_exploding'),
-            Die.predefined(self.sprites, 'd12_exploding'),
-            Die.predefined(self.sprites, 'd10_exploding'),
-            Die.predefined(self.sprites, 'd8_exploding'),
-            Die.predefined(self.sprites, 'd6_exploding'),
-            Die.predefined(self.sprites, 'd4_exploding'),
-            Die.predefined(self.sprites, 'd20_glass'),
-            Die.predefined(self.sprites, 'd12_glass'),
-            Die.predefined(self.sprites, 'd10_glass'),
-            Die.predefined(self.sprites, 'd8_glass'),
-            Die.predefined(self.sprites, 'd6_glass'),
-            Die.predefined(self.sprites, 'd4_glass'),
-            Die.predefined(self.sprites, 'd20_union'),
-            Die.predefined(self.sprites, 'd12_union'),
-            Die.predefined(self.sprites, 'd10_union'),
-            Die.predefined(self.sprites, 'd8_union'),
-            Die.predefined(self.sprites, 'd6_union'),
-            Die.predefined(self.sprites, 'd4_union'),
-            Die.predefined(self.sprites, 'd20_advantage'),
-            Die.predefined(self.sprites, 'd12_advantage'),
-            Die.predefined(self.sprites, 'd10_advantage'),
-            Die.predefined(self.sprites, 'd8_advantage'),
-            Die.predefined(self.sprites, 'd6_advantage'),
-            Die.predefined(self.sprites, 'd4_advantage'),
-            Die.predefined(self.sprites, 'd20_stone'),
-            Die.predefined(self.sprites, 'd12_stone'),
-            Die.predefined(self.sprites, 'd10_stone'),
-            Die.predefined(self.sprites, 'd8_stone'),
-            Die.predefined(self.sprites, 'd6_stone'),
-            Die.predefined(self.sprites, 'd4_stone'),
-            Die.predefined(self.sprites, 'd20_fire'),
-            Die.predefined(self.sprites, 'd12_fire'),
-            Die.predefined(self.sprites, 'd10_fire'),
-            Die.predefined(self.sprites, 'd8_fire'),
-            Die.predefined(self.sprites, 'd6_fire'),
-            Die.predefined(self.sprites, 'd4_fire'),
-            Die.predefined(self.sprites, 'd20_poison'),
-            Die.predefined(self.sprites, 'd12_poison'),
-            Die.predefined(self.sprites, 'd10_poison'),
-            Die.predefined(self.sprites, 'd8_poison'),
-            Die.predefined(self.sprites, 'd6_poison'),
-            Die.predefined(self.sprites, 'd4_poison'),
-            Die.predefined(self.sprites, 'd20_outlier'),
-            Die.predefined(self.sprites, 'd12_outlier'),
-            Die.predefined(self.sprites, 'd10_outlier'),
-            Die.predefined(self.sprites, 'd8_outlier'),
-            Die.predefined(self.sprites, 'd6_outlier'),
-            Die.predefined(self.sprites, 'd4_outlier'),
-            Die.predefined(self.sprites, 'd20_money'),
-            Die.predefined(self.sprites, 'd12_money'),
-            Die.predefined(self.sprites, 'd10_money'),
-            Die.predefined(self.sprites, 'd8_money'),
-            Die.predefined(self.sprites, 'd6_money'),
-            Die.predefined(self.sprites, 'd4_money'),
-            Die.predefined(self.sprites, 'd20_trans'),
-            Die.predefined(self.sprites, 'd12_trans'),
-            Die.predefined(self.sprites, 'd10_trans'),
-            Die.predefined(self.sprites, 'd8_trans'),
-            Die.predefined(self.sprites, 'd6_trans'),
-            Die.predefined(self.sprites, 'd4_trans'),
-        ], self.sprites['dice_bag'])
-        self.boss = Actor(
-            'boss',
-            self.sprites['dice_goblin'],
-            self.sprites['dice_box_boss'],
-            boss_dice_bag,
-            [
-                Attack([(2, 8), (3, 6)]),
-                Attack([(3, 20)]),
-            ],
-        )
-
+        self.boss = load_boss(self.sprites, self.level)
         self.boss_dice = []
         self.boss_total = None
 
     def draw(self) -> None:
         width, height = self.width, self.height
 
-        self.sprites['background_combat'].draw(self.screen, (0, 0), (width, height))
-
-        ui_sections = [
-            # ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
-            # ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
-
-            # # ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
-            # ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
-
-            # ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
-            # ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
-            # ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
-        ]
-
-        font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
+        self.sprites['background'].draw(self.screen, (0, 0), (width, height))
 
         label = str(self.boss_total) if self.boss_total is not None else ""
         self.boss.dice_box_art.draw(self.screen, (width * .2, 0), size = (width * .6, height * .375),
@@ -268,16 +165,6 @@ class combatScreen(Screen):
         label = str(self.player_total) if self.player_total is not None else ""
         self.player.dice_box_art.draw(self.screen, (width * .2, height * .375), size = (width * .6, height * .375),
                                 text=label)
-
-        for section in ui_sections:
-            color, rect, text = section
-
-            pygame.draw.rect(self.screen, color, rect)
-
-            label = font.render(text, False, (255, 255, 255))
-
-            w, h, _, _ = rect
-            self.screen.blit(label, (w, h))
 
 
         self.boss.dice_bag.draw(self.screen, (width * .8, height * .475), size = (width * .225, height * .225))
@@ -395,3 +282,55 @@ class combatScreen(Screen):
                     return shopScreen(self.screen, self.width, self.height, self.sprites)                
 
         return self
+    
+
+
+def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
+    bosses = [
+        Actor(
+            'tootle',
+            sprites['tootle'],
+            sprites['dice_box_boss'],
+            DiceBag([
+                Die.predefined(sprites, 'd4_union'),
+                Die.predefined(sprites, 'd4_union'),
+                Die.predefined(sprites, 'd4_union'),
+                Die.predefined(sprites, 'd4_union'),
+                Die.predefined(sprites, 'd4_union'),
+                Die.predefined(sprites, 'd4_union'),
+                Die.predefined(sprites, 'd6_basic'),
+                Die.predefined(sprites, 'd6_basic'),
+                Die.predefined(sprites, 'd6_basic'),
+                Die.predefined(sprites, 'd6_basic'),
+                Die.predefined(sprites, 'd6_basic'),
+                Die.predefined(sprites, 'd6_basic'),
+                    ], sprites['dice_bag']),
+            [
+                Attack([(6, 4)]),
+                Attack([(1,4), (1, 6)]),
+            ],
+        ),
+        Actor(
+            'vesphira',
+            sprites['vesphira'],
+            sprites['dice_box_boss'],
+            DiceBag([
+                    ], sprites['dice_bag']),
+            [
+                Attack([(2, 8), (3, 6)]),
+                Attack([(3, 20)]),
+            ],
+        ),
+        Actor(
+            'dice goblin',
+            sprites['dice_goblin'],
+            sprites['dice_box_boss'],
+            DiceBag([
+                    ], sprites['dice_bag']),
+            [
+                Attack([(2, 8), (3, 6)]),
+                Attack([(3, 20)]),
+            ],
+        )
+    ]
+    return bosses[index]

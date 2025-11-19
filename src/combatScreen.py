@@ -32,8 +32,6 @@ class combatScreen(Screen):
             )
             self.buttons.append(button)
             x_mult += .125
-        
-        self.take_turn()
 
 
     def init_player(self) -> None:
@@ -111,7 +109,7 @@ class combatScreen(Screen):
             Attack([(1, 12)]),
             Attack([(2, 10)]),
             Attack([(2, 8)]),
-            Attack([(3, 6)]),
+            Attack([(6, 6)]),
         ]
 
         self.player = Actor(
@@ -121,6 +119,9 @@ class combatScreen(Screen):
             player_dice_bag,
             player_attacks,
         )
+
+        self.player_dice = []
+        self.player_total = None
 
     def init_boss(self) -> None:
         boss_dice_bag = DiceBag([
@@ -202,6 +203,9 @@ class combatScreen(Screen):
             ],
         )
 
+        self.boss_dice = []
+        self.boss_total = None
+
     def draw(self) -> None:
         width, height = self.width, self.height
 
@@ -219,10 +223,12 @@ class combatScreen(Screen):
 
         font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
 
+        label = str(self.boss_total) if self.boss_total is not None else ""
         self.boss.dice_box_art.draw(self.screen, (width * .2, 0), size = (width * .6, height * .375),
-                            text=str(self.boss_total))
+                            text=label)
+        label = str(self.player_total) if self.player_total is not None else ""
         self.player.dice_box_art.draw(self.screen, (width * .2, height * .375), size = (width * .6, height * .375),
-                                text=str(self.player_total))
+                                text=label)
 
         for section in ui_sections:
             color, rect, text = section

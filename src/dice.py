@@ -39,12 +39,12 @@ class Die:
             'd6_blue_green': BlueGreenDie(6, sprites['d6_blue_green']),
             'd4_blue_green': BlueGreenDie(4, sprites['d4_blue_green']),
 
-            'd20_brown_yellow': BrownYellowDie(20, sprites['d20_brown_yellow']),
-            'd12_brown_yellow': BrownYellowDie(12, sprites['d12_brown_yellow']),
-            'd10_brown_yellow': BrownYellowDie(10, sprites['d10_brown_yellow']),
-            'd8_brown_yellow': BrownYellowDie(8, sprites['d8_brown_yellow']),
-            'd6_brown_yellow': BrownYellowDie(6, sprites['d6_brown_yellow']),
-            'd4_brown_yellow': BrownYellowDie(4, sprites['d4_brown_yellow']),
+            # 'd20_brown_yellow': BrownYellowDie(20, sprites['d20_brown_yellow']),
+            # 'd12_brown_yellow': BrownYellowDie(12, sprites['d12_brown_yellow']),
+            # 'd10_brown_yellow': BrownYellowDie(10, sprites['d10_brown_yellow']),
+            # 'd8_brown_yellow': BrownYellowDie(8, sprites['d8_brown_yellow']),
+            # 'd6_brown_yellow': BrownYellowDie(6, sprites['d6_brown_yellow']),
+            # 'd4_brown_yellow': BrownYellowDie(4, sprites['d4_brown_yellow']),
 
             'd20_inverted': InvertedDie(20, sprites['d20_inverted']),
             'd12_inverted': InvertedDie(12, sprites['d12_inverted']),
@@ -53,12 +53,12 @@ class Die:
             'd6_inverted': InvertedDie(6, sprites['d6_inverted']),
             'd4_inverted': InvertedDie(4, sprites['d4_inverted']),
 
-            # 'd20_pink_blue': WhiteDie(20, sprites['d20_pink_blue']),
-            # 'd12_pink_blue': WhiteDie(12, sprites['d12_pink_blue']),
-            # 'd10_pink_blue': WhiteDie(10, sprites['d10_pink_blue']),
-            # 'd8_pink_blue': WhiteDie(8, sprites['d8_pink_blue']),
-            # 'd6_pink_blue': WhiteDie(6, sprites['d6_pink_blue']),
-            # 'd4_pink_blue': WhiteDie(4, sprites['d4_pink_blue']),
+            'd20_pink_blue': PinkBlue(20, sprites['d20_pink_blue']),
+            'd12_pink_blue': PinkBlue(12, sprites['d12_pink_blue']),
+            'd10_pink_blue': PinkBlue(10, sprites['d10_pink_blue']),
+            'd8_pink_blue': PinkBlue(8, sprites['d8_pink_blue']),
+            'd6_pink_blue': PinkBlue(6, sprites['d6_pink_blue']),
+            'd4_pink_blue': PinkBlue(4, sprites['d4_pink_blue']),
 
             # 'd20_agender': WhiteDie(20, sprites['d20_agender']),
             # 'd12_agender': WhiteDie(12, sprites['d12_agender']),
@@ -180,7 +180,7 @@ class InvertedDie(Die):
     pass
 
 
-class BrownYellowDie(Die):
+class PinkBlue(Die):
     def roll(self) -> int:
         a = random.randint(1, self.sides)
         b = random.randint(1, self.sides)

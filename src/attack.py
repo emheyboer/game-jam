@@ -25,7 +25,6 @@ class Attack:
             total += die.roll()
         
         for die in inverted:
-            print(f"{die.last_roll} -> {die.last_roll + len(inverted)}")
             die.last_roll += len(inverted)
 
         return (total + len(inverted), dice)

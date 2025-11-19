@@ -74,6 +74,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_inverted'),
             Die.predefined(self.sprites, 'd6_inverted'),
             Die.predefined(self.sprites, 'd4_inverted'),
+            Die.predefined(self.sprites, 'd20_brown_yellow'),
+            Die.predefined(self.sprites, 'd12_brown_yellow'),
+            Die.predefined(self.sprites, 'd10_brown_yellow'),
+            Die.predefined(self.sprites, 'd8_brown_yellow'),
+            Die.predefined(self.sprites, 'd6_brown_yellow'),
+            Die.predefined(self.sprites, 'd4_brown_yellow'),
         ], self.sprites['dice_bag'])
 
         player_attacks = [
@@ -118,12 +124,24 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_rainbow'),
             Die.predefined(self.sprites, 'd6_rainbow'),
             Die.predefined(self.sprites, 'd4_rainbow'),
+            Die.predefined(self.sprites, 'd20_blue_green'),
+            Die.predefined(self.sprites, 'd12_blue_green'),
+            Die.predefined(self.sprites, 'd10_blue_green'),
+            Die.predefined(self.sprites, 'd8_blue_green'),
+            Die.predefined(self.sprites, 'd6_blue_green'),
+            Die.predefined(self.sprites, 'd4_blue_green'),
             Die.predefined(self.sprites, 'd20_inverted'),
             Die.predefined(self.sprites, 'd12_inverted'),
             Die.predefined(self.sprites, 'd10_inverted'),
             Die.predefined(self.sprites, 'd8_inverted'),
             Die.predefined(self.sprites, 'd6_inverted'),
             Die.predefined(self.sprites, 'd4_inverted'),
+            Die.predefined(self.sprites, 'd20_brown_yellow'),
+            Die.predefined(self.sprites, 'd12_brown_yellow'),
+            Die.predefined(self.sprites, 'd10_brown_yellow'),
+            Die.predefined(self.sprites, 'd8_brown_yellow'),
+            Die.predefined(self.sprites, 'd6_brown_yellow'),
+            Die.predefined(self.sprites, 'd4_brown_yellow'),
         ], self.sprites['dice_bag'])
         self.boss = Actor(
             'boss',

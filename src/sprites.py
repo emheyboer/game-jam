@@ -92,5 +92,11 @@ def load_sprites():
     )
     sprites['button_toShop'] = button_toShop
 
+    shopButton = Sprite(
+        SpriteSheet('assets/ui/PNG/buttonSquare_brown.png'),
+        (0, 0), (45, 49), textOffset=(5, 15),
+        fontSize=13
+    )
+    sprites['shopButton'] = shopButton
 
     return sprites

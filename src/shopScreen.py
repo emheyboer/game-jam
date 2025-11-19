@@ -3,12 +3,7 @@ from screen import Screen
 from button import Button
 import random
 from dice import Die
-
-
-# TO-DO
-#  - Generate Random Shop items based off of rarity
-#  - Reroll button
-#  -
+from diceCatalog import ALL_DICE_IDS, COMMON_DICE, UNCOMMON_DICE, RARE_DICE
 
 class shopScreen(Screen):
     def __init__(self, screen, width: int, height: int, sprites) -> None:
@@ -20,24 +15,89 @@ class shopScreen(Screen):
         self.items = []
         self.buttons = []
 
+        self.init_shop_inventory()
+        self.init_buttons()
+
     def init_shop_inventory(self):
         self.items = []
         
-        
+        slot1_common = random.choice(COMMON_DICE)
+        slot2_commmon_uncommon = random.choice(COMMON_DICE + UNCOMMON_DICE)
+        slot3_uncommon = random.choice(UNCOMMON_DICE)
+        slot4_unccommon_rare = random.choice(UNCOMMON_DICE + RARE_DICE)
+        slot5_random = random.choice(ALL_DICE_IDS)
 
+        s1_die = Die.predefined(self.sprites, slot1_common)
+        s2_die = Die.predefined(self.sprites, slot2_commmon_uncommon)
+        s3_die = Die.predefined(self.sprites, slot3_uncommon)
+        s4_die = Die.predefined(self.sprites, slot4_unccommon_rare)
+        s5_die = Die.predefined(self.sprites, slot5_random)
 
+        self.items.append({
+            "die": s1_die,
+            "cost": 2,
+            "button": None,
+        })
+
+        self.items.append({
+            "die": s2_die,
+            "cost": 2,
+            "button": None,
+        })
+
+        self.items.append({
+            "die": s3_die,
+            "cost": 3,
+            "button": None,
+        })
+
+        self.items.append({
+            "die": s4_die,
+            "cost": 4,
+            "button": None,
+        })
+
+        self.items.append({
+            "die": s5_die,
+            "cost": 5,
+            "button": None,
+        })
+
+    def init_buttons(self):
+        self.buttons = []
+
+        start_y = self.height * 0.2
+        row_height = self.height * 0.1
+
+        for i, item in enumerate(self.items):
+            y = start_y + i * row_height
+
+            button = Button(
+                label = f"Buy ({item['cost']})",
+                pos=(self.width * 0.6, y),
+                size=(self.width * 0.3, row_height * 0.8),
+                sprite=self.sprites['shopButton'],
+                kind='buy',
+                value=i
+            )
+
+            item['button'] = button 
+            self.buttons.append(button)
+
+        self.leave_button = Button(
+            label="Leave",
+            pos=(self.width * 0.05, self.height * 0.8),
+            size=(self.width * 0.2, self.height * 0.1),
+            sprite=self.sprites['button_toShop'],  # or a different sprite
+            kind='leave',
+        )
+
+        self.buttons.append(self.leave_button)
 
     def draw(self) -> None:
         width, height = self.width, self.height
 
         ui_sections = [
-            ((200, 0, 0), (width * .15, height * .1, width * .2, height * .2), "Item 1"),
-            ((200, 0, 0), (width * .4, height * .1, width * .2, height * .2), "Item 2"),
-            ((200, 0, 0), (width * .65, height * .1, width * .2, height * .2), "Item 3"),
-
-            ((200, 0, 0), (width * .25, height * .4, width * .2, height * .2), "Item 4"),
-            ((200, 0, 0), (width * .55, height * .4, width * .2, height * .2), "Item 5"),
-
             ((200, 150, 0), (width * .02, height * .8, width * .2, height * .2), "Gold"),
             ((50, 50, 200), (width * .4, height * .8, width * .2, height * .1), "Re-Roll 1G"),
             ((0, 200, 200), (width * .75, height * .8, width * .2, height * .2), "Leave"),
@@ -54,6 +114,25 @@ class shopScreen(Screen):
 
             w, h, _, _ = rect
             self.screen.blit(label, (w, h))
+
+        start_y = self.height * 0.2
+        row_height = self.height * 0.1
+
+        for i, item in enumerate(self.items):
+            y = start_y + i * row_height
+
+            # draw the die icon
+            item['die'].draw(self.screen, (self.width * 0.3, y), size=(50, 50))
+
+            # cost text
+            cost_text = font.render(f"{item['cost']}g", True, (255, 255, 255))
+            self.screen.blit(cost_text, (self.width * 0.4, y))
+
+            # buy button
+            item['button'].draw(self.screen)
+
+        # leave button
+        #self.leave_button.draw(self.screen)
 
 
     

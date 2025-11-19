@@ -95,12 +95,12 @@ class Die:
             'd6_exploding': ExplodingDie(6, sprites['d6_rainbow']),
             'd4_exploding': ExplodingDie(4, sprites['d4_rainbow']),
 
-            # 'd20_trans': BasicDie(20, sprites['d20_trans']),
-            # 'd12_trans': BasicDie(12, sprites['d12_trans']),
-            # 'd10_trans': BasicDie(10, sprites['d10_trans']),
-            # 'd8_trans': BasicDie(8, sprites['d8_trans']),
-            # 'd6_trans': BasicDie(6, sprites['d6_trans']),
-            # 'd4_trans': BasicDie(4, sprites['d4_trans']),
+            'd20_trans': TransDie(20, sprites['d20_trans']),
+            'd12_trans': TransDie(12, sprites['d12_trans']),
+            'd10_trans': TransDie(10, sprites['d10_trans']),
+            'd8_trans': TransDie(8, sprites['d8_trans']),
+            'd6_trans': TransDie(6, sprites['d6_trans']),
+            'd4_trans': TransDie(4, sprites['d4_trans']),
 
             'd20_outlier': OutlierDie(20, sprites['d20_purple_pink']),
             'd12_outlier': OutlierDie(12, sprites['d12_purple_pink']),
@@ -220,3 +220,12 @@ class OutlierDie(Die):
 
 class MoneyDie(Die):
     pass
+
+
+class TransDie(Die):
+    def roll(self) -> int:
+        value = random.randint(1, self.sides)
+        value *= 1.5
+        value = round(value)
+        self.last_roll = value
+        return value

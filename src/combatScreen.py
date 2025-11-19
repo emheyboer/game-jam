@@ -121,6 +121,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_money'),
             Die.predefined(self.sprites, 'd6_money'),
             Die.predefined(self.sprites, 'd4_money'),
+            Die.predefined(self.sprites, 'd20_trans'),
+            Die.predefined(self.sprites, 'd12_trans'),
+            Die.predefined(self.sprites, 'd10_trans'),
+            Die.predefined(self.sprites, 'd8_trans'),
+            Die.predefined(self.sprites, 'd6_trans'),
+            Die.predefined(self.sprites, 'd4_trans'),
         ], self.sprites['dice_bag'])
 
         player_attacks = [
@@ -133,7 +139,7 @@ class combatScreen(Screen):
 
         self.player = Actor(
             'player',
-            self.sprites['art_boss'],
+            self.sprites['dice_goblin'],
             self.sprites['dice_box_player'],
             player_dice_bag,
             player_attacks,
@@ -216,10 +222,16 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_money'),
             Die.predefined(self.sprites, 'd6_money'),
             Die.predefined(self.sprites, 'd4_money'),
+            Die.predefined(self.sprites, 'd20_trans'),
+            Die.predefined(self.sprites, 'd12_trans'),
+            Die.predefined(self.sprites, 'd10_trans'),
+            Die.predefined(self.sprites, 'd8_trans'),
+            Die.predefined(self.sprites, 'd6_trans'),
+            Die.predefined(self.sprites, 'd4_trans'),
         ], self.sprites['dice_bag'])
         self.boss = Actor(
             'boss',
-            self.sprites['art_boss'],
+            self.sprites['dice_goblin'],
             self.sprites['dice_box_boss'],
             boss_dice_bag,
             [
@@ -234,16 +246,18 @@ class combatScreen(Screen):
     def draw(self) -> None:
         width, height = self.width, self.height
 
+        self.sprites['background_combat'].draw(self.screen, (0, 0), (width, height))
+
         ui_sections = [
-            ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
-            ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
+            # ((200, 0, 0), (0, 0, width * .2, height * .375), "spooky boss art"),
+            # ((200, 0, 0), (width * .8, 0, width * .2, height * .375), "boss dice bag"),
 
-            ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
-            ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
+            # # ((0, 200, 0), (0, height * .375, width * .2, height * .375), "player stats/art?"),
+            # ((0, 200, 0), (width * .8, height * .375, width * .2, height * .375), "player dice bag"),
 
-            ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
-            ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
-            ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
+            # ((0, 0, 200), (0, height * .75, width * .2, height * .25), "game options?"),
+            # ((0, 0, 100), (width * .2, height * .75, width * .6, height * .25), "attack options"),
+            # ((0, 0, 200), (width * .8, height * .75, width * .2, height * .25), "game options?"),
         ]
 
         font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
@@ -269,16 +283,18 @@ class combatScreen(Screen):
         self.boss.dice_bag.draw(self.screen, (width * .8, height * .475), size = (width * .225, height * .225))
         self.player.dice_bag.draw(self.screen, (width * .8, height * .1), size = (width * .225, height * .225))
 
-        self.boss.profile_art.draw(self.screen, (0, height * .1), size = (width * .225, height * .225))
+        self.boss.profile_art.draw(self.screen, (0, height * 0), size = (width * .225, width * .225))
 
         for btn in self.buttons:
             btn.draw(self.screen)
 
-        self.draw_dice('boss', self.boss_dice)
-        self.draw_dice('player', self.player_dice)
+        self.draw_dice_in_box('boss', self.boss_dice)
+        self.draw_dice_in_box('player', self.player_dice)
+
+        self.draw_dice_in_bag()
 
 
-    def draw_dice(self, box: str, dice: list[Die]) -> None:
+    def draw_dice_in_box(self, box: str, dice: list[Die]) -> None:
         """
         Draw dice in either of the two dice boxes
         """
@@ -307,6 +323,33 @@ class combatScreen(Screen):
             die.draw(self.screen, (x, y), size=size)
             x += deltaX
             deltaY *= -1
+
+    def draw_dice_in_bag(self) -> None:
+        width, height = self.width, self.height
+        dice = self.player.dice_bag.all_dice()
+        y = height * .45
+
+        deltaX = width * .04
+        size = (deltaX, deltaX)
+        deltaY = -height * .02
+        lineOffset = height * .104
+        # # adapt sizes & positions to fit in the same space
+        #     divisor = count / 12
+        #     deltaX = width * .04 / divisor
+        #     size = (deltaX, deltaX)
+        #     deltaY = -height * .02 / divisor
+        #     lineOffset = height * .104 / divisor
+
+        x = width * 0
+        for die in dice:
+            y += deltaY
+            if x + deltaX > width * .2:
+                y += lineOffset
+                x = 0
+            die.draw(self.screen, (x, y), size=size)
+            x += deltaX
+            deltaY *= -1
+
 
     def take_turn(self, atkPlayer: int|None = None, atkBoss: int|None = None) -> None:
         self.player_total, boss_poisoned, self.player_dice = self.player.roll_attack(atk_index=atkPlayer)

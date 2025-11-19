@@ -25,54 +25,54 @@ class Die:
     @staticmethod
     def predefined(sprites, name: str):
         dice = {
-            'd20_white': WhiteDie(20, sprites['d20_white']),
-            'd12_white': WhiteDie(12, sprites['d12_white']),
-            'd10_white': WhiteDie(10, sprites['d10_white']),
-            'd8_white': WhiteDie(8, sprites['d8_white']),
-            'd6_white': WhiteDie(6, sprites['d6_white']),
-            'd4_white': WhiteDie(4, sprites['d4_white']),
+            'd20_basic': BasicDie(20, sprites['d20_white']),
+            'd12_basic': BasicDie(12, sprites['d12_white']),
+            'd10_basic': BasicDie(10, sprites['d10_white']),
+            'd8_basic': BasicDie(8, sprites['d8_white']),
+            'd6_basic': BasicDie(6, sprites['d6_white']),
+            'd4_basic': BasicDie(4, sprites['d4_white']),
 
-            'd20_blue_green': BlueGreenDie(20, sprites['d20_blue_green']),
-            'd12_blue_green': BlueGreenDie(12, sprites['d12_blue_green']),
-            'd10_blue_green': BlueGreenDie(10, sprites['d10_blue_green']),
-            'd8_blue_green': BlueGreenDie(8, sprites['d8_blue_green']),
-            'd6_blue_green': BlueGreenDie(6, sprites['d6_blue_green']),
-            'd4_blue_green': BlueGreenDie(4, sprites['d4_blue_green']),
+            'd20_glass': GlassDie(20, sprites['d20_blue_green']),
+            'd12_glass': GlassDie(12, sprites['d12_blue_green']),
+            'd10_glass': GlassDie(10, sprites['d10_blue_green']),
+            'd8_glass': GlassDie(8, sprites['d8_blue_green']),
+            'd6_glass': GlassDie(6, sprites['d6_blue_green']),
+            'd4_glass': GlassDie(4, sprites['d4_blue_green']),
 
-            'd20_brown_yellow': BrownYellowDie(20, sprites['d20_brown_yellow']),
-            'd12_brown_yellow': BrownYellowDie(12, sprites['d12_brown_yellow']),
-            'd10_brown_yellow': BrownYellowDie(10, sprites['d10_brown_yellow']),
-            'd8_brown_yellow': BrownYellowDie(8, sprites['d8_brown_yellow']),
-            'd6_brown_yellow': BrownYellowDie(6, sprites['d6_brown_yellow']),
-            'd4_brown_yellow': BrownYellowDie(4, sprites['d4_brown_yellow']),
+            'd20_stone': StoneDie(20, sprites['d20_brown_yellow']),
+            'd12_stone': StoneDie(12, sprites['d12_brown_yellow']),
+            'd10_stone': StoneDie(10, sprites['d10_brown_yellow']),
+            'd8_stone': StoneDie(8, sprites['d8_brown_yellow']),
+            'd6_stone': StoneDie(6, sprites['d6_brown_yellow']),
+            'd4_stone': StoneDie(4, sprites['d4_brown_yellow']),
 
-            'd20_inverted': InvertedDie(20, sprites['d20_inverted']),
-            'd12_inverted': InvertedDie(12, sprites['d12_inverted']),
-            'd10_inverted': InvertedDie(10, sprites['d10_inverted']),
-            'd8_inverted': InvertedDie(8, sprites['d8_inverted']),
-            'd6_inverted': InvertedDie(6, sprites['d6_inverted']),
-            'd4_inverted': InvertedDie(4, sprites['d4_inverted']),
+            'd20_union': UnionDie(20, sprites['d20_inverted']),
+            'd12_union': UnionDie(12, sprites['d12_inverted']),
+            'd10_union': UnionDie(10, sprites['d10_inverted']),
+            'd8_union': UnionDie(8, sprites['d8_inverted']),
+            'd6_union': UnionDie(6, sprites['d6_inverted']),
+            'd4_union': UnionDie(4, sprites['d4_inverted']),
 
-            'd20_pink_blue': PinkBlueDie(20, sprites['d20_pink_blue']),
-            'd12_pink_blue': PinkBlueDie(12, sprites['d12_pink_blue']),
-            'd10_pink_blue': PinkBlueDie(10, sprites['d10_pink_blue']),
-            'd8_pink_blue': PinkBlueDie(8, sprites['d8_pink_blue']),
-            'd6_pink_blue': PinkBlueDie(6, sprites['d6_pink_blue']),
-            'd4_pink_blue': PinkBlueDie(4, sprites['d4_pink_blue']),
+            'd20_advantage': AdvantageDie(20, sprites['d20_pink_blue']),
+            'd12_advantage': AdvantageDie(12, sprites['d12_pink_blue']),
+            'd10_advantage': AdvantageDie(10, sprites['d10_pink_blue']),
+            'd8_advantage': AdvantageDie(8, sprites['d8_pink_blue']),
+            'd6_advantage': AdvantageDie(6, sprites['d6_pink_blue']),
+            'd4_advantage': AdvantageDie(4, sprites['d4_pink_blue']),
 
-            'd20_agender': AgenderDie(20, sprites['d20_agender']),
-            'd12_agender': AgenderDie(12, sprites['d12_agender']),
-            'd10_agender': AgenderDie(10, sprites['d10_agender']),
-            'd8_agender': AgenderDie(8, sprites['d8_agender']),
-            'd6_agender': AgenderDie(6, sprites['d6_agender']),
-            'd4_agender': AgenderDie(4, sprites['d4_agender']),
+            'd20_poison': PoisonDie(20, sprites['d20_agender']),
+            'd12_poison': PoisonDie(12, sprites['d12_agender']),
+            'd10_poison': PoisonDie(10, sprites['d10_agender']),
+            'd8_poison': PoisonDie(8, sprites['d8_agender']),
+            'd6_poison': PoisonDie(6, sprites['d6_agender']),
+            'd4_poison': PoisonDie(4, sprites['d4_agender']),
 
-            'd20_genderfluid': GenderfliudDie(20, sprites),
-            'd12_genderfluid': GenderfliudDie(12, sprites),
-            'd10_genderfluid': GenderfliudDie(10, sprites),
-            'd8_genderfluid': GenderfliudDie(8, sprites),
-            'd6_genderfluid': GenderfliudDie(6, sprites),
-            'd4_genderfluid': GenderfliudDie(4, sprites),
+            'd20_fluid': FluidDie(20, sprites),
+            'd12_fluid': FluidDie(12, sprites),
+            'd10_fluid': FluidDie(10, sprites),
+            'd8_fluid': FluidDie(8, sprites),
+            'd6_fluid': FluidDie(6, sprites),
+            'd4_fluid': FluidDie(4, sprites),
 
             'd20_genderqueer': GenderQueerDie(20, sprites['d20_genderqueer']),
             'd12_genderqueer': GenderQueerDie(12, sprites['d12_genderqueer']),
@@ -81,49 +81,49 @@ class Die:
             'd6_genderqueer': GenderQueerDie(6, sprites['d6_genderqueer']),
             'd4_genderqueer': GenderQueerDie(4, sprites['d4_genderqueer']),
 
-            'd20_nonbinary': NonBinaryDie(20, sprites['d20_nonbinary']),
-            'd12_nonbinary': NonBinaryDie(12, sprites['d12_nonbinary']),
-            'd10_nonbinary': NonBinaryDie(10, sprites['d10_nonbinary']),
-            'd8_nonbinary': NonBinaryDie(8, sprites['d8_nonbinary']),
-            'd6_nonbinary': NonBinaryDie(6, sprites['d6_nonbinary']),
-            'd4_nonbinary': NonBinaryDie(4, sprites['d4_nonbinary']),
+            'd20_lucky': LuckyDie(20, sprites['d20_nonbinary']),
+            'd12_lucky': LuckyDie(12, sprites['d12_nonbinary']),
+            'd10_lucky': LuckyDie(10, sprites['d10_nonbinary']),
+            'd8_lucky': LuckyDie(8, sprites['d8_nonbinary']),
+            'd6_lucky': LuckyDie(6, sprites['d6_nonbinary']),
+            'd4_lucky': LuckyDie(4, sprites['d4_nonbinary']),
 
-            'd20_rainbow': RainbowDie(20, sprites['d20_rainbow']),
-            'd12_rainbow': RainbowDie(12, sprites['d12_rainbow']),
-            'd10_rainbow': RainbowDie(10, sprites['d10_rainbow']),
-            'd8_rainbow': RainbowDie(8, sprites['d8_rainbow']),
-            'd6_rainbow': RainbowDie(6, sprites['d6_rainbow']),
-            'd4_rainbow': RainbowDie(4, sprites['d4_rainbow']),
+            'd20_exploding': ExplodingDie(20, sprites['d20_rainbow']),
+            'd12_exploding': ExplodingDie(12, sprites['d12_rainbow']),
+            'd10_exploding': ExplodingDie(10, sprites['d10_rainbow']),
+            'd8_exploding': ExplodingDie(8, sprites['d8_rainbow']),
+            'd6_exploding': ExplodingDie(6, sprites['d6_rainbow']),
+            'd4_exploding': ExplodingDie(4, sprites['d4_rainbow']),
 
-            # 'd20_trans': WhiteDie(20, sprites['d20_trans']),
-            # 'd12_trans': WhiteDie(12, sprites['d12_trans']),
-            # 'd10_trans': WhiteDie(10, sprites['d10_trans']),
-            # 'd8_trans': WhiteDie(8, sprites['d8_trans']),
-            # 'd6_trans': WhiteDie(6, sprites['d6_trans']),
-            # 'd4_trans': WhiteDie(4, sprites['d4_trans']),
+            # 'd20_trans': BasicDie(20, sprites['d20_trans']),
+            # 'd12_trans': BasicDie(12, sprites['d12_trans']),
+            # 'd10_trans': BasicDie(10, sprites['d10_trans']),
+            # 'd8_trans': BasicDie(8, sprites['d8_trans']),
+            # 'd6_trans': BasicDie(6, sprites['d6_trans']),
+            # 'd4_trans': BasicDie(4, sprites['d4_trans']),
 
-            # 'd20_purple_pink': WhiteDie(20, sprites['d20_purple_pink']),
-            # 'd12_purple_pink': WhiteDie(12, sprites['d12_purple_pink']),
-            # 'd10_purple_pink': WhiteDie(10, sprites['d10_purple_pink']),
-            # 'd8_purple_pink': WhiteDie(8, sprites['d8_purple_pink']),
-            # 'd6_purple_pink': WhiteDie(6, sprites['d6_purple_pink']),
-            # 'd4_purple_pink': WhiteDie(4, sprites['d4_purple_pink']),
+            # 'd20_purple_pink': BasicDie(20, sprites['d20_purple_pink']),
+            # 'd12_purple_pink': BasicDie(12, sprites['d12_purple_pink']),
+            # 'd10_purple_pink': BasicDie(10, sprites['d10_purple_pink']),
+            # 'd8_purple_pink': BasicDie(8, sprites['d8_purple_pink']),
+            # 'd6_purple_pink': BasicDie(6, sprites['d6_purple_pink']),
+            # 'd4_purple_pink': BasicDie(4, sprites['d4_purple_pink']),
 
-            'd20_red_yellow': RedYellowDie(20, sprites['d20_red_yellow']),
-            'd12_red_yellow': RedYellowDie(12, sprites['d12_red_yellow']),
-            'd10_red_yellow': RedYellowDie(10, sprites['d10_red_yellow']),
-            'd8_red_yellow': RedYellowDie(8, sprites['d8_red_yellow']),
-            'd6_red_yellow': RedYellowDie(6, sprites['d6_red_yellow']),
-            'd4_red_yellow': RedYellowDie(4, sprites['d4_red_yellow']),
+            'd20_fire': FireDie(20, sprites['d20_red_yellow']),
+            'd12_fire': FireDie(12, sprites['d12_red_yellow']),
+            'd10_fire': FireDie(10, sprites['d10_red_yellow']),
+            'd8_fire': FireDie(8, sprites['d8_red_yellow']),
+            'd6_fire': FireDie(6, sprites['d6_red_yellow']),
+            'd4_fire': FireDie(4, sprites['d4_red_yellow']),
         }
         return dice[name]
 
 
-class WhiteDie(Die):
+class BasicDie(Die):
     pass
 
 
-class GenderfliudDie(Die):
+class FluidDie(Die):
     def __init__(self, sides: int, sprites: dict[str, Sprite]):
         self.sprites = sprites 
         super().__init__(sides, self.get_sprite(sides))
@@ -140,14 +140,14 @@ class GenderfliudDie(Die):
         return self.sprites[f"d{sides}_genderfluid"]
     
 
-class NonBinaryDie(Die):
+class LuckyDie(Die):
     def roll(self) -> int:
         value = random.randint(3, self.sides)
         self.last_roll = value
         return value
     
 
-class RainbowDie(Die):
+class ExplodingDie(Die):
     def roll(self) -> int:
         total = 0
         # exploding dice
@@ -160,7 +160,7 @@ class RainbowDie(Die):
                 return total
 
 
-class BlueGreenDie(Die):
+class GlassDie(Die):
     def __init__(self, sides: int, sprite: Sprite) -> None:
         self.broken = False # DiceBag checks this before re-adding adding
         super().__init__(sides, sprite)
@@ -176,11 +176,11 @@ class BlueGreenDie(Die):
         return value
     
 
-class InvertedDie(Die):
+class UnionDie(Die):
     pass
 
 
-class PinkBlueDie(Die):
+class AdvantageDie(Die):
     def roll(self) -> int:
         a = random.randint(1, self.sides)
         b = random.randint(1, self.sides)
@@ -189,18 +189,18 @@ class PinkBlueDie(Die):
         return value
     
 
-class BrownYellowDie(Die):
+class StoneDie(Die):
     def roll(self) -> int:
         value = self.sides // 2
         self.last_roll = value
         return value
     
 
-class RedYellowDie(Die):
+class FireDie(Die):
     pass
 
 
-class AgenderDie(Die):
+class PoisonDie(Die):
     pass
 
 

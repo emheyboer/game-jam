@@ -1,5 +1,5 @@
 from diceBag import DiceBag
-from dice import Die, InvertedDie, RedYellowDie, AgenderDie
+from dice import Die, UnionDie, FireDie, PoisonDie
 from sprites import Sprite
 
 class Attack:
@@ -18,22 +18,22 @@ class Attack:
         dice = self.pull_from_bag(dice_bag)
 
         total = 0
-        inverted = []
+        union = []
         fire = False
         poison = False
         for die in dice:
-            if type(die) == InvertedDie:
-                inverted.append(die)
-            elif type(die) == RedYellowDie:
+            if type(die) == UnionDie:
+                union.append(die)
+            elif type(die) == FireDie:
                 fire = True
-            elif type(die) == AgenderDie:
+            elif type(die) == PoisonDie:
                 poison = True
             total += die.roll()
         
-        for die in inverted:
-            die.last_roll += len(inverted)
+        for die in union:
+            die.last_roll += len(union)
 
-        return (total + len(inverted)**2, fire, poison, dice)
+        return (total + len(union)**2, fire, poison, dice)
     
     def is_possible(self, dice_bag: DiceBag) -> bool:
         dice = self.pull_from_bag(dice_bag)

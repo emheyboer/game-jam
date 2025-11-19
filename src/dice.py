@@ -39,12 +39,12 @@ class Die:
             'd6_blue_green': BlueGreenDie(6, sprites['d6_blue_green']),
             'd4_blue_green': BlueGreenDie(4, sprites['d4_blue_green']),
 
-            # 'd20_brown_yellow': BrownYellowDie(20, sprites['d20_brown_yellow']),
-            # 'd12_brown_yellow': BrownYellowDie(12, sprites['d12_brown_yellow']),
-            # 'd10_brown_yellow': BrownYellowDie(10, sprites['d10_brown_yellow']),
-            # 'd8_brown_yellow': BrownYellowDie(8, sprites['d8_brown_yellow']),
-            # 'd6_brown_yellow': BrownYellowDie(6, sprites['d6_brown_yellow']),
-            # 'd4_brown_yellow': BrownYellowDie(4, sprites['d4_brown_yellow']),
+            'd20_brown_yellow': BrownYellowDie(20, sprites['d20_brown_yellow']),
+            'd12_brown_yellow': BrownYellowDie(12, sprites['d12_brown_yellow']),
+            'd10_brown_yellow': BrownYellowDie(10, sprites['d10_brown_yellow']),
+            'd8_brown_yellow': BrownYellowDie(8, sprites['d8_brown_yellow']),
+            'd6_brown_yellow': BrownYellowDie(6, sprites['d6_brown_yellow']),
+            'd4_brown_yellow': BrownYellowDie(4, sprites['d4_brown_yellow']),
 
             'd20_inverted': InvertedDie(20, sprites['d20_inverted']),
             'd12_inverted': InvertedDie(12, sprites['d12_inverted']),
@@ -185,5 +185,12 @@ class PinkBlue(Die):
         a = random.randint(1, self.sides)
         b = random.randint(1, self.sides)
         value = max(a, b)
+        self.last_roll = value
+        return value
+    
+
+class BrownYellowDie(Die):
+    def roll(self) -> int:
+        value = self.sides // 2
         self.last_roll = value
         return value

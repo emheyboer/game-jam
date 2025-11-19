@@ -13,6 +13,7 @@ class Actor:
         self.atk_index = -1
         self.attacks = attacks
         self.fireStreak = 0
+        self.money = 0
 
     def next_attack(self) -> int | None:
         index = self.atk_index % len(self.attacks)
@@ -37,12 +38,14 @@ class Actor:
         
         atk = self.attacks[self.atk_index]
 
-        total, fire, poison, dice = atk.roll_attack(self.dice_bag)
+        total, fire, poison, money, dice = atk.roll_attack(self.dice_bag)
 
         if fire:
             self.fireStreak += 1
             total += self.fireStreak
         else:
             self.fireStreak = 0
+
+        self.money += money
 
         return total, poison, dice

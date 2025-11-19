@@ -1,5 +1,5 @@
 from diceBag import DiceBag
-from dice import Die, UnionDie, FireDie, PoisonDie
+from dice import Die, UnionDie, FireDie, PoisonDie, MoneyDie
 from sprites import Sprite
 
 class Attack:
@@ -14,13 +14,14 @@ class Attack:
             dice.extend(pulled)
         return dice
     
-    def roll_attack(self, dice_bag: DiceBag) -> tuple[int, bool, bool, list[Die]]:
+    def roll_attack(self, dice_bag: DiceBag) -> tuple[int, bool, bool, int, list[Die]]:
         dice = self.pull_from_bag(dice_bag)
 
         total = 0
         union = []
         fire = False
         poison = False
+        money = 0
         for die in dice:
             if type(die) == UnionDie:
                 union.append(die)
@@ -28,12 +29,14 @@ class Attack:
                 fire = True
             elif type(die) == PoisonDie:
                 poison = True
+            elif type(die) == MoneyDie:
+                money += 1
             total += die.roll()
         
         for die in union:
             die.last_roll += len(union)
 
-        return (total + len(union)**2, fire, poison, dice)
+        return (total + len(union)**2, fire, poison, money, dice)
     
     def is_possible(self, dice_bag: DiceBag) -> bool:
         dice = self.pull_from_bag(dice_bag)

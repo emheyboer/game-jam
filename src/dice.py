@@ -74,12 +74,12 @@ class Die:
             'd6_fluid': FluidDie(6, sprites),
             'd4_fluid': FluidDie(4, sprites),
 
-            # 'd20_genderqueer': GenderQueerDie(20, sprites['d20_genderqueer']),
-            # 'd12_genderqueer': GenderQueerDie(12, sprites['d12_genderqueer']),
-            # 'd10_genderqueer': GenderQueerDie(10, sprites['d10_genderqueer']),
-            # 'd8_genderqueer': GenderQueerDie(8, sprites['d8_genderqueer']),
-            # 'd6_genderqueer': GenderQueerDie(6, sprites['d6_genderqueer']),
-            # 'd4_genderqueer': GenderQueerDie(4, sprites['d4_genderqueer']),
+            'd20_money': MoneyDie(20, sprites['d20_genderqueer']),
+            'd12_money': MoneyDie(12, sprites['d12_genderqueer']),
+            'd10_money': MoneyDie(10, sprites['d10_genderqueer']),
+            'd8_money': MoneyDie(8, sprites['d8_genderqueer']),
+            'd6_money': MoneyDie(6, sprites['d6_genderqueer']),
+            'd4_money': MoneyDie(4, sprites['d4_genderqueer']),
 
             'd20_lucky': LuckyDie(20, sprites['d20_nonbinary']),
             'd12_lucky': LuckyDie(12, sprites['d12_nonbinary']),
@@ -216,3 +216,7 @@ class OutlierDie(Die):
 
         self.last_roll = value
         return value
+    
+
+class MoneyDie(Die):
+    pass

@@ -27,9 +27,9 @@ ALL_DICE_IDS = [
     'd20_fluid', 'd12_fluid', 'd10_fluid',
     'd8_fluid', 'd6_fluid',
 
-    # Genderqueer
-    'd20_genderqueer', 'd12_genderqueer', 'd10_genderqueer',
-    'd8_genderqueer', 'd6_genderqueer',
+    # Money
+    'd20_money', 'd12_money', 'd10_money',
+    'd8_money', 'd6_money',
 
     # Lucky
     'd20_lucky', 'd12_lucky', 'd10_lucky',
@@ -47,9 +47,9 @@ ALL_DICE_IDS = [
     #'d20_trans', 'd12_trans', 'd10_trans',
     #'d8_trans', 'd6_trans', 'd4_trans',
 
-    # Purple / Pink (disabled in code)
-    #'d20_purple_pink', 'd12_purple_pink', 'd10_purple_pink',
-    #'d8_purple_pink', 'd6_purple_pink', 'd4_purple_pink',
+    # Outlier
+    'd20_outlier', 'd12_outlier', 'd10_outlier',
+    'd8_outlier', 'd6_outlier', 'd4_outlier',
 ]
 
 COMMON_DICE = [
@@ -96,8 +96,8 @@ UNCOMMON_DICE = [
     'd8_fluid', 'd6_fluid',
 
     # Genderqueer
-    'd10_genderqueer',
-    'd8_genderqueer', 'd6_genderqueer',
+    'd10_money',
+    'd8_money', 'd6_money',
 
     # Lucky
     'd10_lucky',
@@ -107,9 +107,9 @@ UNCOMMON_DICE = [
 ]
 
 RARE_DICE = [
-    'd20_lucky', 'd20_genderqueer', 'd20_fluid',
+    'd20_lucky', 'd20_money', 'd20_fluid',
     'd20_poison', 'd20_advantage', 'd20_exploding', 
-    'd12_lucky', 'd12_genderqueer', 'd12_exploding', 
+    'd12_lucky', 'd12_money', 'd12_exploding', 
 
 ]
 

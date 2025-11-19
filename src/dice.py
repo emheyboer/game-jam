@@ -208,7 +208,6 @@ class GenderQueerDie(Die):
     def roll(self) -> int:
         avg = (self.sides +1) / 2
         value = random.randint(1, self.sides)
-        print(f"{value} -> ", end='')
         if value > avg:
             value += avg / 2
         elif value < avg:

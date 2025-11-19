@@ -113,7 +113,7 @@ RARE_DICE = [
 
 ]
 
-LENDARY_DICE = [
+LEGENDARY_DICE = [
     'd20_trans', 'd12_trans', 'd10_trans',
     'd8_trans', 'd6_trans', 'd12_poison', 
 ]

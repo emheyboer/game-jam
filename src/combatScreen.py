@@ -92,6 +92,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_red_yellow'),
             Die.predefined(self.sprites, 'd6_red_yellow'),
             Die.predefined(self.sprites, 'd4_red_yellow'),
+            Die.predefined(self.sprites, 'd20_agender'),
+            Die.predefined(self.sprites, 'd12_agender'),
+            Die.predefined(self.sprites, 'd10_agender'),
+            Die.predefined(self.sprites, 'd8_agender'),
+            Die.predefined(self.sprites, 'd6_agender'),
+            Die.predefined(self.sprites, 'd4_agender'),
         ], self.sprites['dice_bag'])
 
         player_attacks = [
@@ -166,6 +172,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_red_yellow'),
             Die.predefined(self.sprites, 'd6_red_yellow'),
             Die.predefined(self.sprites, 'd4_red_yellow'),
+            Die.predefined(self.sprites, 'd20_agender'),
+            Die.predefined(self.sprites, 'd12_agender'),
+            Die.predefined(self.sprites, 'd10_agender'),
+            Die.predefined(self.sprites, 'd8_agender'),
+            Die.predefined(self.sprites, 'd6_agender'),
+            Die.predefined(self.sprites, 'd4_agender'),
         ], self.sprites['dice_bag'])
         self.boss = Actor(
             'boss',
@@ -254,8 +266,17 @@ class combatScreen(Screen):
             deltaY *= -1
 
     def take_turn(self, atkPlayer: int|None = None, atkBoss: int|None = None) -> None:
-        self.player_total, self.player_dice = self.player.roll_attack(atk_index=atkPlayer)
-        self.boss_total, self.boss_dice = self.boss.roll_attack(atk_index=atkBoss)
+        self.player_total, boss_poisoned, self.player_dice = self.player.roll_attack(atk_index=atkPlayer)
+        self.boss_total, player_poisoned, self.boss_dice = self.boss.roll_attack(atk_index=atkBoss)
+
+        if boss_poisoned:
+            for die in self.boss_dice:
+                die.last_roll -= 1
+            self.boss_total -= len(self.boss_dice)
+        if player_poisoned:
+            for die in self.player_dice:
+                die.last_roll -= 1
+            self.player_total -= len(self.player_dice)
 
         # only the winner's dice are re-added to their bag (or both in the case of a tie)
         if self.player_total >= self.boss_total:

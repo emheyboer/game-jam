@@ -60,12 +60,12 @@ class Die:
             'd6_pink_blue': PinkBlueDie(6, sprites['d6_pink_blue']),
             'd4_pink_blue': PinkBlueDie(4, sprites['d4_pink_blue']),
 
-            # 'd20_agender': WhiteDie(20, sprites['d20_agender']),
-            # 'd12_agender': WhiteDie(12, sprites['d12_agender']),
-            # 'd10_agender': WhiteDie(10, sprites['d10_agender']),
-            # 'd8_agender': WhiteDie(8, sprites['d8_agender']),
-            # 'd6_agender': WhiteDie(6, sprites['d6_agender']),
-            # 'd4_agender': WhiteDie(4, sprites['d4_agender']),
+            'd20_agender': AgenderDie(20, sprites['d20_agender']),
+            'd12_agender': AgenderDie(12, sprites['d12_agender']),
+            'd10_agender': AgenderDie(10, sprites['d10_agender']),
+            'd8_agender': AgenderDie(8, sprites['d8_agender']),
+            'd6_agender': AgenderDie(6, sprites['d6_agender']),
+            'd4_agender': AgenderDie(4, sprites['d4_agender']),
 
             'd20_genderfluid': GenderfliudDie(20, sprites),
             'd12_genderfluid': GenderfliudDie(12, sprites),
@@ -197,4 +197,8 @@ class BrownYellowDie(Die):
     
 
 class RedYellowDie(Die):
+    pass
+
+
+class AgenderDie(Die):
     pass

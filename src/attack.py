@@ -1,5 +1,5 @@
 from diceBag import DiceBag
-from dice import Die, InvertedDie, RedYellowDie
+from dice import Die, InvertedDie, RedYellowDie, AgenderDie
 from sprites import Sprite
 
 class Attack:
@@ -14,23 +14,26 @@ class Attack:
             dice.extend(pulled)
         return dice
     
-    def roll_attack(self, dice_bag: DiceBag) -> tuple[int, bool, list[Die]]:
+    def roll_attack(self, dice_bag: DiceBag) -> tuple[int, bool, bool, list[Die]]:
         dice = self.pull_from_bag(dice_bag)
 
         total = 0
         inverted = []
         fire = False
+        poison = False
         for die in dice:
             if type(die) == InvertedDie:
                 inverted.append(die)
             elif type(die) == RedYellowDie:
                 fire = True
+            elif type(die) == AgenderDie:
+                poison = True
             total += die.roll()
         
         for die in inverted:
             die.last_roll += len(inverted)
 
-        return (total + len(inverted), fire, dice)
+        return (total + len(inverted), fire, poison, dice)
     
     def is_possible(self, dice_bag: DiceBag) -> bool:
         dice = self.pull_from_bag(dice_bag)

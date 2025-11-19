@@ -23,7 +23,7 @@ class Actor:
             if index == self.atk_index:
                 return None
 
-    def roll_attack(self, atk_index: int | None = None) -> tuple[int, list[Die]]:
+    def roll_attack(self, atk_index: int | None = None) -> tuple[int, bool,list[Die]]:
         """
         Roll the next attack from `attacks`
         """
@@ -32,12 +32,12 @@ class Actor:
         else:
             next = self.next_attack()
             if next is None:
-                return (0, [])
+                return (0, False, [])
             self.atk_index = next
         
         atk = self.attacks[self.atk_index]
 
-        total, fire, dice = atk.roll_attack(self.dice_bag)
+        total, fire, poison, dice = atk.roll_attack(self.dice_bag)
 
         if fire:
             self.fireStreak += 1
@@ -45,4 +45,4 @@ class Actor:
         else:
             self.fireStreak = 0
 
-        return total, dice
+        return total, poison, dice

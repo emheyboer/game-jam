@@ -33,7 +33,7 @@ class Attack:
         for die in inverted:
             die.last_roll += len(inverted)
 
-        return (total + len(inverted), fire, poison, dice)
+        return (total + len(inverted)**2, fire, poison, dice)
     
     def is_possible(self, dice_bag: DiceBag) -> bool:
         dice = self.pull_from_bag(dice_bag)

@@ -10,20 +10,18 @@ class Actor:
         self.dice_box_art = dice_box_art
         self.dice_bag = dice_bag
 
-        self.atk_index = 0
+        self.atk_index = -1
         self.attacks = attacks
         self.fireStreak = 0
 
     def next_attack(self) -> int | None:
-        for i, atk in enumerate(self.attacks[self.atk_index:]):
-            if atk.is_possible(self.dice_bag) and i != 0:
-                return i + self.atk_index
-        
-        for i, atk in enumerate(self.attacks[:self.atk_index + 1]):
-            if atk.is_possible(self.dice_bag):
-                return i
-            
-        return None
+        index = self.atk_index % len(self.attacks)
+        while True:
+            index = (index + 1) % len(self.attacks)
+            if self.attacks[index].is_possible(self.dice_bag):
+                return index
+            if index == self.atk_index:
+                return None
 
     def roll_attack(self, atk_index: int | None = None) -> tuple[int, list[Die]]:
         """

@@ -74,12 +74,12 @@ class Die:
             'd6_fluid': FluidDie(6, sprites),
             'd4_fluid': FluidDie(4, sprites),
 
-            'd20_genderqueer': GenderQueerDie(20, sprites['d20_genderqueer']),
-            'd12_genderqueer': GenderQueerDie(12, sprites['d12_genderqueer']),
-            'd10_genderqueer': GenderQueerDie(10, sprites['d10_genderqueer']),
-            'd8_genderqueer': GenderQueerDie(8, sprites['d8_genderqueer']),
-            'd6_genderqueer': GenderQueerDie(6, sprites['d6_genderqueer']),
-            'd4_genderqueer': GenderQueerDie(4, sprites['d4_genderqueer']),
+            # 'd20_genderqueer': GenderQueerDie(20, sprites['d20_genderqueer']),
+            # 'd12_genderqueer': GenderQueerDie(12, sprites['d12_genderqueer']),
+            # 'd10_genderqueer': GenderQueerDie(10, sprites['d10_genderqueer']),
+            # 'd8_genderqueer': GenderQueerDie(8, sprites['d8_genderqueer']),
+            # 'd6_genderqueer': GenderQueerDie(6, sprites['d6_genderqueer']),
+            # 'd4_genderqueer': GenderQueerDie(4, sprites['d4_genderqueer']),
 
             'd20_lucky': LuckyDie(20, sprites['d20_nonbinary']),
             'd12_lucky': LuckyDie(12, sprites['d12_nonbinary']),
@@ -102,12 +102,12 @@ class Die:
             # 'd6_trans': BasicDie(6, sprites['d6_trans']),
             # 'd4_trans': BasicDie(4, sprites['d4_trans']),
 
-            # 'd20_purple_pink': BasicDie(20, sprites['d20_purple_pink']),
-            # 'd12_purple_pink': BasicDie(12, sprites['d12_purple_pink']),
-            # 'd10_purple_pink': BasicDie(10, sprites['d10_purple_pink']),
-            # 'd8_purple_pink': BasicDie(8, sprites['d8_purple_pink']),
-            # 'd6_purple_pink': BasicDie(6, sprites['d6_purple_pink']),
-            # 'd4_purple_pink': BasicDie(4, sprites['d4_purple_pink']),
+            'd20_outlier': OutlierDie(20, sprites['d20_purple_pink']),
+            'd12_outlier': OutlierDie(12, sprites['d12_purple_pink']),
+            'd10_outlier': OutlierDie(10, sprites['d10_purple_pink']),
+            'd8_outlier': OutlierDie(8, sprites['d8_purple_pink']),
+            'd6_outlier': OutlierDie(6, sprites['d6_purple_pink']),
+            'd4_outlier': OutlierDie(4, sprites['d4_purple_pink']),
 
             'd20_fire': FireDie(20, sprites['d20_red_yellow']),
             'd12_fire': FireDie(12, sprites['d12_red_yellow']),
@@ -204,7 +204,7 @@ class PoisonDie(Die):
     pass
 
 
-class GenderQueerDie(Die):
+class OutlierDie(Die):
     def roll(self) -> int:
         avg = (self.sides +1) / 2
         value = random.randint(1, self.sides)

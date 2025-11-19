@@ -109,12 +109,12 @@ class Die:
             # 'd6_purple_pink': WhiteDie(6, sprites['d6_purple_pink']),
             # 'd4_purple_pink': WhiteDie(4, sprites['d4_purple_pink']),
 
-            # 'd20_red_yellow': WhiteDie(20, sprites['d20_red_yellow']),
-            # 'd12_red_yellow': WhiteDie(12, sprites['d12_red_yellow']),
-            # 'd10_red_yellow': WhiteDie(10, sprites['d10_red_yellow']),
-            # 'd8_red_yellow': WhiteDie(8, sprites['d8_red_yellow']),
-            # 'd6_red_yellow': WhiteDie(6, sprites['d6_red_yellow']),
-            # 'd4_red_yellow': WhiteDie(4, sprites['d4_red_yellow']),
+            'd20_red_yellow': RedYellowDie(20, sprites['d20_red_yellow']),
+            'd12_red_yellow': RedYellowDie(12, sprites['d12_red_yellow']),
+            'd10_red_yellow': RedYellowDie(10, sprites['d10_red_yellow']),
+            'd8_red_yellow': RedYellowDie(8, sprites['d8_red_yellow']),
+            'd6_red_yellow': RedYellowDie(6, sprites['d6_red_yellow']),
+            'd4_red_yellow': RedYellowDie(4, sprites['d4_red_yellow']),
         }
         return dice[name]
 
@@ -194,3 +194,7 @@ class BrownYellowDie(Die):
         value = self.sides // 2
         self.last_roll = value
         return value
+    
+
+class RedYellowDie(Die):
+    pass

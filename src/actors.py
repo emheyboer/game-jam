@@ -12,6 +12,7 @@ class Actor:
 
         self.atk_index = 0
         self.attacks = attacks
+        self.fireStreak = 0
 
     def next_attack(self) -> int | None:
         for i, atk in enumerate(self.attacks[self.atk_index:]):
@@ -38,4 +39,12 @@ class Actor:
         
         atk = self.attacks[self.atk_index]
 
-        return atk.roll_attack(self.dice_bag)
+        total, fire, dice = atk.roll_attack(self.dice_bag)
+
+        if fire:
+            self.fireStreak += 1
+            total += self.fireStreak
+        else:
+            self.fireStreak = 0
+
+        return total, dice

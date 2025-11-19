@@ -74,12 +74,12 @@ class Die:
             'd6_genderfluid': GenderfliudDie(6, sprites),
             'd4_genderfluid': GenderfliudDie(4, sprites),
 
-            # 'd20_genderqueer': WhiteDie(20, sprites['d20_genderqueer']),
-            # 'd12_genderqueer': WhiteDie(12, sprites['d12_genderqueer']),
-            # 'd10_genderqueer': WhiteDie(10, sprites['d10_genderqueer']),
-            # 'd8_genderqueer': WhiteDie(8, sprites['d8_genderqueer']),
-            # 'd6_genderqueer': WhiteDie(6, sprites['d6_genderqueer']),
-            # 'd4_genderqueer': WhiteDie(4, sprites['d4_genderqueer']),
+            'd20_genderqueer': GenderQueerDie(20, sprites['d20_genderqueer']),
+            'd12_genderqueer': GenderQueerDie(12, sprites['d12_genderqueer']),
+            'd10_genderqueer': GenderQueerDie(10, sprites['d10_genderqueer']),
+            'd8_genderqueer': GenderQueerDie(8, sprites['d8_genderqueer']),
+            'd6_genderqueer': GenderQueerDie(6, sprites['d6_genderqueer']),
+            'd4_genderqueer': GenderQueerDie(4, sprites['d4_genderqueer']),
 
             'd20_nonbinary': NonBinaryDie(20, sprites['d20_nonbinary']),
             'd12_nonbinary': NonBinaryDie(12, sprites['d12_nonbinary']),
@@ -202,3 +202,18 @@ class RedYellowDie(Die):
 
 class AgenderDie(Die):
     pass
+
+
+class GenderQueerDie(Die):
+    def roll(self) -> int:
+        avg = (self.sides +1) / 2
+        value = random.randint(1, self.sides)
+        print(f"{value} -> ", end='')
+        if value > avg:
+            value += avg / 2
+        elif value < avg:
+            value -= avg / 2
+        value = round(value)
+
+        self.last_roll = value
+        return value

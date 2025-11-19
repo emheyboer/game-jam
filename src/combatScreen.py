@@ -98,6 +98,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_agender'),
             Die.predefined(self.sprites, 'd6_agender'),
             Die.predefined(self.sprites, 'd4_agender'),
+            Die.predefined(self.sprites, 'd20_genderqueer'),
+            Die.predefined(self.sprites, 'd12_genderqueer'),
+            Die.predefined(self.sprites, 'd10_genderqueer'),
+            Die.predefined(self.sprites, 'd8_genderqueer'),
+            Die.predefined(self.sprites, 'd6_genderqueer'),
+            Die.predefined(self.sprites, 'd4_genderqueer'),
         ], self.sprites['dice_bag'])
 
         player_attacks = [
@@ -178,6 +184,12 @@ class combatScreen(Screen):
             Die.predefined(self.sprites, 'd8_agender'),
             Die.predefined(self.sprites, 'd6_agender'),
             Die.predefined(self.sprites, 'd4_agender'),
+            Die.predefined(self.sprites, 'd20_genderqueer'),
+            Die.predefined(self.sprites, 'd12_genderqueer'),
+            Die.predefined(self.sprites, 'd10_genderqueer'),
+            Die.predefined(self.sprites, 'd8_genderqueer'),
+            Die.predefined(self.sprites, 'd6_genderqueer'),
+            Die.predefined(self.sprites, 'd4_genderqueer'),
         ], self.sprites['dice_bag'])
         self.boss = Actor(
             'boss',

@@ -3,6 +3,7 @@ import pygame
 
 from sprites import load_sprites
 from combatScreen import combatScreen
+from shopScreen import shopScreen
 
 
 def main():
@@ -16,6 +17,7 @@ def main():
     sprites = load_sprites()
 
     current_screen = combatScreen(screen, width, height, sprites)
+    #current_screen = shopScreen(screen, width, height, sprites)
 
     running = True
     while running:

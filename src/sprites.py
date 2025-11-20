@@ -78,28 +78,88 @@ def load_sprites():
     inventory = SpriteSheet('assets/inventory/sprites.png')
     sprites['dice_bag'] = Sprite(inventory, (64, 16), (16, 16))
 
+    sprites['bug_girl'] = Sprite(
+        SpriteSheet('assets/boss/bug_girl.png'),
+        (0, 0),
+        (1515, 1515)
+    )
+
     sprites['dice_goblin'] = Sprite(
         SpriteSheet('assets/boss/dice_goblin.png'),
         (0, 0),
-        (2600, 3000)
-    )
-
-    sprites['tootle'] = Sprite(
-        SpriteSheet('assets/boss/tootle.png'),
-        (0, 0),
-        (2300, 2800)
-    )
-
-    sprites['vesphira'] = Sprite(
-        SpriteSheet('assets/boss/vesphira.png'),
-        (0, 0),
-        (3000, 3545)
+        (2807, 2806),
     )
 
     sprites['emiotter'] = Sprite(
         SpriteSheet('assets/boss/emiotter.png'),
         (0, 0),
-        (756, 756)
+        (4324, 4324)
+    )
+
+    sprites['goat_girl'] = Sprite(
+        SpriteSheet('assets/boss/goat_girl.png'),
+        (0, 0),
+        (1378, 1378)
+    )
+
+    sprites['necromancer'] = Sprite(
+        SpriteSheet('assets/boss/necromancer.png'),
+        (0, 0),
+        (1487, 1487)
+    )
+
+    sprites['slime_blue'] = Sprite(
+        SpriteSheet('assets/boss/slime_blue.png'),
+        (0, 0),
+        (1760, 1760)
+    )
+
+    sprites['slime_colon_three'] = Sprite(
+        SpriteSheet('assets/boss/slime_colon_three.png'),
+        (0, 0),
+        (1355, 1355)
+    )
+
+    sprites['slime_green'] = Sprite(
+        SpriteSheet('assets/boss/slime_green.png'),
+        (0, 0),
+        (1568, 1568)
+    )
+
+    sprites['slime_orange'] = Sprite(
+        SpriteSheet('assets/boss/slime_orange.png'),
+        (0, 0),
+        (1572, 1572)
+    )
+
+    sprites['slime_pink'] = Sprite(
+        SpriteSheet('assets/boss/slime_pink.png'),
+        (0, 0),
+        (1596, 1596)
+    )
+
+    sprites['slime_red'] = Sprite(
+        SpriteSheet('assets/boss/slime_red.png'),
+        (0, 0),
+        (1716, 1716)
+    )
+
+    sprites['slime_yellow'] = Sprite(
+        SpriteSheet('assets/boss/slime_yellow.png'),
+        (0, 0),
+        (1660, 1660)
+    )
+
+    sprites['tootle'] = Sprite(
+        SpriteSheet('assets/boss/tootle.png'),
+        (0, 0),
+        (2725, 2725)
+    )
+
+    sprites['vesphira'] = Sprite(
+        SpriteSheet('assets/boss/vesphira.png'),
+        (0, 0),
+        (3349, 3349)
     )
 
     sprites['button_attack'] = Sprite(

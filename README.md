@@ -3,7 +3,7 @@
 - [Brainstorming](https://docs.google.com/document/d/1oW0YhaXJ-WkRBpgMGRPeObHk699_sk1GdFn_szmnPl8/edit?usp=sharing)
 
 # How to Play
-Start the game by running `python3 src/main.py`
+- Start the game by running `python3 src/main.py` and use the [dice guide](./rollies%20guide.pdf) for help
 
 # Credits
 - Code by Gwen Killinger and Emily Heyboer

@@ -1,4 +1,5 @@
 import pygame
+import random
 
 from dice import Die
 from diceBag import DiceBag
@@ -190,7 +191,25 @@ class combatScreen(Screen):
 
 
 def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
+    slimes = [
+        'blue',
+        'green',
+        'orange',
+        'pink',
+        'red',
+        'yellow',
+        'colon_three'
+    ]
     bosses = [
+        Actor(
+            'slime',
+            sprites[f"slime_{random.choice(slimes)}"],
+            sprites['dice_box_boss'],
+            DiceBag([
+            ], sprites['dice_bag']),
+            [
+            ],
+        ),
         Actor(
             'vesphira',
             sprites['vesphira'],
@@ -238,14 +257,35 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
             sprites['emiotter'],
             sprites['dice_box_boss'],
             DiceBag([
-                Die.predefined(sprites, 'd8_advantage'),
-                Die.predefined(sprites, 'd8_advantage'),
-                Die.predefined(sprites, 'd8_outlier'),
-                Die.predefined(sprites, 'd8_outlier'),
             ], sprites['dice_bag']),
             [
-                Attack([(2, 8), (3, 6)]),
-                Attack([(3, 20)]),
+            ],
+        ),
+        Actor(
+            'bug girl',
+            sprites['bug_girl'],
+            sprites['dice_box_boss'],
+            DiceBag([
+            ], sprites['dice_bag']),
+            [
+            ],
+        ),
+        Actor(
+            'goat girl',
+            sprites['goat_girl'],
+            sprites['dice_box_boss'],
+            DiceBag([
+            ], sprites['dice_bag']),
+            [
+            ],
+        ),
+        Actor(
+            'necromancer',
+            sprites['necromancer'],
+            sprites['dice_box_boss'],
+            DiceBag([
+            ], sprites['dice_bag']),
+            [
             ],
         ),
         Actor(
@@ -255,8 +295,6 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
             DiceBag([
             ], sprites['dice_bag']),
             [
-                Attack([(2, 8), (3, 6)]),
-                Attack([(3, 20)]),
             ],
         )
     ]

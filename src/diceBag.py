@@ -33,7 +33,7 @@ class DiceBag:
     
     def pull_any_dice(self, n_dice: int) -> list[Die]:
         all_dice = self.all_dice()
-        n_dice = min(n_dice, len(all_dice))
+        n_dice = max(min(n_dice, len(all_dice)), 0)
         dice = random.sample(all_dice, n_dice)
         
         for die in dice:

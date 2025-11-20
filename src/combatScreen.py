@@ -31,12 +31,8 @@ class combatScreen(Screen):
         x_mult = .2
         for i, atk in enumerate(self.player.attacks):
             if atk.is_possible(self.player.dice_bag):
-                # i'm sorry, please don't judge me for this jank
-                (n_dice, n_sides) = self.player.attacks[i].sets[0]
-                max_dice = min(len(self.player.dice_bag.contents[n_sides]), n_dice)
-
                 button = Button(
-                    f"{max_dice}d{n_sides}",
+                    f"{atk}",
                     (width * x_mult, height * .8),
                     (width * .1, height * .1),
                     sprites['button_attack'],
@@ -89,6 +85,11 @@ class combatScreen(Screen):
         self.boss.profile_art.draw(self.screen, (0, height * 0), size = (width * .225, width * .225))
 
         for btn in self.buttons:
+            if btn.kind == 'attack':
+                # i'm sorry, please don't judge me for this jank
+                (n_dice, n_sides) = self.player.attacks[btn.value].sets[0]
+                max_dice = min(len(self.player.dice_bag.contents[n_sides]), n_dice)
+                btn.label = f"{max_dice}d{n_sides}"
             btn.draw(self.screen)
 
         self.draw_dice_in_box('boss', self.boss_dice)

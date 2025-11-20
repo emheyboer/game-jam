@@ -91,7 +91,8 @@ class shopScreen(Screen):
                 size=(self.width * 0.3, row_height * 0.8),
                 sprite=self.sprites['shopButton'],
                 kind='buy',
-                value=i
+                value=i,
+                scaleText=False
             )
 
             item['button'] = button 
@@ -103,6 +104,7 @@ class shopScreen(Screen):
             size=(self.width * 0.2, self.height * 0.15),
             sprite=self.sprites['button_toShop'],
             kind='leave',
+            scaleText=False,
         )
 
 
@@ -112,6 +114,7 @@ class shopScreen(Screen):
             size=(self.width * 0.2, self.height * 0.15),
             sprite=self.sprites['button_toShop'],
             kind='reroll',
+            scaleText=False,
         )
 
         self.buttons.append(self.leave_button)

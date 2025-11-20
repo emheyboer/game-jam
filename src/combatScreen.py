@@ -35,7 +35,8 @@ class combatScreen(Screen):
                 (width * .1, height * .1),
                 sprites['button_attack'],
                 'attack',
-                value=i
+                value=i,
+                scaleText=False,
             )
             self.buttons.append(button)
             x_mult += .125
@@ -58,7 +59,8 @@ class combatScreen(Screen):
             pos = (self.width * .8, self.height * .75),
             size = (self.width * .20, self.height * .20),
             sprite = self.sprites['button_toShop'],
-            kind = 'navigation'
+            kind = 'navigation',
+            scaleText=False
         )
         self.buttons.append(next_button)
 

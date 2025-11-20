@@ -19,16 +19,20 @@ class Sprite:
         self.sprite.set_colorkey((0,0,0))
         self.sprite.blit(self.spriteSheet.surface, (0, 0), (self.x, self.y, self.width, self.height))
 
-    def draw(self, screen, pos: tuple[float, float], size = None, text = None):
+    def draw(self, screen, pos: tuple[float, float], size = None, text = None, scaleText: bool = True):
         x, y = pos
         sprite = self.sprite.copy()
-
-        if text is not None:
+        
+        if text is not None and scaleText:
             text_surface = self.font.render(text, False, (1, 1, 1))
             sprite.blit(text_surface, (self.offsetX, self.offsetY))
 
         if size is not None:
             sprite = pygame.transform.scale(sprite, size)
+
+        if text is not None and not scaleText:
+            text_surface = self.font.render(text, False, (1, 1, 1))
+            sprite.blit(text_surface, (self.offsetX, self.offsetY))
 
         screen.blit(sprite, (x, y))
 
@@ -164,8 +168,8 @@ def load_sprites():
 
     sprites['button_attack'] = Sprite(
         SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'),
-        (0, 0), (45, 49), textOffset=(5, 15),
-        fontSize=20
+        (0, 0), (45, 49), textOffset=(20, 20),
+        fontSize=75
     )
 
     sprites['background'] = Sprite(
@@ -176,15 +180,15 @@ def load_sprites():
 
     button_toShop = Sprite(
         SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'),
-        (0, 0), (45, 49), textOffset=(5, 15),
-        fontSize=13
+        (0, 0), (45, 49), textOffset=(25, 50),
+        fontSize=75
     )
     sprites['button_toShop'] = button_toShop
 
     shopButton = Sprite(
         SpriteSheet('assets/ui/PNG/buttonSquare_brown.png'),
-        (0, 0), (45, 49), textOffset=(5, 15),
-        fontSize=15
+        (0, 0), (45, 49), textOffset=(50, 10),
+        fontSize=50
     )
     sprites['shopButton'] = shopButton
 

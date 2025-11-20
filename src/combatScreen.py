@@ -311,8 +311,15 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
             sprites['bug_girl'],
             sprites['dice_box_boss'],
             DiceBag([
+                Die.predefined(sprites, 'd12_poison'),
+                Die.predefined(sprites, 'd12_poison'),
+                Die.predefined(sprites, 'd12_poison'),
+                Die.predefined(sprites, 'd12_fluid'),
+                Die.predefined(sprites, 'd12_fluid'),
+                Die.predefined(sprites, 'd12_fluid'),
             ], sprites['dice_bag']),
             [
+                Attack([(2, 12)]),
             ],
         ),
         Actor(

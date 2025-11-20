@@ -34,7 +34,6 @@ class combatScreen(Screen):
         
         for i, atk in enumerate(self.player.attacks):
             if atk.is_possible(self.player.dice_bag):
-                print(f"adding attack {atk}")
                 button = Button(
                     f"{atk}",
                     (width * x_mult, height * .8),

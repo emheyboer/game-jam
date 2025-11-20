@@ -26,7 +26,6 @@ class Attack:
 
         n_dice = die.roll()
         dice_bag.add_dice([die])
-        print(f"rolled a d{die.sides}, pulling {n_dice} dice")
 
         dice = dice_bag.pull_any_dice(n_dice)
         return dice
@@ -56,6 +55,9 @@ class Attack:
         return (total + len(union)**2, fire, poison, money, dice)
     
     def is_possible(self, dice_bag: DiceBag) -> bool:
+        if self.gambling:
+            return dice_bag.size() > 0
+        
         dice = self.pull_from_bag(dice_bag)
         count = len(dice)
         dice_bag.add_dice(dice)

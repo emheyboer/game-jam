@@ -4,13 +4,18 @@ from button import Button
 import random
 from dice import Die
 from diceCatalog import ALL_DICE_IDS, COMMON_DICE, UNCOMMON_DICE, RARE_DICE
+from actors import Actor
+import combatScreen
 
 class shopScreen(Screen):
-    def __init__(self, screen, width: int, height: int, sprites) -> None:
+    def __init__(self, screen, width: int, height: int, sprites, player: Actor, level: int) -> None:
         self.screen = screen
         self.width = width
         self.height = height
         self.sprites = sprites
+        self.level = level
+        self.player = player
+        self.player_dice = []
 
         self.items = []
         self.buttons = []
@@ -86,8 +91,8 @@ class shopScreen(Screen):
 
         self.leave_button = Button(
             label="Leave",
-            pos=(self.width * 0.05, self.height * 0.8),
-            size=(self.width * 0.2, self.height * 0.1),
+            pos=(self.width * 0.75, self.height * 0.8),
+            size=(self.width * 0.2, self.height * 0.15),
             sprite=self.sprites['button_toShop'],  # or a different sprite
             kind='leave',
         )
@@ -132,12 +137,26 @@ class shopScreen(Screen):
             item['button'].draw(self.screen)
 
         # leave button
-        #self.leave_button.draw(self.screen)
+        self.leave_button.draw(self.screen)
 
 
     
     def on_event(self, event) -> Screen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = pygame.mouse.get_pos()
+
+            for btn in self.buttons:
+                if btn.inside(pos) and btn.kind == 'leave':
+                    # Incriment Level
+                    self.level += 1
+                    return combatScreen.combatScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)
+                
+                if btn.inside(pos) and btn.kind == 'buy':
+                    # Check Money
+                    # Subtract Money
+                    # Add Die
+                    # Make Item Unpurchaseable
+                    break
+
 
         return self

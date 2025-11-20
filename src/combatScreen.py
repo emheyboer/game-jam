@@ -179,7 +179,7 @@ class combatScreen(Screen):
 
                 # Change self.roundWon == True: when ready to play set to false for testing
                 if btn.inside(pos) and btn.kind == 'navigation' and self.roundWon == False:
-                    return shopScreen(self.screen, self.width, self.height, self.sprites)                
+                    return shopScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)                
 
         return self
     

@@ -4,6 +4,8 @@ A dice collection roguelike
 # How to Play
 - Start the game by running `python3 src/main.py` and use the [dice guide](./rollies%20guide.pdf) for help
 
+<img width="25%" height="25%" src=assets/readme/rollies%20guide.png />
+
 # Dependencies
 - python 3
 - pygame

@@ -50,8 +50,8 @@ class combatScreen(Screen):
         self.roundLoss = False
 
         # just for testing ofc
-        self.roundWon = True
-        self.show_next(label = "To Shop!")
+        # self.roundWon = True
+        # self.show_next(label = "To Shop!")
 
     def init_boss(self) -> None:
         self.boss = load_boss(self.sprites, self.level)

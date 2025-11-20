@@ -214,8 +214,13 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
             sprites[f"slime_{random.choice(slimes)}"],
             sprites['dice_box_boss'],
             DiceBag([
+                Die.predefined(sprites, 'd4_fluid'),
+                Die.predefined(sprites, 'd4_fluid'),
+                Die.predefined(sprites, 'd4_fluid'),
+                Die.predefined(sprites, 'd4_fluid'),
             ], sprites['dice_bag']),
             [
+                Attack([(1, 4)]),
             ],
         ),
         Actor(
@@ -265,8 +270,16 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
             sprites['emiotter'],
             sprites['dice_box_boss'],
             DiceBag([
+                Die.predefined(sprites, 'd20_poison'),
+                Die.predefined(sprites, 'd20_poison'),
+                Die.predefined(sprites, 'd12_poison'),
+                Die.predefined(sprites, 'd12_poison'),
+                Die.predefined(sprites, 'd12_poison'),
+                Die.predefined(sprites, 'd12_poison'),
             ], sprites['dice_bag']),
             [
+                Attack([(1, 20)]),
+                Attack([(2, 12)]),
             ],
         ),
         Actor(
@@ -282,18 +295,48 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
             'goat girl',
             sprites['goat_girl'],
             sprites['dice_box_boss'],
-            DiceBag([
+            DiceBag([ # fire-breathing goat girl get progressively stronger every turn
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd4_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
+                Die.predefined(sprites, 'd6_fire'),
             ], sprites['dice_bag']),
             [
+                Attack([(1, 6)]),
+                Attack([(1, 4), (1, 6)]),
             ],
         ),
         Actor(
             'necromancer',
             sprites['necromancer'],
             sprites['dice_box_boss'],
-            DiceBag([
+            DiceBag([ # glass canon who only lasts a few turns
+                Die.predefined(sprites, 'd20_glass'),
+                Die.predefined(sprites, 'd20_glass'),
+                Die.predefined(sprites, 'd12_glass'),
+                Die.predefined(sprites, 'd12_glass'),
+                Die.predefined(sprites, 'd10_glass'),
+                Die.predefined(sprites, 'd10_glass'),
             ], sprites['dice_bag']),
             [
+                Attack([(1, 10), (1, 20), (1, 12)]),
+                Attack([(1, 20), (2, 10)]),
             ],
         ),
         Actor(

@@ -101,11 +101,21 @@ class shopScreen(Screen):
             label="Leave",
             pos=(self.width * 0.75, self.height * 0.8),
             size=(self.width * 0.2, self.height * 0.15),
-            sprite=self.sprites['button_toShop'],  # or a different sprite
+            sprite=self.sprites['button_toShop'],
             kind='leave',
         )
 
+
+        self.reroll_button = Button(
+            label="Re-Roll 1G",
+            pos=(self.width * 0.4, self.height * 0.8),
+            size=(self.width * 0.2, self.height * 0.15),
+            sprite=self.sprites['button_toShop'],
+            kind='reroll',
+        )
+
         self.buttons.append(self.leave_button)
+        self.buttons.append(self.reroll_button)
 
     def draw(self) -> None:
         width, height = self.width, self.height
@@ -114,7 +124,6 @@ class shopScreen(Screen):
 
         ui_sections = [
             ((200, 150, 0), (width * .02, height * .8, width * .2, height * .2), f"Gold x{self.player.money}"),
-            ((50, 50, 200), (width * .4, height * .8, width * .2, height * .1), "Re-Roll 1G"),
         ]
 
         font = pygame.font.SysFont(pygame.font.get_default_font(), 60)
@@ -150,6 +159,8 @@ class shopScreen(Screen):
 
         # leave button
         self.leave_button.draw(self.screen)
+        # reroll
+        self.reroll_button.draw(self.screen)
 
 
     
@@ -184,4 +195,15 @@ class shopScreen(Screen):
                     item['sold'] = True
                     item['button'].label = "Bought"
                     item['button'].kind = 'sold'
+
+                if btn.inside(pos) and btn.kind == 'reroll':
+
+                    if self.player.money < 1:
+                        print("Not enough gold!")
+                        break
+                    else:
+                        self.player.money -= 1
+                        self.init_shop_inventory()
+                        self.init_buttons()
+                        break
         return self

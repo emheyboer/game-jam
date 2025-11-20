@@ -147,7 +147,6 @@ class shopScreen(Screen):
 
             for btn in self.buttons:
                 if btn.inside(pos) and btn.kind == 'leave':
-                    # Incriment Level
                     self.level += 1
                     return combatScreen.combatScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)
                 

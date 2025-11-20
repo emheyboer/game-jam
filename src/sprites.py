@@ -168,7 +168,7 @@ def load_sprites():
 
     sprites['button_attack'] = Sprite(
         SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'),
-        (0, 0), (45, 49), textOffset=(20, 20),
+        (0, 0), (45, 49), textOffset=(15, 20),
         fontSize=75
     )
 

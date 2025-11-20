@@ -22,22 +22,19 @@ def main():
     sprites = load_sprites()
 
     player_dice_bag = DiceBag([
+        Die.predefined(sprites, 'd20_basic'),
+        Die.predefined(sprites, 'd12_basic'),
+        Die.predefined(sprites, 'd10_basic'),
+        Die.predefined(sprites, 'd8_basic'),
         Die.predefined(sprites, 'd6_basic'),
-        Die.predefined(sprites, 'd6_basic'),
-        Die.predefined(sprites, 'd6_basic'),
-        Die.predefined(sprites, 'd6_glass'),
-        Die.predefined(sprites, 'd6_stone'),
-        Die.predefined(sprites, 'd6_advantage'),
-        Die.predefined(sprites, 'd6_lucky'),
-        Die.predefined(sprites, 'd4_exploding'),
-        Die.predefined(sprites, 'd4_poison'),
-        Die.predefined(sprites, 'd4_fire'),
     ], sprites['dice_bag'])
 
     player_attacks = [
-        Attack([(3, 6)]),
-        Attack([(3, 4)]),
-        Attack([(1, 4)]),
+        Attack([(1, 20)]),
+        Attack([(2, 12)]),
+        Attack([(3, 10)]),
+        Attack([(4, 8)]),
+        Attack([(5, 6)]),
     ]
 
     player = Actor(

@@ -29,17 +29,22 @@ class combatScreen(Screen):
         self.buttons = []
 
         x_mult = .2
-        for i in range(len(self.player.attacks)):
-            button = Button(
-                f"{self.player.attacks[i]}",
-                (width * x_mult, height * .8),
-                (width * .1, height * .1),
-                sprites['button_attack'],
-                'attack',
-                value=i,
-                scaleText=False,
-            )
-            self.buttons.append(button)
+        for i, atk in enumerate(self.player.attacks):
+            if atk.is_possible(self.player.dice_bag):
+                # i'm sorry, please don't judge me for this jank
+                (n_dice, n_sides) = self.player.attacks[i].sets[0]
+                max_dice = min(len(self.player.dice_bag.contents[n_sides]), n_dice)
+
+                button = Button(
+                    f"{max_dice}d{n_sides}",
+                    (width * x_mult, height * .8),
+                    (width * .1, height * .1),
+                    sprites['button_attack'],
+                    'attack',
+                    value=i,
+                    scaleText=False,
+                )
+                self.buttons.append(button)
             x_mult += .125
 
         self.roundWon = False
@@ -185,7 +190,6 @@ class combatScreen(Screen):
             for btn in self.buttons:
                 if btn.inside(pos) and btn.kind == 'attack':
                     self.take_turn(atkPlayer=btn.value)
-                    print(f"player has {self.player.dice_bag.size()} dice, boss has {self.boss.dice_bag.size()} dice")
 
                 if btn.inside(pos) and btn.kind == 'navigation':
                     if self.roundLoss:
@@ -261,8 +265,8 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
                 Die.predefined(sprites, 'd6_basic'),
             ], sprites['dice_bag']),
             [
-                Attack([(6, 4)]),
                 Attack([(1,4), (1, 6)]),
+                Attack([(6, 4)]),
             ],
         ),
         Actor(

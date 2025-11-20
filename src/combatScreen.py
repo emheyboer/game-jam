@@ -188,6 +188,21 @@ class combatScreen(Screen):
 def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
     bosses = [
         Actor(
+            'vesphira',
+            sprites['vesphira'],
+            sprites['dice_box_boss'],
+            DiceBag([
+                Die.predefined(sprites, 'd8_advantage'),
+                Die.predefined(sprites, 'd8_advantage'),
+                Die.predefined(sprites, 'd8_outlier'),
+                Die.predefined(sprites, 'd8_outlier'),
+                    ], sprites['dice_bag']),
+            [
+                Attack([(2, 8)]),
+                Attack([(3, 8)]),
+            ],
+        ),
+        Actor(
             'tootle',
             sprites['tootle'],
             sprites['dice_box_boss'],

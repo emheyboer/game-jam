@@ -200,8 +200,14 @@ def load_sprites():
     )
 
     sprites['gold'] = Sprite(
-        SpriteSheet('assets/ui/Coin.png'),
+        SpriteSheet('assets/ui/coin.png'),
         (0, 0), (550, 550), textOffset=(5, 15),
         fontSize=20
+    )
+
+    sprites['shop_sign'] = Sprite(
+        SpriteSheet('assets/ui/shop_sign.png'),
+        (0, 0),
+        (486, 486),
     )
     return sprites

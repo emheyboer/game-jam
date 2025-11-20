@@ -111,7 +111,7 @@ class shopScreen(Screen):
         self.reroll_button = Button(
             label="Re-Roll 1G",
             pos=(self.width * 0.4, self.height * 0.8),
-            size=(self.width * 0.2, self.height * 0.15),
+            size=(self.width * 0.225, self.height * 0.15),
             sprite=self.sprites['button_toShop'],
             kind='reroll',
             scaleText=False,
@@ -159,6 +159,9 @@ class shopScreen(Screen):
 
         # gold
         self.sprites['gold'].draw(self.screen,(width * .15, height * .8),size=(150, 150))
+
+        # shop sign
+        self.sprites['shop_sign'].draw(self.screen, (0, 0), (width * .25, width * .25))
 
         # leave button
         self.leave_button.draw(self.screen)

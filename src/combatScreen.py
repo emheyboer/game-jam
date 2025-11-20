@@ -40,22 +40,27 @@ class combatScreen(Screen):
             self.buttons.append(button)
             x_mult += .125
 
-        
-        toShop_Button = Button(
-            label = "To Shop!",
-            pos = (width * .8, height * .75),
-            size = (width * .20, height * .20),
-            sprite = sprites['button_toShop'],
-            kind = 'navigation'
-        )
-        self.buttons.append(toShop_Button)
         self.roundWon = False
         self.roundLoss = False
+
+        # just for testing ofc
+        self.roundWon = True
+        self.show_next(label = "To Shop!")
 
     def init_boss(self) -> None:
         self.boss = load_boss(self.sprites, self.level)
         self.boss_dice = []
         self.boss_total = None
+
+    def show_next(self, label: str = "Next") -> None:
+        next_button = Button(
+            label = label,
+            pos = (self.width * .8, self.height * .75),
+            size = (self.width * .20, self.height * .20),
+            sprite = self.sprites['button_toShop'],
+            kind = 'navigation'
+        )
+        self.buttons.append(next_button)
 
     def draw(self) -> None:
         width, height = self.width, self.height
@@ -164,12 +169,12 @@ class combatScreen(Screen):
             if btn.kind == 'attack' and not self.player.attacks[btn.value].is_possible(self.player.dice_bag):
                 self.buttons.remove(btn)
 
-        if self.player.next_attack() is None:
-            print("you lose :(")
-            self.roundLoss = True
-        elif self.boss.next_attack() is None:
-            print("you win :)")
+        if self.boss.next_attack() is None:
             self.roundWon = True
+            self.show_next(label="To Shop!")
+        elif self.player.next_attack() is None:
+            self.roundLoss = True
+            self.show_next(label="To End")
     
     def on_event(self, event) -> Screen:
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
@@ -179,13 +184,11 @@ class combatScreen(Screen):
                     self.take_turn(atkPlayer=btn.value)
                     print(f"player has {self.player.dice_bag.size()} dice, boss has {self.boss.dice_bag.size()} dice")
 
+                if btn.inside(pos) and btn.kind == 'navigation':
                     if self.roundLoss:
                         return lossScreen(self.screen, self.width, self.height, self.sprites)
-                    break
-
-                # Change self.roundWon == True: when ready to play set to false for testing
-                if btn.inside(pos) and btn.kind == 'navigation' and self.roundWon == True:
-                    return shopScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)
+                    if self.roundWon:
+                        return shopScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)
         return self
     
 

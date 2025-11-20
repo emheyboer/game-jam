@@ -99,9 +99,9 @@ class shopScreen(Screen):
             self.buttons.append(button)
 
         self.leave_button = Button(
-            label="Leave",
-            pos=(self.width * 0.75, self.height * 0.8),
-            size=(self.width * 0.2, self.height * 0.15),
+            label="   Leave",
+            pos=(self.width * .8, self.height * .75),
+            size=(self.width * .20, self.height * .20),
             sprite=self.sprites['button_toShop'],
             kind='leave',
             scaleText=False,

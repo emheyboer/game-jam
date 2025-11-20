@@ -67,8 +67,8 @@ class combatScreen(Screen):
                                 text=label)
 
 
-        self.boss.dice_bag.draw(self.screen, (width * .8, height * .475), size = (width * .225, height * .225))
-        self.player.dice_bag.draw(self.screen, (width * .8, height * .1), size = (width * .225, height * .225))
+        # self.boss.dice_bag.draw(self.screen, (width * .8, height * .475), size = (width * .225, height * .225))
+        # self.player.dice_bag.draw(self.screen, (width * .8, height * .1), size = (width * .225, height * .225))
 
         self.boss.profile_art.draw(self.screen, (0, height * 0), size = (width * .225, width * .225))
 

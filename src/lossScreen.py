@@ -11,7 +11,6 @@ class lossScreen(Screen):
         lossScreen.draw(self)
 
     def draw(self) -> None:
-        print("Drawin")
         width, height = self.width, self.height
         self.sprites['background_Loss'].draw(self.screen,(0, 0),size=(width, height))
 

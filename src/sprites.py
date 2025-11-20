@@ -74,7 +74,8 @@ def load_sprites():
         SpriteSheet('assets/ui/PNG/panel_brown.png'),
         (0, 0),
         (100, 100),
-        textOffset=(40, 10)
+        textOffset=(400, 25),
+        fontSize=100
     )
     sprites['dice_box_player'] = dice_box
     sprites['dice_box_boss'] = dice_box

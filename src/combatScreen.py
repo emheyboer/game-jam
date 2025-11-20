@@ -72,11 +72,21 @@ class combatScreen(Screen):
         self.sprites['background'].draw(self.screen, (0, 0), (width, height))
 
         label = str(self.boss_total) if self.boss_total is not None else ""
-        self.boss.dice_box_art.draw(self.screen, (width * .2, 0), size = (width * .6, height * .375),
-                            text=label)
+        self.boss.dice_box_art.draw(
+            self.screen,
+            (width * .2, 0),
+            size = (width * .6, height * .375),
+            text=label,
+            scaleText=False,
+        )
         label = str(self.player_total) if self.player_total is not None else ""
-        self.player.dice_box_art.draw(self.screen, (width * .2, height * .375), size = (width * .6, height * .375),
-                                text=label)
+        self.player.dice_box_art.draw(
+            self.screen,
+            (width * .2, height * .375),
+            size = (width * .6, height * .375),
+            text=label,
+            scaleText=False,
+        )
 
 
         # self.boss.dice_bag.draw(self.screen, (width * .8, height * .475), size = (width * .225, height * .225))

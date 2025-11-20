@@ -7,6 +7,7 @@ from diceCatalog import ALL_DICE_IDS, COMMON_DICE, UNCOMMON_DICE, RARE_DICE
 from actors import Actor
 import combatScreen
 
+
 class shopScreen(Screen):
     def __init__(self, screen, width: int, height: int, sprites, player: Actor, level: int) -> None:
         self.screen = screen
@@ -147,7 +148,6 @@ class shopScreen(Screen):
 
             for btn in self.buttons:
                 if btn.inside(pos) and btn.kind == 'leave':
-                    # Incriment Level
                     self.level += 1
                     return combatScreen.combatScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)
                 
@@ -157,6 +157,4 @@ class shopScreen(Screen):
                     # Add Die
                     # Make Item Unpurchaseable
                     break
-
-
         return self

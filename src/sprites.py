@@ -128,4 +128,9 @@ def load_sprites():
     )
     sprites['shopButton'] = shopButton
 
+    sprites['background_Loss'] = Sprite(
+        SpriteSheet('assets/ui/Youlose.png'),
+        (0, 0), (1440, 900), textOffset=(5, 15),
+        fontSize=20
+    )
     return sprites

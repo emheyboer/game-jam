@@ -1,9 +1,12 @@
 # Rollies
-- [Rules](https://docs.google.com/document/d/1BmwAUolHav356UHfVCIK9ViCCxzSh6aiscKWAO2wkNg/edit?usp=sharing)
-- [Brainstorming](https://docs.google.com/document/d/1oW0YhaXJ-WkRBpgMGRPeObHk699_sk1GdFn_szmnPl8/edit?usp=sharing)
+A dice collection roguelike
 
 # How to Play
 - Start the game by running `python3 src/main.py` and use the [dice guide](./rollies%20guide.pdf) for help
+
+# Dependencies
+- python 3
+- pygame
 
 # Credits
 - Code by Gwen Killinger and Emily Heyboer
@@ -13,3 +16,7 @@
 - Dice box and button art by [kenny](https://kenney.nl/)
 - Dice bag art by [pbarry](https://pbarry.itch.io)
 - Wooden table art by [owletrius](https://owletrius.itch.io)
+
+# Links
+- [Rules](https://docs.google.com/document/d/1BmwAUolHav356UHfVCIK9ViCCxzSh6aiscKWAO2wkNg/edit?usp=sharing)
+- [Brainstorming](https://docs.google.com/document/d/1oW0YhaXJ-WkRBpgMGRPeObHk699_sk1GdFn_szmnPl8/edit?usp=sharing)

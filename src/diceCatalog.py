@@ -110,10 +110,10 @@ RARE_DICE = [
     'd20_lucky', 'd20_money', 'd20_fluid',
     'd20_poison', 'd20_advantage', 'd20_exploding', 
     'd12_lucky', 'd12_money', 'd12_exploding', 
-
+    'd12_poison', 
 ]
 
 LEGENDARY_DICE = [
     'd20_trans', 'd12_trans', 'd10_trans',
-    'd8_trans', 'd6_trans', 'd12_poison', 
+    'd8_trans', 'd6_trans', 
 ]

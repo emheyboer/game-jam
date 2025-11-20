@@ -8,6 +8,7 @@ from button import Button
 from screen import Screen
 from sprites import Sprite
 from shopScreen import shopScreen
+from lossScreen import lossScreen
 
 class combatScreen(Screen):
     def __init__(self, screen, width: int, height: int, sprites: dict[str, Sprite], player: Actor, level: int) -> None:
@@ -48,6 +49,7 @@ class combatScreen(Screen):
         )
         self.buttons.append(toShop_Button)
         self.roundWon = False
+        self.roundLoss = False
 
     def init_boss(self) -> None:
         self.boss = load_boss(self.sprites, self.level)
@@ -163,7 +165,7 @@ class combatScreen(Screen):
 
         if self.player.next_attack() is None:
             print("you lose :(")
-            self.roundWon = False
+            self.roundLoss = True
         elif self.boss.next_attack() is None:
             print("you win :)")
             self.roundWon = True
@@ -175,12 +177,14 @@ class combatScreen(Screen):
                 if btn.inside(pos) and btn.kind == 'attack':
                     self.take_turn(atkPlayer=btn.value)
                     print(f"player has {self.player.dice_bag.size()} dice, boss has {self.boss.dice_bag.size()} dice")
+
+                    if self.roundLoss:
+                        return lossScreen(self.screen, self.width, self.height, self.sprites)
                     break
 
                 # Change self.roundWon == True: when ready to play set to false for testing
                 if btn.inside(pos) and btn.kind == 'navigation' and self.roundWon == True:
-                    return shopScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)                
-
+                    return shopScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)
         return self
     
 

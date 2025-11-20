@@ -8,6 +8,7 @@ from dice import Die
 from diceBag import DiceBag
 from actors import Actor
 from attack import Attack
+from lossScreen import lossScreen
 
 
 def main():
@@ -48,7 +49,9 @@ def main():
     )
 
     current_screen = combatScreen(screen, width, height, sprites, player, 0)
+    # ~~~ Testing Purposes ~~~
     #current_screen = shopScreen(screen, width, height, sprites, player, 0)
+    #current_screen = lossScreen(screen, width, height, sprites)
 
     running = True
     while running:
@@ -57,6 +60,10 @@ def main():
                 running = False
             else:
                 current_screen = current_screen.on_event(event)
+
+                if current_screen == "retry":
+                    return main()
+
                 
 
         keys = pygame.key.get_pressed()

@@ -7,6 +7,7 @@ from diceCatalog import ALL_DICE_IDS, COMMON_DICE, UNCOMMON_DICE, RARE_DICE
 from actors import Actor
 import combatScreen
 
+
 class shopScreen(Screen):
     def __init__(self, screen, width: int, height: int, sprites, player: Actor, level: int) -> None:
         self.screen = screen

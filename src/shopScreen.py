@@ -156,6 +156,4 @@ class shopScreen(Screen):
                     # Add Die
                     # Make Item Unpurchaseable
                     break
-
-
         return self

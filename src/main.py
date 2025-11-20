@@ -47,8 +47,8 @@ def main():
         player_attacks,
     )
 
-    #current_screen = combatScreen(screen, width, height, sprites, player, 0)
-    current_screen = shopScreen(screen, width, height, sprites, player, 0)
+    current_screen = combatScreen(screen, width, height, sprites, player, 0)
+    #current_screen = shopScreen(screen, width, height, sprites, player, 0)
 
     running = True
     while running:

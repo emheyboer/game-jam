@@ -45,11 +45,11 @@ ALL_DICE_IDS = [
 
     # Trans (disabled in code)
     'd20_trans', 'd12_trans', 'd10_trans',
-    'd8_trans', 'd6_trans', 'd4_trans',
+    'd8_trans', 'd6_trans',
 
     # Outlier
     'd20_outlier', 'd12_outlier', 'd10_outlier',
-    'd8_outlier', 'd6_outlier', 'd4_outlier',
+    'd8_outlier', 'd6_outlier',
 ]
 
 COMMON_DICE = [

@@ -8,8 +8,8 @@
 # Credits
 - Code by Gwen Killinger and Emily Heyboer
 - Dice Goblin, Tootle, Vesphira, and slime art by [maplegoose](https://www.instagram.com/maplegoose_/)
-- Emiotter, Goat Girl, Bug Girl, Necromancer, and :3 slime art by [@undercover_artz](http://discord.com/users/1368744067302952990) on discord
+- Emiotter, Goat Girl, Bug Girl, Necromancer, and :3 slime art by [undercover_artz](https://discord.com/users/1368744067302952990)
 - Dice art by [edilith](https://edilith.itch.io)
-- Dice box art by [kenny](https://kenney.nl/)
+- Dice box and button art by [kenny](https://kenney.nl/)
 - Dice bag art by [pbarry](https://pbarry.itch.io)
 - Wooden table art by [owletrius](https://owletrius.itch.io)

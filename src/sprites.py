@@ -96,6 +96,12 @@ def load_sprites():
         (3000, 3545)
     )
 
+    sprites['emiotter'] = Sprite(
+        SpriteSheet('assets/boss/emiotter.png'),
+        (0, 0),
+        (756, 756)
+    )
+
     sprites['button_attack'] = Sprite(
         SpriteSheet('assets/ui/PNG/buttonSquare_blue.png'),
         (0, 0), (45, 49), textOffset=(5, 15),

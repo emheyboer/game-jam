@@ -20,7 +20,7 @@ class combatScreen(Screen):
         self.player = player
         self.player_dice = []
         self.player_total = None
-        
+
         self.init_boss()
 
         self.buttons = []
@@ -194,9 +194,13 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
             DiceBag([
                 Die.predefined(sprites, 'd8_advantage'),
                 Die.predefined(sprites, 'd8_advantage'),
+                Die.predefined(sprites, 'd8_advantage'),
+                Die.predefined(sprites, 'd8_advantage'),
                 Die.predefined(sprites, 'd8_outlier'),
                 Die.predefined(sprites, 'd8_outlier'),
-                    ], sprites['dice_bag']),
+                Die.predefined(sprites, 'd8_outlier'),
+                Die.predefined(sprites, 'd8_outlier'),
+            ], sprites['dice_bag']),
             [
                 Attack([(2, 8)]),
                 Attack([(3, 8)]),
@@ -219,18 +223,22 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
                 Die.predefined(sprites, 'd6_basic'),
                 Die.predefined(sprites, 'd6_basic'),
                 Die.predefined(sprites, 'd6_basic'),
-                    ], sprites['dice_bag']),
+            ], sprites['dice_bag']),
             [
                 Attack([(6, 4)]),
                 Attack([(1,4), (1, 6)]),
             ],
         ),
         Actor(
-            'vesphira',
-            sprites['vesphira'],
+            'emiotter',
+            sprites['emiotter'],
             sprites['dice_box_boss'],
             DiceBag([
-                    ], sprites['dice_bag']),
+                Die.predefined(sprites, 'd8_advantage'),
+                Die.predefined(sprites, 'd8_advantage'),
+                Die.predefined(sprites, 'd8_outlier'),
+                Die.predefined(sprites, 'd8_outlier'),
+            ], sprites['dice_bag']),
             [
                 Attack([(2, 8), (3, 6)]),
                 Attack([(3, 20)]),
@@ -241,7 +249,7 @@ def load_boss(sprites: dict[str, Sprite], index: int) -> Actor:
             sprites['dice_goblin'],
             sprites['dice_box_boss'],
             DiceBag([
-                    ], sprites['dice_bag']),
+            ], sprites['dice_bag']),
             [
                 Attack([(2, 8), (3, 6)]),
                 Attack([(3, 20)]),

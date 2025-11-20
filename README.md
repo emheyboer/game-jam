@@ -8,6 +8,7 @@
 # Credits
 - Code by Gwen Killinger and Emily Heyboer
 - Dice Goblin art by [maplegoose](https://www.instagram.com/maplegoose_/)
+- Emiotter art by @undercover_artz
 - Dice art by [edilith](https://edilith.itch.io)
 - Dice box art by [kenny](https://kenney.nl/)
 - Dice bag art by [pbarry](https://pbarry.itch.io)

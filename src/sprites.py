@@ -111,7 +111,7 @@ def load_sprites():
     sprites['slime_blue'] = Sprite(
         SpriteSheet('assets/boss/blue_dice_slime_transparent.png'),
         (0, 0),
-        (1760, 1760)
+        (2048, 2048)
     )
 
     sprites['slime_colon_three'] = Sprite(
@@ -123,31 +123,31 @@ def load_sprites():
     sprites['slime_green'] = Sprite(
         SpriteSheet('assets/boss/green_dice_slime_transparent.png'),
         (0, 0),
-        (1568, 1568)
+        (2048, 2048)
     )
 
     sprites['slime_orange'] = Sprite(
         SpriteSheet('assets/boss/orange_dice_slime_transparent.png'),
         (0, 0),
-        (1572, 1572)
+        (2048, 2048)
     )
 
     sprites['slime_pink'] = Sprite(
-        SpriteSheet('assets/boss/slime_pink.png'),
+        SpriteSheet('assets/boss/pink_dice_slime_transparent.png'),
         (0, 0),
-        (1596, 1596)
+        (2048, 2048)
     )
 
     sprites['slime_red'] = Sprite(
         SpriteSheet('assets/boss/red_dice_slime_transparent.png'),
         (0, 0),
-        (1716, 1716)
+        (2048, 2048)
     )
 
     sprites['slime_yellow'] = Sprite(
         SpriteSheet('assets/boss/yellow_dice_slime_transparent.png'),
         (0, 0),
-        (1660, 1660)
+        (2048, 2048)
     )
 
     sprites['tootle'] = Sprite(

@@ -20,6 +20,7 @@ class combatScreen(Screen):
         self.level = level
 
         self.player = player
+        self.starting_dice = self.player.dice_bag.all_dice()
         self.player_dice = []
         self.player_total = None
 
@@ -188,8 +189,10 @@ class combatScreen(Screen):
 
                 if btn.inside(pos) and btn.kind == 'navigation':
                     if self.roundLoss:
+                        self.player.dice_bag = DiceBag(self.starting_dice, self.sprites['dice_bag'])
                         return lossScreen(self.screen, self.width, self.height, self.sprites)
                     if self.roundWon:
+                        self.player.dice_bag = DiceBag(self.starting_dice, self.sprites['dice_bag'])
                         return shopScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)
         return self
     

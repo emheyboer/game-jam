@@ -105,7 +105,8 @@ class combatScreen(Screen):
         self.draw_dice_in_box('boss', self.boss_dice)
         self.draw_dice_in_box('player', self.player_dice)
 
-        self.draw_dice_in_bag()
+        self.draw_dice_in_bag('boss', self.boss.dice_bag)
+        self.draw_dice_in_bag('player', self.player.dice_bag)
 
 
     def draw_dice_in_box(self, box: str, dice: list[Die]) -> None:
@@ -138,10 +139,9 @@ class combatScreen(Screen):
             x += deltaX
             deltaY *= -1
 
-    def draw_dice_in_bag(self) -> None:
+    def draw_dice_in_bag(self, target: str, dice_bag: DiceBag) -> None:
         width, height = self.width, self.height
-        dice = self.player.dice_bag.all_dice()
-        y = height * .45
+        dice = dice_bag.all_dice()
 
         deltaX = width * .04
         size = (deltaX, deltaX)
@@ -154,12 +154,21 @@ class combatScreen(Screen):
         #     deltaY = -height * .02 / divisor
         #     lineOffset = height * .104 / divisor
 
-        x = width * 0
+        if target == 'player':
+            minX = width * .8
+            maxX = width
+            y = height * .1
+        elif target == 'boss':
+            minX = 0
+            maxX = width * .2
+            y = height * .45
+
+        x = minX
         for die in dice:
             y += deltaY
-            if x + deltaX > width * .2:
+            if x + deltaX > maxX:
                 y += lineOffset
-                x = 0
+                x = minX
             die.draw(self.screen, (x, y), size=size)
             x += deltaX
             deltaY *= -1

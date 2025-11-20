@@ -29,8 +29,12 @@ class combatScreen(Screen):
         self.buttons = []
 
         x_mult = .2
+        if self.player.attacks[0].gambling:
+            x_mult = .075
+        
         for i, atk in enumerate(self.player.attacks):
             if atk.is_possible(self.player.dice_bag):
+                print(f"adding attack {atk}")
                 button = Button(
                     f"{atk}",
                     (width * x_mult, height * .8),
@@ -95,7 +99,7 @@ class combatScreen(Screen):
         self.boss.profile_art.draw(self.screen, (0, height * 0), size = (width * .225, width * .225))
 
         for btn in self.buttons:
-            if btn.kind == 'attack':
+            if btn.kind == 'attack' and len(self.player.attacks[btn.value].sets) == 1:
                 # i'm sorry, please don't judge me for this jank
                 (n_dice, n_sides) = self.player.attacks[btn.value].sets[0]
                 max_dice = min(len(self.player.dice_bag.contents[n_sides]), n_dice)
@@ -173,7 +177,6 @@ class combatScreen(Screen):
             x += deltaX
             deltaY *= -1
 
-
     def take_turn(self, atkPlayer: int|None = None, atkBoss: int|None = None) -> None:
         self.player_total, boss_poisoned, self.player_dice = self.player.roll_attack(atk_index=atkPlayer)
         self.boss_total, player_poisoned, self.boss_dice = self.boss.roll_attack(atk_index=atkBoss)
@@ -208,10 +211,13 @@ class combatScreen(Screen):
         if event.type == pygame.MOUSEBUTTONDOWN and event.button == 1:
             pos = pygame.mouse.get_pos()
             for btn in self.buttons:
-                if btn.inside(pos) and btn.kind == 'attack':
+                if not btn.inside(pos):
+                    continue
+
+                if btn.kind == 'attack':
                     self.take_turn(atkPlayer=btn.value)
 
-                if btn.inside(pos) and btn.kind == 'navigation':
+                elif btn.kind == 'navigation':
                     if self.roundLoss:
                         self.player.dice_bag = DiceBag(self.starting_dice, self.sprites['dice_bag'])
                         return lossScreen(self.screen, self.width, self.height, self.sprites)

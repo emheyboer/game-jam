@@ -9,7 +9,7 @@ class DiceBag:
 
         self.sprite = sprite
 
-    def add_dice(self, dice):
+    def add_dice(self, dice: list[Die]):
         for die in dice:
             if type(die) == GlassDie and die.broken:
                 continue
@@ -28,6 +28,16 @@ class DiceBag:
             die = random.choice(options)
             options.remove(die)
             dice.append(die)
+
+        return dice
+    
+    def pull_any_dice(self, n_dice: int) -> list[Die]:
+        all_dice = self.all_dice()
+        n_dice = min(n_dice, len(all_dice))
+        dice = random.sample(all_dice, n_dice)
+        
+        for die in dice:
+            self.contents[die.sides].remove(die)
 
         return dice
     

@@ -21,6 +21,8 @@ class shopScreen(Screen):
         self.items = []
         self.buttons = []
 
+        self.player.money += 10
+
         self.init_shop_inventory()
         self.init_buttons()
 
@@ -43,30 +45,35 @@ class shopScreen(Screen):
             "die": s1_die,
             "cost": 2,
             "button": None,
+            "sold": False
         })
 
         self.items.append({
             "die": s2_die,
             "cost": 2,
             "button": None,
+            "sold": False
         })
 
         self.items.append({
             "die": s3_die,
             "cost": 3,
             "button": None,
+            "sold": False
         })
 
         self.items.append({
             "die": s4_die,
             "cost": 4,
             "button": None,
+            "sold": False
         })
 
         self.items.append({
             "die": s5_die,
             "cost": 5,
             "button": None,
+            "sold": False
         })
 
     def init_buttons(self):
@@ -103,13 +110,14 @@ class shopScreen(Screen):
     def draw(self) -> None:
         width, height = self.width, self.height
 
+        self.sprites['background'].draw(self.screen, (0, 0), (width, height))
+
         ui_sections = [
-            ((200, 150, 0), (width * .02, height * .8, width * .2, height * .2), "Gold"),
+            ((200, 150, 0), (width * .02, height * .8, width * .2, height * .2), f"Gold x{self.player.money}"),
             ((50, 50, 200), (width * .4, height * .8, width * .2, height * .1), "Re-Roll 1G"),
-            ((0, 200, 200), (width * .75, height * .8, width * .2, height * .2), "Leave"),
         ]
 
-        font = pygame.font.SysFont(pygame.font.get_default_font(), 30)
+        font = pygame.font.SysFont(pygame.font.get_default_font(), 60)
 
         for section in ui_sections:
             color, rect, text = section
@@ -137,6 +145,9 @@ class shopScreen(Screen):
             # buy button
             item['button'].draw(self.screen)
 
+        # gold
+        self.sprites['gold'].draw(self.screen,(width * .15, height * .8),size=(150, 150))
+
         # leave button
         self.leave_button.draw(self.screen)
 
@@ -149,6 +160,7 @@ class shopScreen(Screen):
             for btn in self.buttons:
                 if btn.inside(pos) and btn.kind == 'leave':
                     self.level += 1
+                    self.player.money = 0
                     return combatScreen.combatScreen(self.screen, self.width, self.height, self.sprites, self.player, self.level)
                 
                 if btn.inside(pos) and btn.kind == 'buy':
@@ -156,5 +168,20 @@ class shopScreen(Screen):
                     # Subtract Money
                     # Add Die
                     # Make Item Unpurchaseable
-                    break
+                    index = btn.value
+                    item = self.items[index]
+                    cost = item['cost']
+
+                    if item.get('sold'):
+                        break
+
+                    if self.player.money < cost:
+                        print("Not enough gold!")
+                        break
+                    
+                    self.player.money -= cost
+                    self.player.dice_bag.add_dice([item['die']])
+                    item['sold'] = True
+                    item['button'].label = "Bought"
+                    item['button'].kind = 'sold'
         return self

@@ -13,6 +13,7 @@ from lossScreen import lossScreen
 
 def main():
     pygame.init()
+    pygame.display.set_caption('rollies')
 
     screen = pygame.display.set_mode()
     width, height = pygame.display.get_surface().get_size()

@@ -1,10 +1,12 @@
 # Rollies
 A dice collection roguelike
 
+<img width="50%" height="50%" src=assets/readme/example.jpg />
+
+<img width="50%" height="50%" src=assets/readme/rollies%20guide.png />
+
 # How to Play
 - Start the game by running `python3 src/main.py` and use the [dice guide](./rollies%20guide.pdf) for help
-
-<img width="25%" height="25%" src=assets/readme/rollies%20guide.png />
 
 # Dependencies
 - python 3

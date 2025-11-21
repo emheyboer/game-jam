@@ -31,7 +31,7 @@ def main():
     ], sprites['dice_bag'])
 
     player_attacks = [
-        # Attack([], gambling=True),
+        Attack([], gambling=True),
         Attack([(1, 20)]),
         Attack([(2, 12)]),
         Attack([(3, 10)]),
